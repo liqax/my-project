@@ -1,0 +1,323 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap');
+
+/* Base reset and typography */
+html, body {
+  font-family: 'Kanit', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Kanit', sans-serif;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* CTA Bar */
+.cta-bar h5 {
+  margin: 0;
+  color: #fff;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Gradient text (PRE-ORDER) */
+.gradient-text {
+  background: linear-gradient(90deg, #ff40a4, #ff9966);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  padding: 1rem;
+}
+
+/* Link icon and text hover */
+.link-icon .small {
+  color: #6c757d;
+  transition: color 0.3s ease;
+}
+.link-icon:hover .small {
+  color: #ff4384;
+}
+.text-link {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.text-link:hover {
+  color: #6c757d;
+}
+
+/* Carousel indicators and controls */
+.carousel-indicators [data-bs-target] {
+  background-color: #333;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+.carousel-indicators .active {
+  opacity: 1;
+}
+.carousel-hover-show .carousel-control-prev,
+.carousel-hover-show .carousel-control-next {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.carousel-hover-show:hover .carousel-control-prev,
+.carousel-hover-show:hover .carousel-control-next {
+  opacity: 1;
+}
+
+/* Product slide row */
+.product-slide-row {
+  display: flex;
+  gap: 1rem;
+  padding: 0 1rem;
+  justify-content: center;
+}
+
+/* Responsive for product images */
+@media (max-width: 768px) {
+  .product-slide-row .card img {
+    height: 150px;
+  }
+}
+@media (max-width: 480px) {
+  .product-slide-row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .product-slide-row .card {
+    flex: 0 0 80%;
+    max-width: 80%;
+  }
+}
+
+/* Product categories section */
+.product-categories {
+  background-color: #ffe5e5;
+  padding: 2rem 0;
+}
+.categories-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+/* Category section grid */
+.category-section {
+  background-color: #ffeaea;
+  padding: 4rem 0;
+}
+.section-title {
+  margin: 0 0 2rem 80px;
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+.categories {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 1rem;
+  justify-content: start;
+  margin-left: 60px;
+}
+.card-link-wrapper {
+  text-decoration: none;
+}
+
+/* Category cards */
+.category-card {
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.category-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+.category-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 0.75rem;
+  transition: transform 0.3s ease;
+}
+.category-card:hover img {
+  transform: scale(1.1);
+}
+.category-card small {
+  margin-top: 0.5rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Filter buttons */
+.btn-pink {
+  background-color: #ff40a4;
+  color: #fff;
+  border: none;
+  transition: background 0.2s;
+}
+.btn-pink:hover {
+  background-color: #e0308f;
+}
+.filter-buttons {
+  display: block;
+  width: 100%;
+  margin-top: 0.75rem;
+}
+.filter-buttons .btn {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.filter-btn {
+  margin-right: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.filter-btn.active {
+  /* เมื่อถูกเลือก */
+  background-color: #ff40a4;
+  color: #fff;
+  border-color: #ff40a4;
+}
+.scifilter-btn.active {
+  /* เมื่อถูกเลือก */
+  background-color: #ff40a4;
+  color: #fff;
+  border-color: #ff40a4;
+}
+.chefilter-btn.active {
+  /* เมื่อถูกเลือก */
+  background-color: #ff40a4;
+  color: #fff;
+  border-color: #ff40a4;
+}
+.dronefilter-btn.active {
+  /* เมื่อถูกเลือก */
+  background-color: #ff40a4;
+  color: #fff;
+  border-color: #ff40a4;
+}
+
+.filter-btn:not(.active) {
+  /* ปุ่มที่ไม่ถูกเลือก */
+  background-color: transparent;
+  color: #333;
+}
+
+
+
+/* Book card component */
+.book-card {
+  width: 280px;
+  border: none;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform .3s, box-shadow .3s;
+}
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+.book-card .card-img-top {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: center;
+}
+.book-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  min-height: 3rem;
+  text-align: center;
+}
+.book-card .card-footer {
+  background: #fff;
+  border-top: 1px solid #ececec;
+  padding-top: 0.75rem;
+}
+.card-body img {
+  object-fit: contain;
+}
+
+/* Custom nav arrows */
+.custom-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: #333;
+  opacity: 0;
+  transition: opacity .2s;
+  z-index: 10;
+}
+.position-relative:hover .custom-nav {
+  opacity: 1;
+}
+.custom-nav-prev { left: 8px; }
+.custom-nav-next { right: 8px; }
+
+/* Footer styling */
+.bg-pink {
+  background-color: #ff40a4 !important;
+}
+.footer-menu {
+  margin: 0;
+  padding: 2rem;
+  list-style: none;
+}
+.footer-menu li {
+  position: relative;
+  padding-left: 1.2rem;
+  margin-bottom: 0.5em;
+}
+.footer-menu li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #fff;
+  font-size: 1.2em;
+  line-height: 1;
+}
+.footer-menu a {
+  text-decoration: none;
+}
+.footer-menu a:hover {
+  text-decoration: underline;
+}
+.site-footer p,
+.site-footer li a {
+  font-size: .95rem;
+  line-height: 1.4;
+}
+.site-footer .text-center {
+  font-size: .9rem;
+  opacity: .8;
+}
