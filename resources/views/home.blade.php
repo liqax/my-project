@@ -155,11 +155,12 @@
             <!-- หัวเรื่อง + ปุ่มกรอง -->
             <div class="d-flex flex-wrap align-items-center mb-4 ">
                 <h2 class="ms-0 section-title">หนังสือ</h2>
-                <div class="filter-buttons product-filter">
-                    <button class="btn btn-outline-secondary filter-btn active me-2 mb-2"data-filter='all'>ทั้งหมด</button>
+                <div class="filter-buttons">
                     <button
-                        class="btn btn-outline-secondary filter-btn me-2 mb-2"data-filter='booksci'>หนังสือวิทย์</button>
-                    <button class="btn btn-outline-secondary filter-btn mb-2"data-filter='calcu'>หนังสือคณิต</button>
+                        class="btn btn-outline-secondary bookfilter-btn active me-2 mb-2"data-filter='all'>ทั้งหมด</button>
+                    <button
+                        class="btn btn-outline-secondary bookfilter-btn me-2 mb-2"data-filter='booksci'>หนังสือวิทย์</button>
+                    <button class="btn btn-outline-secondary bookfilter-btn mb-2"data-filter='calcu'>หนังสือคณิต</button>
                 </div>
             </div>
 
@@ -173,52 +174,57 @@
 
                             <!-- Card 1 -->
                             <div class="col-auto book-item"data-category="booksci">
-                                <div class="card book-card">
+                                <div class="card product-card">
                                     <div class="position-relative">
                                         <img src="img/books/book1.jpg" class="card-img-top" alt="Book 1">
 
 
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text book-title">
-                                            หนังสือวิทยาศาสตร์และเทคโนโลยี เล่ม 1 ม.3
+                                        <p class="card-text product-title">
+                                            หนังสือวิทยาศาสตร์และเทคโนโลยี <br>
+                                            เล่ม 1 ม.3
                                         </p>
                                     </div>
                                     <div class="card-footer text-center">
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                         </button>
-
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Card 2 -->
                             <div class="col-auto  book-item "data-category="calcu">
-                                <div class="card book-card">
+                                <div class="card product-card">
                                     <img src="img/books/book2.jpg" class="card-img-top" alt="Book 2">
                                     <div class="card-body">
-                                        <p class="card-text book-title">
-                                            หนังสือกุญชาญาณ เพื่อส่งเสริมอัจฉริยภาพคณิตศาสตร์สำหรับเด็ก
+                                        <p class="card-text product-title">
+                                            หนังสือกุญชาญาณ เพื่อส่งเสริม<br>อัจฉริยภาพคณิตศาสตร์สำหรับเด็ก
                                         </p>
                                     </div>
                                     <div class="card-footer text-center">
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                         </button>
-
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Card 3 -->
                             <div class="col-auto  book-item " data-category="calcu">
-                                <div class="card book-card">
+                                <div class="card product-card">
                                     </button>
 
                                     <img src="img/books/book3.jpg" class="card-img-top" alt="Book 3">
                                     <div class="card-body">
-                                        <p class="card-text book-title">
+                                        <p class="card-text product-title">
                                             หนังสือ เสริมทักษะ อัจฉริยะ ตัวน้อย
                                         </p>
                                     </div>
@@ -226,7 +232,9 @@
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                         </button>
-
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -241,32 +249,34 @@
 
                             <!-- Card 1 -->
                             <div class="col-auto book-item"data-category="science">
-                                <div class="card book-card">
+                                <div class="card product-card">
                                     <div class="position-relative">
                                         <img src="img/books/book1.jpg" class="card-img-top" alt="Book 1">
 
 
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text book-title">
+                                        <p class="card-text product-title">
                                             หนังสือวิทยาศาสตร์และเทคโนโลยี เล่ม 1 ม.3
                                         </p>
                                     </div>
                                     <div class="card-footer text-center">
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
+                                        </button>   
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
                                         </button>
-
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Card 2 -->
                             <div class="col-auto  book-item "data-category="calcu">
-                                <div class="card book-card">
+                                <div class="card product-card">
                                     <img src="img/books/book2.jpg" class="card-img-top" alt="Book 2">
                                     <div class="card-body">
-                                        <p class="card-text book-title">
+                                        <p class="card-text product-title">
                                             หนังสือกุญชาญาณ เพื่อส่งเสริมอัจฉริยภาพคณิตศาสตร์สำหรับเด็ก
                                         </p>
                                     </div>
@@ -274,19 +284,21 @@
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                         </button>
-
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Card 3 -->
                             <div class="col-auto  book-item " data-category="calcu">
-                                <div class="card book-card">
+                                <div class="card product-card">
                                     </button>
 
                                     <img src="img/books/book3.jpg" class="card-img-top" alt="Book 3">
                                     <div class="card-body">
-                                        <p class="card-text book-title">
+                                        <p class="card-text product-title">
                                             หนังสือ เสริมทักษะ อัจฉริยะ ตัวน้อย
                                         </p>
                                     </div>
@@ -294,7 +306,9 @@
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                         </button>
-
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -342,12 +356,12 @@
 
                             <!-- Card 1 -->
                             <div class="col-auto sci-item"data-category="glassware">
-                                <div class="card book-card">
+                                <div class="card product-card">
                                     <div class="position-relative">
                                         <img src="img/science/1.jpg" class="card-img-top" alt="science">
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text book-title">
+                                        <p class="card-text product-title">
                                             แก้วบีกเกอร์
                                         </p>
                                     </div>
@@ -355,17 +369,19 @@
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                         </button>
-
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Card 2 -->
                             <div class="col-auto sci-item"data-category="glassware">
-                                <div class="card book-card">
+                                <div class="card product-card">
                                     <img src="img/science/2.jpg" class="card-img-top" alt="science">
                                     <div class="card-body">
-                                        <p class="card-text book-title">
+                                        <p class="card-text product-title">
                                             ขวดทดลอง
                                         </p>
                                     </div>
@@ -373,19 +389,21 @@
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                         </button>
-
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Card 3 -->
                             <div class="col-auto sci-item" data-category="testtube">
-                                <div class="card book-card">
+                                <div class="card product-card">
                                     </button>
 
                                     <img src="img/science/3.jpg" class="card-img-top" alt="science">
                                     <div class="card-body">
-                                        <p class="card-text book-title">
+                                        <p class="card-text product-title">
                                             หลอดทดลอง
                                         </p>
                                     </div>
@@ -393,7 +411,9 @@
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                         </button>
-
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -436,12 +456,12 @@
 
                             <!-- Card 1 -->
                             <div class="col-auto che-item"data-category='all'>
-                                <div class="card book-card">
+                                <div class="card product-card">
                                     <div class="position-relative">
                                         <img src="img/chemistry/1.jpg" class="card-img-top" alt="chemical">
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text book-title">
+                                        <p class="card-text product-title">
                                             Hydrochloric Acid (HCl)
                                         </p>
                                     </div>
@@ -449,17 +469,19 @@
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                         </button>
-
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Card 2 -->
                             <div class="col-auto che-item"data-category='sodium'>
-                                <div class="card book-card ">
+                                <div class="card product-card ">
                                     <img src="img/chemistry/2.jpg" class="card-img-top" alt="chemical">
                                     <div class="card-body">
-                                        <p class="card-text book-title">
+                                        <p class="card-text product-title">
                                             Sodium Hydroxide (NaOH)
                                         </p>
                                     </div>
@@ -467,19 +489,21 @@
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                         </button>
-
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Card 3 -->
                             <div class="col-auto che-item"data-category='sulfur'>
-                                <div class="card book-card">
+                                <div class="card product-card">
                                     </button>
 
                                     <img src="img/chemistry/3.jpg" class="card-img-top" alt="chemical">
                                     <div class="card-body">
-                                        <p class="card-text book-title">
+                                        <p class="card-text product-title">
                                             sulfur
                                         </p>
                                     </div>
@@ -487,7 +511,9 @@
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                         </button>
-
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -530,14 +556,14 @@
 
                             <!-- Card 1 -->
                             <div class="col-auto drone-item"data-category="gen1">
-                                <div class="card book-card">
+                                <div class="card product-card">
                                     <div class="position-relative">
                                         <img src="img/drone/1.jpg" class="card-img-top" alt="">
 
 
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text book-title">
+                                        <p class="card-text product-title">
                                             โดรน
                                         </p>
                                     </div>
@@ -545,17 +571,19 @@
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                         </button>
-
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Card 2 -->
                             <div class="col-auto drone-item"data-category="gen2">
-                                <div class="card book-card">
+                                <div class="card product-card">
                                     <img src="img/drone/2.jpg" class="card-img-top" alt="">
                                     <div class="card-body">
-                                        <p class="card-text book-title">
+                                        <p class="card-text product-title">
                                             โดรน
                                         </p>
                                     </div>
@@ -563,19 +591,21 @@
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                         </button>
-
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Card 3 -->
                             <div class="col-auto drone-item"data-category="gen2">
-                                <div class="card book-card">
+                                <div class="card product-card">
                                     </button>
 
                                     <img src="img/drone/3.jpg" class="card-img-top" alt="">
                                     <div class="card-body">
-                                        <p class="card-text book-title">
+                                        <p class="card-text product-title">
                                             โดรน
                                         </p>
                                     </div>
@@ -583,7 +613,9 @@
                                         <button class="btn btn-pink btn-sm">
                                             <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                         </button>
-
+                                        <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -600,12 +632,12 @@
                     <div class="carousel-item">
                         <!-- Card 3 -->
                         <div class="col-auto">
-                            <div class="card book-card">
+                            <div class="card product-card">
                                 </button>
 
                                 <img src="img/drone/3.jpg" class="card-img-top" alt="">
                                 <div class="card-body">
-                                    <p class="card-text book-title">
+                                    <p class="card-text product-title">
                                         โดรน
                                     </p>
                                 </div>
@@ -613,18 +645,20 @@
                                     <button class="btn btn-pink btn-sm">
                                         <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                     </button>
-
+                                    <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                 </div>
                             </div>
                         </div>
                         <!-- Card 1 -->
                         <div class="col-auto">
-                            <div class="card book-card">
+                            <div class="card product-card">
                                 </button>
 
                                 <img src="img/drone/3.jpg" class="card-img-top" alt="">
                                 <div class="card-body">
-                                    <p class="card-text book-title">
+                                    <p class="card-text product-title">
                                         โดรน
                                     </p>
                                 </div>
@@ -632,17 +666,19 @@
                                     <button class="btn btn-pink btn-sm">
                                         <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                     </button>
-
+                                    <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Card 2 -->
                         <div class="col-auto">
-                            <div class="card book-card">
+                            <div class="card product-card">
                                 <img src="img/drone/2.jpg" class="card-img-top" alt="">
                                 <div class="card-body">
-                                    <p class="card-text book-title">
+                                    <p class="card-text product-title">
                                         โดรน
                                     </p>
                                 </div>
@@ -650,7 +686,9 @@
                                     <button class="btn btn-pink btn-sm">
                                         <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                     </button>
-
+                                    <button class="btn btn-heart">
+                                            <i class="bi bi-heart-fill"></i>
+                                        </button>
                                 </div>
                             </div>
                         </div>
@@ -666,8 +704,8 @@
 
 
 
-
+<script src="{{ asset('js/home.filter.js') }}"></script>
 @endsection
 
 
-<script src="{{ asset('js/home.filter.js') }}"></script>
+

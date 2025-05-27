@@ -1,6 +1,6 @@
 // หนังสือ
 document.addEventListener('DOMContentLoaded', () => {
-  const btns = document.querySelectorAll('.filter-btn');
+  const btns = document.querySelectorAll('.bookfilter-btn');
   const items = document.querySelectorAll('.book-item');
 
   btns.forEach(btn => {

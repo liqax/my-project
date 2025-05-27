@@ -97,6 +97,7 @@
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform .3s, box-shadow .3s;
+
 }
 .product-card:hover {                                                      
   transform: translateY(-4px);
@@ -105,17 +106,31 @@
 
 /* รูปบน card */
 .product-card .card-img-top {
-  width: 100%;        /* ยืดเต็มความกว้าง container */
+  max-width: 250px;
+  max-height: 250px;
+  width: auto;        /* ยืดเต็มความกว้าง container */
   height: 250px;      /* กำหนดความสูงคงที่ตามที่ต้องการ */
   object-fit: cover;  /* ครอป/ขยายภาพให้เต็มพื้นที่ โดยไม่เสียอัตราส่วน */
-  object-position: center center;
+  margin-left: 15px;
+  
 }
+.position-relative {
+  display: flex;
+  justify-content: center; /* กึ่งกลางแนวนอน */
+  align-items: center;     /* กึ่งกลางแนวตั้ง */
+}
+
+
 /* ชื่อหนังสือใต้รูป */
 .product-title {
   font-size: 0.95rem;
   font-weight: 500;
-  min-height: 3rem;           /* ให้บรรทัดสองบรรทัดได้ */
+  min-height: 1rem;           /* ให้บรรทัดสองบรรทัดได้ */
   text-align: center;
+    /* ป้องกันไม่ให้ตัดคำกลางประโยคจนกลายเป็นเศษอักษร */
+  word-break: keep-all;           
+  /* ถ้าคำยาวเกิน จะขึ้นบรรทัดใหม่ทั้งคำ ไม่ตัดกลางคำ */
+  overflow-wrap: break-word;   
 }
 
 /* Footer ของ card */
@@ -124,6 +139,11 @@
   border-top: 1px solid #ececec;
   padding-top: 0.75rem;
 }
+.card-text {
+  object-fit: contain;
+  min-height: 45.6px;
+}
+
 
 .filter-buttons {
   display: block;      /* เปลี่ยนจาก inline → block */
@@ -135,4 +155,16 @@
 .filter-buttons .btn {
   margin-right: 0.5rem;
   margin-bottom: 0.5rem; /* เว้นล่างนิดหน่อย ถ้าจำเป็น */
+}
+
+
+
+
+
+.product-price {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #333;
+  display: block;
+  
 }

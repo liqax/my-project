@@ -53,136 +53,148 @@
         </div>
 
 
-        <nav class="navbar navbar-expand-lg py-1" style="background-color: #ff40a4;">
+        <nav class="navbar navbar-expand-lg py-1" style="background-color: #ff40a4;" id="mainNavbar">
             <div class="container">
                 <div class="collapse navbar-collapse show">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
-                        <li class="nav-item">
-                            <a href="{{ url('/') }}" class="nav-link  text-white fw-normal px-3">แนะนำ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/products') }}" class="nav-link  text-white fw-normal px-3">สินค้า</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/books') }}"
-                                class="nav-link  text-white fw-normal px-3">หนังสือ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/science-tools') }}" class="nav-link  text-white fw-normal px-2">อุปกรณ์วิทยาศาสตร์</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/chemicals') }}" class="nav-link  text-white fw-normal px-2">สารเคมี</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/drones') }}" class="nav-link  text-white fw-normal px-2">โดรน</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('/orders') }}"
-                                class="nav-link  text-white fw-normal px-2">ประวัติคำสั่งซื้อ</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link  dropdown-toggle text-white fw-normal px-2" href="#"
-                                id="moreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                เพิ่มเติม
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdown">
-                                <li><a class="dropdown-item" href="{{ url('/about') }}">เกี่ยวกับเรา</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/contact') }}">ติดต่อเรา</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="{{ url('/private') }}">นโยบายความเป็นส่วนตัว</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+
+                        {{-- ปุ่ม Hamburger --}}
+                    
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarMenu">
+                            <li class="nav-item">
+                                <a href="{{ url('/') }}" class="nav-link  text-white fw-normal px-3">แนะนำ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/products') }}" class="nav-link  text-white fw-normal px-3">สินค้า</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/books') }}" class="nav-link  text-white fw-normal px-3">หนังสือ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/science-tools') }}"
+                                    class="nav-link  text-white fw-normal px-2">อุปกรณ์วิทยาศาสตร์</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/chemicals') }}"
+                                    class="nav-link  text-white fw-normal px-2">สารเคมี</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/drones') }}" class="nav-link  text-white fw-normal px-2">โดรน</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/orders') }}"
+                                    class="nav-link  text-white fw-normal px-2">ประวัติคำสั่งซื้อ</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link  dropdown-toggle text-white fw-normal px-2" href="#"
+                                    id="moreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    เพิ่มเติม
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdown">
+                                    <li><a class="dropdown-item" href="{{ url('/about') }}">เกี่ยวกับเรา</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('/contact') }}">ติดต่อเรา</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ url('/private') }}">นโยบายความเป็นส่วนตัว</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </div>
+                        </ul>
                 </div>
             </div>
         </nav>
-        
-        
+
+
         @yield('content')
-        
-      
-       <footer class="site-footer bg-pink text-white pt-5 pb-3 mt-5">
-        <div class="container">
-            <div class="row">
-                <!-- Column 1: Main menu -->
-                <div class="col-12 col-md-4 mb-4 mb-md-0">
-                    <ul class="list-unstyled footer-menu">
-                        <li><a href="#" class="text-white">หน้าหลัก</a></li>
-                        <li><a href="/products" class="text-white">สินค้า</a></li>
-                        <li><a href="#" class="text-white">หนังสือ</a></li>
-                        <li><a href="#" class="text-white">อุปกรณ์วิทยาศาสตร์</a></li>
-                        <li><a href="#" class="text-white">สารเคมี</a></li>
-                        <li><a href="#" class="text-white">โดรน</a></li>
-                        <li><a href="#" class="text-white">ประวัติคำสั่งซื้อ</a></li>
-                        <li><a href="#" class="text-white">เพิ่มเติม</a></li>
-                    </ul>
+
+
+        <footer class="site-footer bg-pink text-white pt-5 pb-3 mt-5">
+            <div class="container">
+                <div class="row">
+                    <!-- Column 1: Main menu -->
+                    <div class="col-12 col-md-4 mb-4 mb-md-0">
+                        <ul class="list-unstyled footer-menu">
+                            <li><a href="#" class="text-white">หน้าหลัก</a></li>
+                            <li><a href="/products" class="text-white">สินค้า</a></li>
+                            <li><a href="#" class="text-white">หนังสือ</a></li>
+                            <li><a href="#" class="text-white">อุปกรณ์วิทยาศาสตร์</a></li>
+                            <li><a href="#" class="text-white">สารเคมี</a></li>
+                            <li><a href="#" class="text-white">โดรน</a></li>
+                            <li><a href="#" class="text-white">ประวัติคำสั่งซื้อ</a></li>
+                            <li><a href="#" class="text-white">เพิ่มเติม</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 2: Company info -->
+                    <div class="col-12 col-md-4 mb-4 mb-md-0 mt-4">
+                        <p class="mb-1">บริษัท พรีออเดอร์ จำกัด</p>
+                        <p class="mb-1">123/45 ถนน×××××××× แขวง×××××× เขต×××××</p>
+                        <p class="mb-1">กรุงเทพฯ ×××××</p>
+                        <p class="mb-1">โทร: 02-123-4567</p>
+                        <p class="mb-1">อีเมล: contact@lightshop.co.th</p>
+                        <p class="mb-0">เวลาทำการ: จันทร์ – เสาร์ 09:00 – 18:00 น.</p>
+                    </div>
+
+                    <!-- Column 3: Policies -->
+                    <div class="col-12 col-md-4">
+                        <ul class="list-unstyled footer-menu">
+                            <li><a href="#" class="text-white">เงื่อนไขการให้บริการ</a></li>
+                            <li><a href="#" class="text-white">นโยบายความเป็นส่วนตัว</a></li>
+                            <li><a href="#" class="text-white">นโยบายการคืนสินค้า</a></li>
+                            <li><a href="#" class="text-white">คำถามที่พบบ่อย (FAQ)</a></li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Column 2: Company info -->
-                <div class="col-12 col-md-4 mb-4 mb-md-0 mt-4">
-                    <p class="mb-1">บริษัท พรีออเดอร์ จำกัด</p>
-                    <p class="mb-1">123/45 ถนน×××××××× แขวง×××××× เขต×××××</p>
-                    <p class="mb-1">กรุงเทพฯ ×××××</p>
-                    <p class="mb-1">โทร: 02-123-4567</p>
-                    <p class="mb-1">อีเมล: contact@lightshop.co.th</p>
-                    <p class="mb-0">เวลาทำการ: จันทร์ – เสาร์ 09:00 – 18:00 น.</p>
-                </div>
-
-                <!-- Column 3: Policies -->
-                <div class="col-12 col-md-4">
-                    <ul class="list-unstyled footer-menu">
-                        <li><a href="#" class="text-white">เงื่อนไขการให้บริการ</a></li>
-                        <li><a href="#" class="text-white">นโยบายความเป็นส่วนตัว</a></li>
-                        <li><a href="#" class="text-white">นโยบายการคืนสินค้า</a></li>
-                        <li><a href="#" class="text-white">คำถามที่พบบ่อย (FAQ)</a></li>
-                    </ul>
+                <!-- Copyright -->
+                <div class="text-center mt-4">
+                    © 2025 PRE-ORDER. All Rights Reserved.
                 </div>
             </div>
+        </footer>
 
-            <!-- Copyright -->
-            <div class="text-center mt-4">
-                © 2025 PRE-ORDER. All Rights Reserved.
-            </div>
-        </div>
-    </footer> 
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </div>
