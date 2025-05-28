@@ -1,4 +1,4 @@
-@extends('layouts.app')
+ @extends('layouts.app')
 @section('title', 'products')
 @section('content')
     <!-- HTML -->
@@ -330,4 +330,4 @@
 
 
     <script src="{{ asset('js/product.filter.js') }}"></script>
-@endsection
+@endsection 

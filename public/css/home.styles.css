@@ -5,6 +5,23 @@
 #mainNavbar .navbar-toggler {
   margin-left: auto;
 }
+html {
+  scroll-behavior: smooth;
+}
+
+/* ถ้า Navbar คุณเป็น fixed-top แล้วเวลาเลื่อนอาจชนกับ header ให้เผื่อ padding-top */
+#bookSection {
+  scroll-margin-top: 50px; /* ปรับตามความสูง navbar */
+}
+#sciSection {
+  scroll-margin-top: 50px; /* ปรับตามความสูง navbar */
+}
+#cheSection {
+  scroll-margin-top: 50px; /* ปรับตามความสูง navbar */
+}
+#droneSection {
+  scroll-margin-top: 50px; /* ปรับตามความสูง navbar */
+}
 
 /* Base reset and typography */
 html, body {
@@ -55,10 +72,52 @@ h1, h2, h3, h4, h5, h6 {
   color: #6c757d;
 }
 
+/* เปลี่ยนวงกลม background ของลูกศรเป็นสีดำ */
+#bookCarousel .carousel-control-prev-icon,
+#bookCarousel .carousel-control-next-icon,
+#sciCarousel  .carousel-control-prev-icon,
+#sciCarousel  .carousel-control-next-icon,
+#cheCarousel  .carousel-control-prev-icon,
+#cheCarousel  .carousel-control-next-icon,
+#droCarousel  .carousel-control-prev-icon,
+#droCarousel  .carousel-control-next-icon  {
+  background-color: #ff4384;       /* พื้นหลังดำ */
+  border-radius: 50%;           /* ให้เป็นวงกลม */
+  padding: 0.5rem;              /* ระยะขอบ ปรับตามต้องการ */
+  background-size: 1.5rem 1.5rem; /* ปรับขนาดลูกศร ให้พอดี */
+}
+/* เพิ่ม transition */
+#bookCarousel .carousel-control-prev-icon,
+#bookCarousel .carousel-control-next-icon,
+#sciCarousel  .carousel-control-prev-icon,
+#sciCarousel  .carousel-control-next-icon,
+#cheCarousel  .carousel-control-prev-icon,
+#cheCarousel  .carousel-control-next-icon,
+#droCarousel  .carousel-control-prev-icon,
+#droCarousel  .carousel-control-next-icon  {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* เมื่อ hover ที่ปุ่ม ให้เปลี่ยนสีและขยายเล็กน้อย */
+#bookCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
+#bookCarousel  .carousel-control-next:hover .carousel-control-next-icon,
+#sciCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
+#sciCarousel  .carousel-control-next:hover .carousel-control-next-icon 
+#cheCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
+#cheCarousel  .carousel-control-next:hover .carousel-control-next-icon,
+#droCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
+#droCarousel  .carousel-control-next:hover .carousel-control-next-icon   {
+  background-color: #ff4384;    /* พื้นหลังเข้มขึ้นเล็กน้อย */
+  transform: scale(1.2);     /* ขยาย 20% */
+}
+
+
+
+
 /* Carousel indicators and controls */
 .carousel-indicators [data-bs-target] {
   background-color: #333;
-  width: 10px;
+  width: 10px;  
   height: 10px;
   border-radius: 50%;
   opacity: 0.6;
@@ -71,6 +130,8 @@ h1, h2, h3, h4, h5, h6 {
 .carousel-hover-show .carousel-control-next {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+  
+
 }
 .carousel-hover-show:hover .carousel-control-prev,
 .carousel-hover-show:hover .carousel-control-next {
