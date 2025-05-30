@@ -1,212 +1,261 @@
- @extends('layouts.app')
- @section('title', 'products')
- @section('content')
-     <!-- HTML -->
-     <div class="filter-bar mt-3">
-         <!-- ค้นหา -->
-         <div class="filter-item">
-             <label for="search">ค้นหา</label>
-             <div class="search-box">
-                 <input type="text" id="search" placeholder="ค้นหา…">
-                 <button type="submit" class="search-btn">
+<?php
+// app/Http/Controllers/ShopController.php
+namespace App\Http\Controllers;
 
-                     <img src="/images/search.png" alt="search">
+use Illuminate\Http\Request;
 
-                 </button>
-             </div>
-         </div>
+class ShopController extends Controller
 
-         <!-- หมวดหมู่สินค้า -->
-         <div class="filter-item">
-             <label for="category">หมวดหมู่สินค้า</label>
-             <select id="category">
-                 <option value="all">สินค้าทั้งหมด</option>
-                 <option value="books">หนังสือ</option>
-                 <option value="kits">อุปกรณ์วิทยาศาตร์</option>
-                 <option value="chemecals">สารเคมี</option>
-                 <option value="drone">โดรน</option>
-             </select>
-         </div>
 
-         <!-- ราคาเริ่มต้น -->
-         <div class="filter-item">
-             <label>ราคาเริ่มต้น</label>
-             <div class="price-range">
-                 <input type="number" id="price-min" placeholder="0">
-                 <span>ถึง</span>
-                 <input type="number" id="price-max" placeholder="0">
-                 <span>บาท</span>
-             </div>
-         </div>
-     </div>
+   {
+    /**
+     * แสดงรายการสินค้า
+     */
+    public function index()
+    {
+        $products = $this->products();
+        return view('shop.index', compact('products'));
+    }
 
-     <br>
-     <div class="row gx-3 gy-4 justify-content-center">
+    /**
+     * แสดงรายละเอียดสินค้า
+     */
+    public function show($id)
+    {
+        $all = $this->products();
+        if (! $all->has($id)) {
+            abort(404);
+        }
 
-         <!-- หนังสือ Card 1 -->
+        $product = $all->get($id);
+        $product['id'] = $id;
 
-         <div>
-             @php
-                 $products = [
-                     [
+        // ตัวอย่าง gallery
+        $product['images'] = [
+            $product['img'],
+            'img/sample-2.jpg',
+            'img/sample-2.jpg',
+            'img/sample-2.jpg',
+        ];
+
+        // สินค้าที่เกี่ยวข้อง 3 ชิ้น
+        $related = $all
+            ->filter(fn($p, $key) => $p['category'] === $product['category'] && $key !== $id)
+            ->take(4);
+
+        return view('shop.show', compact('product','related'));
+    }
+
+    /**
+     * เพิ่มสินค้าเข้าตะกร้า
+     */
+    public function addToCart(Request $request)
+    {
+        $cart = session()->get('cart', []);
+        $id   = $request->post('id');
+        $qty  = max(1, (int)$request->post('qty', 1));
+        $cart[$id] = ($cart[$id] ?? 0) + $qty;
+        session(['cart' => $cart]);
+
+        return back()->with('success','เพิ่มสินค้าแล้ว');
+    }
+
+    /**
+     * ประวัติคำสั่งซื้อ
+     */
+    public function history()
+    {
+        $cart    = session()->get('cart', []);
+        $all     = $this->products();
+        $orders  = [];
+
+        foreach ($cart as $id => $qty) {
+            $p = $all->get($id);
+            $orders[] = [
+                'title' => $p['title'],
+                'price' => $p['price'],
+                'qty'   => $qty,
+                'total' => $p['price'] * $qty,
+            ];
+        }
+
+        return view('shop.history', compact('orders'));
+    }
+
+
+    protected function products()
+    {
+        return collect([
+            
+                 1 => [
                          'img' => 'img/books/book1.jpg',
                          'title' => "หนังสือวิทยาศาสตร์และเทคโนโลยี\nเล่ม 1 ม.3",
                          'price' => 110.0,
+                         'size'=>'1.2 kg',
                          'category' => 'books',
-                         'class' => 'book-item',
-                     ],
-                     [
+                         'class' => 'book-item'],
+          2 =>      [
                          'img' => 'img/books/book2.jpg',
                          'title' => " หนังสือกุญชาญาณ เพื่อส่งเสริม\nอัจฉริยภาพคณิตศาสตร์สำหรับเด็ก",
                          'price' => 140.0,
+                         'size'=>'1.2 kg',
                          'category' => 'books',
-                         'class' => 'book-item',
+                         'class' => 'book-item'
                      ],
-                     [
+             3 =>   [
                          'img' => 'img/books/book3.jpg',
                          'title' => ' หนังสือ เสริมทักษะ อัจฉริยะ ตัวน้อย',
                          'price' => 180.0,
+                         'size'=>'1.2 kg',
                          'category' => 'books',
-                         'class' => 'book-item',
+                         'class' => 'book-item'
                      ],
-                     [
+              4 =>       [
                          'img' => 'img/books/book4.jpg',
                          'title' => 'หนังสือเมฆน้อยสีเทา',
                          'price' => 100.0,
+                         'size'=>'1.2 kg',
                          'category' => 'books',
-                         'class' => 'book-item',
+                         'class' => 'book-item'
                      ],
-                     [
+              5 =>     [
                          'img' => 'img/books/book5.jpg',
                          'title' => ' หนังสือเราเป็นเพื่อนที่ต่อกัน',
                          'price' => 120.0,
+                         'size'=>'1.2 kg',
                          'category' => 'books',
-                         'class' => 'book-item',
+                         'class' => 'book-item'
                      ],
-                     [
+             6 =>       [
                          'img' => 'img/books/book6.jpg',
                          'title' => ' หนังสือพี่ชายที่แสนดี',
                          'price' => 110.0,
+                         'size'=>'1.2 kg',
                          'category' => 'books',
-                         'class' => 'book-item',
+                         'class' => 'book-item'
                      ],
-                     [
+              7 =>        [
                          'img' => 'img/science/1.jpg',
                          'title' => 'แก้วบีกเกอร์',
                          'price' => 250.0,
+                         'size'=>'1.2 kg',
                          'category' => 'kits',
-                         'class' => 'sci-item',
+                         'class' => 'sci-item'
                      ],
-                     [
+              8 =>     [
                          'img' => 'img/science/2.jpg',
                          'title' => ' ขวดทดลอง',
                          'price' => 100.0,
+                         'size'=>'1.2 kg',
                          'category' => 'kits',
-                         'class' => 'sci-item',
+                         'class' => 'sci-item'
                      ],
-                     [
+             9 =>     [
                          'img' => 'img/science/3.jpg',
                          'title' => ' หลอดทดลอง',
                          'price' => 475.0,
+                         'size'=>'1.2 kg',
                          'category' => 'kits',
-                         'class' => 'sci-item',
+                         'class' => 'sci-item'
                      ],
-                     [
+             10 =>    [
                          'img' => 'img/science/4.jpg',
                          'title' => 'ถาดหลุม',
                          'price' => 50.0,
+                         'size'=>'1.2 kg',
                          'category' => 'kits',
-                         'class' => 'sci-item',
+                         'class' => 'sci-item'
                      ],
-                     [
+            11 =>     [
                          'img' => 'img/science/5.jpg',
                          'title' => ' กรวยแก้ว',
                          'price' => 85.0,
+                         'size'=>'1.2 kg',
                          'category' => 'kits',
-                         'class' => 'sci-item',
+                         'class' => 'sci-item'
                      ],
-                     [
+           12 =>      [
                          'img' => 'img/science/6.jpg',
-                         'title' => ' ',
+                         'title' => 'ถ้วยแก้ว',
                          'price' => 70.0,
+                         'size'=>'1.2 kg',
                          'category' => 'kits',
-                         'class' => 'sci-item',
+                         'class' => 'sci-item'
                      ],
-                     [
-                         'img' => 'img/chemistry/1.jpg',
+               13 =>     [
+                        'img' => 'img/chemistry/1.jpg',
                          'title' => 'Hydrochloric Acid (HCl)',
                          'price' => 65.0,
+                         'size'=>'1.2 kg',
                          'category' => 'chemecals',
-                         'class' => 'che-item',
+                         'class' => 'che-item'
                      ],
-                     [
+              14 =>    [
                          'img' => 'img/chemistry/2.jpg',
                          'title' => ' Sodium Hydroxide (NaOH)',
                          'price' => 80.0,
+                         'size'=>'1.2 kg',
                          'category' => 'chemecals',
-                         'class' => 'che-item',
+                         'class' => 'che-item'
                      ],
-                     [
+                  15 =>    [
                          'img' => 'img/chemistry/3.jpg',
                          'title' => ' sulfuric acid',
                          'price' => 80.0,
+                         'size'=>'1.2 kg',
                          'category' => 'chemecals',
-                         'class' => 'che-item',
+                         'class' => 'che-item'
                      ],
-                     [
+                  16 =>    [
                          'img' => 'img/chemistry/4.jpg',
                          'title' => 'สารละลายเมทิลเรด',
                          'price' => 75.0,
+                         'size'=>'1.2 kg',
                          'category' => 'chemecals',
-                         'class' => 'che-item',
+                         'class' => 'che-item'
                      ],
-                     [
+                 17 =>     [
                          'img' => 'img/chemistry/5.jpg',
                          'title' => 'สารละลายยูนิเวอร์ซัล',
                          'price' => 75.0,
+                         'size'=>'1.2 kg',
                          'category' => 'chemecals',
-                         'class' => 'che-item',
+                         'class' => 'che-item'
                      ],
-                     [
+                  18 =>    [
                          'img' => 'img/chemistry/6.jpg',
                          'title' => 'กรดไนตริก เจือจาง 2โมล',
                          'price' => 85.0,
+                         'size'=>'1.2 kg',
                          'category' => 'chemecals',
-                         'class' => 'che-item',
+                         'class' => 'che-item'
                      ],
-                     [
+                19 =>      [
                          'img' => 'img/drone/1.jpg',
                          'title' => 'โดรน GEN1',
                          'price' => 10000.0,
+                         'size'=>'1.2 kg',
                          'category' => 'drone',
-                         'class' => 'drone-item',
+                         'class' => 'drone-item'
                      ],
-                     [
+               20 =>       [
                          'img' => 'img/drone/2.jpg',
                          'title' => ' โดรน GEN2',
                          'price' => 12000.0,
+                         'size'=>'1.2 kg',
                          'category' => 'drone',
-                         'class' => 'drone-item',
+                         'class' => 'drone-item'
                      ],
-                     [
+              21 =>       [
                          'img' => 'img/drone/3.jpg',
                          'title' => ' โดรน GEN2 LT',
                          'price' => 15000.0,
+                         'size'=>'1.2 kg',
                          'category' => 'drone',
-                         'class' => 'drone-item',
+                         'class' => 'drone-item'
                      ],
-                 ];
-             @endphp
+        ]);
+    }
 
-             <div class="row gx-3 gy-4 justify-content-center">
-                 @foreach ($products as $product)
-                     <x-product-card :img="$product['img']" :title="$product['title']" :price="$product['price']" :category="$product['category']"
-                         :item-class="$product['class']" />
-                 @endforeach
-             </div>
-         </div>
+}
 
-
-         <br>
-         <script src="{{ asset('js/product.filter.js') }}"></script>
-     @endsection

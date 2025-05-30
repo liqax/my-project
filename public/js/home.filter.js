@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const filter = btn.dataset.filter;
       // แสดง/ซ่อนการ์ดตาม category
       items.forEach(item => {
-        const cat = item.dataset.category;
+        const cat = item.dataset.variety;
         item.style.display = (filter === 'all' || cat === filter) ? '' : 'none';
       });
     });
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const filter = btn.dataset.filter;
       // แสดง/ซ่อนการ์ดตาม category
       items.forEach(item => {
-        const cat = item.dataset.category;
+        const cat = item.dataset.variety;
         item.style.display = (filter === 'all' || cat === filter) ? '' : 'none';
       });
     });
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const filter = btn.dataset.filter;
       // แสดง/ซ่อนการ์ดตาม category
       items.forEach(item => {
-        const cat = item.dataset.category;
+        const cat = item.dataset.variety;
         item.style.display = (filter === 'all' || cat === filter) ? '' : 'none';
       });
     });
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const filter = btn.dataset.filter;
       // แสดง/ซ่อนการ์ดตาม category
       items.forEach(item => {
-        const cat = item.dataset.category;
+        const cat = item.dataset.variety;
         item.style.display = (filter === 'all' || cat === filter) ? '' : 'none';
       });
     });
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
       carouselInner.querySelectorAll(itemSelector)
     ).map(el => ({
       html: el.outerHTML,
-      category: el.dataset.category
+      variety: el.dataset.variety
     }));
 
     // สร้าง carousel ใหม่จาก HTML array
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const filter = this.dataset.filter;
         const filtered = filter === 'all'
           ? originalItems
-          : originalItems.filter(item => item.category === filter);
+          : originalItems.filter(item => item.variety === filter);
 
         buildCarousel(filtered.map(i => i.html));
       });
@@ -172,6 +172,11 @@ document.addEventListener('DOMContentLoaded', function() {
     'cheCarousel',
     '.chefilter-btn',
     '.col-auto.che-item'
+  );
+   initFilterCarousel(
+    'droneCarousel',
+    '.dronefilter-btn',
+    '.col-auto.drone-item'
   );
 });
 

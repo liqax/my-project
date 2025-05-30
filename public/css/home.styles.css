@@ -161,6 +161,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Category section grid */
 .category-section {
+  width: 81rem;
+  height: 35rem;
   background-color: #ffeaea;
   padding: 4rem 0;
 }

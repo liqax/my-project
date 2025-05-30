@@ -1,35 +1,42 @@
-
+document.addEventListener('DOMContentLoaded', function(){
   const searchInput = document.getElementById('search');
-  const categorySelect = document.getElementById('category');
-  const priceMinInput = document.getElementById('price-min');
-  const priceMaxInput = document.getElementById('price-max');
-  const products = document.querySelectorAll('.product-item');
+  const searchBtn   = document.querySelector('.search-btn');
+  const catSelect   = document.getElementById('category');
+  const priceMin    = document.getElementById('price-min');
+  const priceMax    = document.getElementById('price-max');
 
-  // ฟังก์ชันเช็คว่าจะโชว์หรือซ่อน
-  function filterProducts() {
-    const keyword = searchInput.value.trim().toLowerCase();
-    const category = categorySelect.value;
-    const priceMin = parseFloat(priceMinInput.value) || 0;
-    const priceMax = parseFloat(priceMaxInput.value) || Infinity;
+  const items = Array.from(document.querySelectorAll('.product-item'));
+  const row   = document.getElementById('productRow');
 
-    products.forEach(el => {
-      const title = el.querySelector('.product-title').textContent.toLowerCase();
-      const cat = el.dataset.category;
-      const price = parseFloat(el.dataset.price);
+  function applyFilter() {
+    const term = searchInput.value.trim().toLowerCase();
+    const cat  = catSelect.value;
+    const min  = parseFloat(priceMin.value)||0;
+    const max  = parseFloat(priceMax.value)||Infinity;
 
-      const matchSearch = title.includes(keyword);
-      const matchCategory = (category === 'all' || cat === category);
-      const matchPrice = (price >= priceMin && price <= priceMax);
+    // สลับคลาสกึ่งกลาง vs ชิดซ้าย
+    if (cat==='all' && !term && priceMin.value==='' && priceMax.value==='') {
+      row.classList.replace('justify-content-start','justify-content-center');
+    } else {
+      row.classList.replace('justify-content-center','justify-content-start');
+    }
 
-      // ถ้าผ่านทุกเงื่อนไขให้แสดง มิฉะนั้นซ่อน
-      el.parentElement.style.display = (matchSearch && matchCategory && matchPrice)
-        ? '' : 'none';
+    items.forEach(el=>{
+      const title    = el.querySelector('.product-title').textContent.toLowerCase();
+      const category = el.dataset.category;
+      const price    = parseFloat(el.dataset.price);
+      let show = true;
+      if (term && !title.includes(term)) show = false;
+      if (cat!=='all' && category!==cat) show = false;
+      if (price<min || price>max) show = false;
+      el.closest('.col-6').style.display = show ? '' : 'none';
     });
   }
 
-  // ผูก event เมื่อมีการพิมพ์หรือเปลี่ยนค่า
-  searchInput.addEventListener('input', filterProducts);
-  categorySelect.addEventListener('change', filterProducts);
-  priceMinInput.addEventListener('input', filterProducts);
-  priceMaxInput.addEventListener('input', filterProducts);
-
+  // bind events
+  [searchBtn,'click'].forEach(evt=> searchBtn.addEventListener(evt,e=>{e.preventDefault();applyFilter()}));
+  searchInput .addEventListener('input', applyFilter);
+  catSelect   .addEventListener('change',applyFilter);
+  priceMin    .addEventListener('input',applyFilter);
+  priceMax    .addEventListener('input',applyFilter);
+});

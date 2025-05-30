@@ -157,10 +157,6 @@
   margin-bottom: 0.5rem; /* เว้นล่างนิดหน่อย ถ้าจำเป็น */
 }
 
-
-
-
-
 .product-price {
   font-size: 1.25rem;
   font-weight: 500;
@@ -168,3 +164,57 @@
   display: block;
   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* ปุ่ม Back สีชมพูกลมมน */
+.btn-back {
+  background-color: #ff40a4;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-back i {
+  margin-right: 0.5rem;
+  font-size: 1.1rem;
+}
+
+/* Hover effect */
+.btn-back:hover {
+  background-color: #e0308f;
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: #fff;
+}
+
+
+
+/* ให้รูปใน card มีการ transition */
+.product-card .card-img-top {
+  transition: transform 0.3s ease;
+  /* ถ้าอยากให้ภาพไม่เลยออกนอกกรอบ */
+  overflow: hidden;
+}
+
+/* พอ hover ที่ card ให้ขยายภาพเล็กน้อย */
+.product-card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+
+

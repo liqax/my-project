@@ -106,21 +106,14 @@
         <div class="container">
             <h4 class="section-title ">เลือกซื้อตามหมวดหมู่สินค้า</h4>
 
-            <div class="categories">
-                @foreach ($categories as $cat)
-                    <div class="category-card">
-                        <img src="{{ asset('img/categories/' . $cat['icon']) }}" alt="{{ $cat['label'] }}">
-                        <small>{{ $cat['label'] }}</small>
-                    </div>
-                @endforeach
-            </div>
+         
         </div>
     </section>
 
 
 
 
-    {{-- ... ส่วนหมวดหมู่สินค้า ... --}}
+    
 
     {{-- CTA bar --}}
     <section class="cta-bar text-center mt-4">
@@ -149,7 +142,7 @@
     <!-- ############################################################################################################# -->
 
 
-    <section id="bookSection" class="books-section py-5">
+    <section id="bookSection" class="Products-section py-5">
         <div class="container">
 
             <!-- หัวเรื่อง + ปุ่มกรอง -->
@@ -178,29 +171,31 @@
                                     [
                                         'img' => 'img/books/book1.jpg',
                                         'title' => "หนังสือวิทยาศาสตร์และเทคโนโลยี\nเล่ม 1 ม.3",
-                                        'price' => 150.0,
-                                        'category' => 'booksci',
+                                        'price' => 110.0,
+                                        'category' => 'books',
                                         'class' => 'book-item',
+                                        'variety' => 'booksci',
                                     ],
                                     [
                                         'img' => 'img/books/book2.jpg',
                                         'title' => " หนังสือกุญชาญาณ เพื่อส่งเสริม\nอัจฉริยภาพคณิตศาสตร์สำหรับเด็ก",
-                                        'price' => 200.0,
-                                        'category' => 'calcu',
+                                        'price' => 140.0,
+                                        'category' => 'books',
                                         'class' => 'book-item',
+                                        'variety' => 'calcu',
                                     ],
-                                    // … เพิ่มรายการตามต้องการ
                                     [
                                         'img' => 'img/books/book3.jpg',
                                         'title' => ' หนังสือ เสริมทักษะ อัจฉริยะ ตัวน้อย',
                                         'price' => 180.0,
-                                        'category' => 'calcu',
+                                        'category' => 'books',
                                         'class' => 'book-item',
+                                        'variety' => 'calcu',
                                     ],
                                 ]);
                             @endphp
-                            @foreach ($books as $book)
-                                <x-product-card :img="$book['img']" :title="$book['title']" :price="$book['price']" :category="$book['category']"
+                            @foreach ($books as $id => $book)
+                                <x-product-card :img="$book['img']" :title="$book['title']" :price="$book['price']" :variety="$book['variety']"
                                     :item-class="$book['class']" />
                             @endforeach
                         </div>
@@ -216,29 +211,31 @@
                                         'img' => 'img/books/book4.jpg',
                                         'title' => 'หนังสือเมฆน้อยสีเทา',
                                         'price' => 100.0,
-                                        'category' => 'kid',
+                                        'category' => 'books',
                                         'class' => 'book-item',
+                                        'variety' => 'kid',
                                     ],
                                     [
                                         'img' => 'img/books/book5.jpg',
                                         'title' => ' หนังสือเราเป็นเพื่อนที่ต่อกัน',
                                         'price' => 120.0,
-                                        'category' => 'kid',
+                                        'category' => 'books',
                                         'class' => 'book-item',
+                                        'variety' => 'kid',
                                     ],
-                                    // … เพิ่มรายการตามต้องการ
                                     [
                                         'img' => 'img/books/book6.jpg',
                                         'title' => ' หนังสือพี่ชายที่แสนดี',
                                         'price' => 110.0,
-                                        'category' => 'kid',
+                                        'category' => 'books',
                                         'class' => 'book-item',
+                                        'variety' => 'kid',
                                     ],
                                 ]);
                             @endphp
                             @foreach ($books as $book)
-                                <x-product-card :img="$book['img']" :title="$book['title']" :price="$book['price']" :category="$book['category']"
-                                    :item-class="$book['class']" />
+                                <x-product-card :img="$book['img']" :title="$book['title']" :price="$book['price']" :variety="$book['variety']"
+                                    :category="$book['category']" :item-class="$book['class']" />
                             @endforeach
                         </div>
                     </div>
@@ -259,8 +256,8 @@
 
             </div>
 
-        </div>
-        </div>
+         </div>
+        
     </section>
 
 
@@ -274,7 +271,7 @@
 
 
 
-    <section id="sciSection" class="books-section py-5">
+    <section id="sciSection" class="Products-section py-5">
         <div class="container">
 
             <!-- หัวเรื่อง + ปุ่มกรอง -->
@@ -302,29 +299,31 @@
                                         'img' => 'img/science/1.jpg',
                                         'title' => 'แก้วบีกเกอร์',
                                         'price' => 250.0,
-                                        'category' => 'glassware',
+                                        'category' => 'kits',
                                         'class' => 'sci-item',
+                                        'variety' => 'glassware',
                                     ],
                                     [
                                         'img' => 'img/science/2.jpg',
                                         'title' => ' ขวดทดลอง',
                                         'price' => 100.0,
-                                        'category' => 'glassware',
+                                        'category' => 'kits',
                                         'class' => 'sci-item',
+                                        'variety' => 'glassware',
                                     ],
-                                    // … เพิ่มรายการตามต้องการ
                                     [
                                         'img' => 'img/science/3.jpg',
                                         'title' => ' หลอดทดลอง',
                                         'price' => 475.0,
-                                        'category' => 'glassware',
+                                        'category' => 'kits',
                                         'class' => 'sci-item',
+                                        'variety' => 'glassware',
                                     ],
                                 ]);
                             @endphp
                             @foreach ($science as $sci)
                                 <x-product-card :img="$sci['img']" :title="$sci['title']" :price="$sci['price']" :category="$sci['category']"
-                                    :item-class="$sci['class']" />
+                                    :variety="$sci['variety']" :item-class="$sci['class']" />
                             @endforeach
                         </div>
                     </div>
@@ -339,29 +338,31 @@
                                         'img' => 'img/science/4.jpg',
                                         'title' => 'ถาดหลุม',
                                         'price' => 50.0,
-                                        'category' => 'testtube',
+                                        'category' => 'kits',
                                         'class' => 'sci-item',
+                                        'variety' => 'testtube',
                                     ],
                                     [
                                         'img' => 'img/science/5.jpg',
                                         'title' => ' กรวยแก้ว',
                                         'price' => 85.0,
-                                        'category' => 'glassware',
+                                        'category' => 'kits',
                                         'class' => 'sci-item',
+                                        'variety' => 'glassware',
                                     ],
-                                    // … เพิ่มรายการตามต้องการ
                                     [
                                         'img' => 'img/science/6.jpg',
-                                        'title' => ' ',
+                                        'title' => 'ถ้วยแก้ว ',
                                         'price' => 70.0,
-                                        'category' => 'glassware',
+                                        'category' => 'kits',
                                         'class' => 'sci-item',
+                                        'variety' => 'glassware',
                                     ],
                                 ]);
                             @endphp
                             @foreach ($science as $sci)
                                 <x-product-card :img="$sci['img']" :title="$sci['title']" :price="$sci['price']" :category="$sci['category']"
-                                    :item-class="$sci['class']" />
+                                    :variety="$sci['variety']" :item-class="$sci['class']" />
                             @endforeach
                         </div>
                     </div>
@@ -379,7 +380,7 @@
 
     {{-- ####################################################################################################### --}}
 
-    <section id="cheSection" class="books-section py-5">
+    <section id="cheSection" class="Products-section py-5">
         <div class="container">
 
             <!-- หัวเรื่อง + ปุ่มกรอง -->
@@ -399,7 +400,7 @@
                 <div class="carousel-inner overflow-visible">
 
                     <!-- สไลด์แรก -->
-                    <div class="carousel-item active">
+                    <di class="carousel-item active">
                         <div class="row gx-3 gy-4 justify-content-center"id="cheContainer">
 
                             @php
@@ -408,32 +409,35 @@
                                         'img' => 'img/chemistry/1.jpg',
                                         'title' => 'Hydrochloric Acid (HCl)',
                                         'price' => 65.0,
-                                        'category' => 'all',
+                                        'category' => 'chemecals',
                                         'class' => 'che-item',
+                                        'variety' => 'all',
                                     ],
                                     [
                                         'img' => 'img/chemistry/2.jpg',
                                         'title' => ' Sodium Hydroxide (NaOH)',
                                         'price' => 80.0,
-                                        'category' => 'anin',
+                                        'category' => 'chemecals',
                                         'class' => 'che-item',
+                                        'variety' => 'anin',
                                     ],
                                     [
                                         'img' => 'img/chemistry/3.jpg',
                                         'title' => ' sulfuric acid',
                                         'price' => 80.0,
-                                        'category' => 'anin',
+                                        'category' => 'chemecals',
                                         'class' => 'che-item',
+                                        'variety' => 'anin',
                                     ],
                                 ]);
                             @endphp
                             @foreach ($chemistry as $che)
                                 <x-product-card :img="$che['img']" :title="$che['title']" :price="$che['price']" :category="$che['category']"
-                                    :item-class="$che['class']" />
+                                    :variety="$che['variety']" :item-class="$che['class']" />
                             @endforeach
 
                         </div>
-                    </div>
+                    </di    v> 
 
                     <!-- สไลด์ถัดไป (Card 3) -->
                     <div class="carousel-item">
@@ -445,29 +449,31 @@
                                         'img' => 'img/chemistry/4.jpg',
                                         'title' => 'สารละลายเมทิลเรด',
                                         'price' => 75.0,
-                                        'category' => 'solut',
+                                        'category' => 'chemecals',
                                         'class' => 'che-item',
+                                        'variety' => 'solut',
                                     ],
                                     [
                                         'img' => 'img/chemistry/5.jpg',
                                         'title' => 'สารละลายยูนิเวอร์ซัล',
                                         'price' => 75.0,
-                                        'category' => 'solut',
+                                        'category' => 'chemecals',
                                         'class' => 'che-item',
+                                        'variety' => 'solut',
                                     ],
-                                    // … เพิ่มรายการตามต้องการ
                                     [
                                         'img' => 'img/chemistry/6.jpg',
                                         'title' => 'กรดไนตริก เจือจาง 2โมล',
                                         'price' => 85.0,
-                                        'category' => 'solut',
+                                        'category' => 'chemecals',
                                         'class' => 'che-item',
+                                        'variety' => 'solut',
                                     ],
                                 ]);
                             @endphp
                             @foreach ($chemistry as $che)
                                 <x-product-card :img="$che['img']" :title="$che['title']" :price="$che['price']" :category="$che['category']"
-                                    :item-class="$che['class']" />
+                                    :variety="$che['variety']" :item-class="$che['class']" />
                             @endforeach
 
                         </div>
@@ -485,7 +491,7 @@
 
     {{-- ####################################################################################################### --}}
 
-    <section id="droneSection" class="books-section py-5">
+     <section id="droneSection" class="Products-section py-5">
         <div class="container">
 
             <!-- หัวเรื่อง + ปุ่มกรอง -->
@@ -512,45 +518,66 @@
                                         'img' => 'img/drone/1.jpg',
                                         'title' => 'โดรน GEN1',
                                         'price' => 10000.0,
-                                        'category' => 'gen1',
+                                        'category' => 'drone',
                                         'class' => 'drone-item',
+                                        'variety' => 'gen1',
                                     ],
                                     [
                                         'img' => 'img/drone/2.jpg',
                                         'title' => ' โดรน GEN2',
                                         'price' => 12000.0,
-                                        'category' => 'gen2',
+                                        'category' => 'drone',
                                         'class' => 'drone-item',
+                                        'variety' => 'gen2',
                                     ],
-                                    // … เพิ่มรายการตามต้องการ
                                     [
                                         'img' => 'img/drone/3.jpg',
                                         'title' => ' โดรน GEN2 LT',
                                         'price' => 15000.0,
-                                        'category' => 'gen2',
+                                        'category' => 'drone',
                                         'class' => 'drone-item',
+                                        'variety' => 'gen2',
                                     ],
                                 ]);
                             @endphp
                             @foreach ($drones as $drone)
                                 <x-product-card :img="$drone['img']" :title="$drone['title']" :price="$drone['price']" :category="$drone['category']"
-                                    :item-class="$drone['class']" />
+                                    :variety="$drone['variety']" :item-class="$drone['class']" />
                             @endforeach
 
 
                         </div>
                     </div>
 
-                    <!-- สไลด์ตัวอย่างถัดไป ( Card อีก 3 ใบในลักษณะเดียวกัน) -->
+                    <!-- สไลด์ถัดไป ( Card  3 ใบ) -->
                     <div class="carousel-item">
 
 
                     </div>
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#droneCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#droneCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
             </div>
         </div>
     </section>
 
 
+
+
     <script src="{{ asset('js/home.filter.js') }}"></script>
+
+
+
+ 
+
+
+
+
+
+
+
 @endsection
