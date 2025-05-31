@@ -53,7 +53,6 @@
                     <p class="card-text product-title">
                         หนังสือวิทยาศาสตร์และเทคโนโลยี <br>
                         เล่ม 1 ม.3
-
                     </p>
                     <span class="product-price">฿150.00</span>
                 </div>
@@ -261,7 +260,7 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text product-title ">
-                        โดรน GEN1 
+                        โดรน GEN1
                     </p>
                     <span class="product-price">฿10,000.00</span>
                 </div>
