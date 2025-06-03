@@ -39,7 +39,7 @@
       <p class="text-muted">ขนาด/น้ำหนัก: {{ $product['size'] }}</p>
       <h3 class="text-pink">฿{{ number_format($product['price'],2) }}</h3>
 
-      <form action="{{ route('shop.add') }}" method="POST" class="mt-3 d-flex align-items-center">
+      <form action="{{ route('cart.add') }}" method="POST" class="mt-3 d-flex align-items-center">
         @csrf
         <input type="hidden" name="id" value="{{ $product['id'] }}">
         <input type="number" name="qty" value="1" min="1" class="form-control w-auto me-3">

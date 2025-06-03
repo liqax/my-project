@@ -109,7 +109,7 @@
     
       <div class="col-12">
         <div class="category-box p-4 rounded-3">
-          <div class="row gy-3 gx-3 justify-content-center">
+          <div class="  row gy-3 gx-3 justify-content-center">
             {{-- ตัวอย่าง Card หมวดหมู่สินค้า 4 หมวด --}}
             <div class="col-6 col-sm-4 col-md-3 col-lg-2">
               <a href="{{ url('/products?category=books') }}" class="text-decoration-none">
