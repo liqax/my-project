@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller; 
 
 class ShopController extends Controller
 
@@ -45,45 +46,93 @@ class ShopController extends Controller
 
         return view('shop.show', compact('product','related'));
     }
+    public function viewCart()
+{
+    $cart = session('cart', []);
+    return view('cart.index', compact('cart'));
+}
 
-    /**
-     * เพิ่มสินค้าเข้าตะกร้า
-     */
+
+    
     public function addToCart(Request $request)
-    {
-        $cart = session()->get('cart', []);
-        $id   = $request->post('id');
-        $qty  = max(1, (int)$request->post('qty', 1));
-        $cart[$id] = ($cart[$id] ?? 0) + $qty;
-        session(['cart' => $cart]);
+{
+    $cart = session()->get('cart', []);
 
-        return back()->with('success','เพิ่มสินค้าแล้ว');
-    }
+    $id = $request->input('id');
+    $title = $request->input('title');
+    $price = $request->input('price');
+    $qty = $request->input('qty', 1);
+
+    $cart[$id] = [
+        'title' => $title,
+        'price' => $price,
+        'qty' => $qty
+    ];
+
+    session()->put('cart', $cart);
+
+    return redirect()->back()->with('success', 'เพิ่มสินค้าในตะกร้าแล้ว');
+}
+
+  // … (เมทอด index(), show(), viewCart(), addToCart() เดิมยังอยู่เช่นเดิม)
 
     /**
-     * ประวัติคำสั่งซื้อ
+     * เพิ่มสินค้าเข้า Wishlist
      */
-    public function history()
+    public function addToWishlist(Request $request)
     {
-        $cart    = session()->get('cart', []);
-        $all     = $this->products();
-        $orders  = [];
+        $productId = $request->input('product_id');
+        $wishlist  = session()->get('wishlist', []);
 
-        foreach ($cart as $id => $qty) {
-            $p = $all->get($id);
-            $orders[] = [
-                'title' => $p['title'],
-                'price' => $p['price'],
-                'qty'   => $qty,
-                'total' => $p['price'] * $qty,
-            ];
+        // ถ้ายังไม่อยู่ใน array ให้ push เข้าไป
+        if (! in_array($productId, $wishlist)) {
+            $wishlist[] = $productId;
+            session()->put('wishlist', $wishlist);
         }
 
-        return view('shop.history', compact('orders'));
+        return back()->with('success', 'เพิ่มเข้ารายการโปรดเรียบร้อยแล้ว');
+    }
+
+    /**
+     * ลบสินค้าออกจาก Wishlist
+     */
+    public function removeFromWishlist(Request $request)
+    {
+        $productId = $request->input('product_id');
+        $wishlist  = session()->get('wishlist', []);
+
+        // กรองเอาไอดีที่ไม่เท่ากับ productId ที่ส่งมา
+        $new = array_filter($wishlist, fn($i) => $i != $productId);
+        session()->put('wishlist', array_values($new));
+
+        return back()->with('success', 'ลบออกจากรายการโปรดเรียบร้อยแล้ว');
+    }
+
+    /**
+     * แสดงหน้ารายการ Wishlist ทั้งหมด (หน้า /wishlist)
+     */
+    public function viewWishlist()
+    {
+        // ดึงไอดีทั้งหมดที่เก็บไว้ใน session
+        $ids = session()->get('wishlist', []);
+
+        // ดึงข้อมูลสินค้าทั้งหมด (เมทอด products() คืน Collection)
+        $allProducts = $this->products();
+
+        // สร้าง array ของสินค้าใน wishlist: ถ้ามีใน products() ก็รวมข้อมูลทั้งหมด + ใส่ 'id'
+        $items = collect($ids)
+            ->map(fn($i) => $allProducts->has($i)
+                       ? array_merge($allProducts->get($i), ['id' => $i])
+                       : null
+            )
+            ->filter() // กรองเฉพาะไอดีที่มีสินค้าจริง
+            ->all();
+
+        return view('wishlist.index', compact('items'));
     }
 
 
-    protected function products()
+   public function products()
     {
         return collect([
             
@@ -94,7 +143,7 @@ class ShopController extends Controller
                          'size'=>'1.2 kg',
                          'category' => 'books',
                          'class' => 'book-item'],
-          2 =>      [
+          2 =>     [
                          'img' => 'img/books/book2.jpg',
                          'title' => " หนังสือกุญชาญาณ เพื่อส่งเสริม\nอัจฉริยภาพคณิตศาสตร์สำหรับเด็ก",
                          'price' => 140.0,

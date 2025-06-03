@@ -8,11 +8,18 @@
 html {
   scroll-behavior: smooth;
 }
-.carousel-item {
-  transition: transform 0.8s ease-in-out;
+.dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease-in-out;
 }
-
-
+.dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+}
+.carousel-item {
+  transition: transform 0.8s ease-in-out; 
+}
 /* ถ้า Navbar คุณเป็น fixed-top แล้วเวลาเลื่อนอาจชนกับ header ให้เผื่อ padding-top */
 #bookSection {
   scroll-margin-top: 50px; /* ปรับตามความสูง navbar */
@@ -26,6 +33,57 @@ html {
 #droneSection {
   scroll-margin-top: 50px; /* ปรับตามความสูง navbar */
 }
+
+
+/* ตัวอย่างใช้ Bootstrap 5 แล้วไฟล์ custom.css ถูกโหลดหลัง bootstrap.min.css */
+
+/* สีชมพูหัวข้อหมวด (ตัวอย่าง) */
+.text-pink {
+  color: #e6007e !important;      /* ปรับเปลี่ยนโค้ดสีได้ตามธีมเว็บไซต์ */
+}
+
+
+
+/* การ์ดหมวดหมู่ (Category text) */
+.category-text {
+  background-color: #ffffff;       /* สีพื้นขาว */
+  border: 1px solid #f1f1f1;      /* เส้นกรอบบาง ๆ สีเทาอ่อน */
+  border-radius: 0.5rem;          /* มุมโค้งมน */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-text:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ขนาดไอคอนภายใน Category text */
+.category-text .icon-wrapper i {
+  display: inline-block;
+  padding: 0.5rem;
+  background-color: #ffe8e8;
+  border-radius: 50%;
+}
+
+/* ชื่อหมวดหมู่ */
+.category-name {
+  font-size: 0.95rem;
+  color: #333333;
+  word-break: break-word;  /* ถ้าชื่อยาวเกินบรรทัด จะตัดขึ้นบรรทัดใหม่อัตโนมัติ */
+}
+
+/* เมื่อใช้บนมือถือ คุมให้การ์ดมีความสูงไม่สูงเกินไป */
+@media (max-width: 575.98px) {
+  .category-text {
+    padding: 0.75rem;   /* ลด padding เล็กน้อยบนมือถือ */
+  }
+}
+
+
+
+
+
+
 
 /* Base reset and typography */
 html, body {

@@ -105,9 +105,63 @@
     <section class="category-section pt-4 mt-4 ">
         <div class="container">
             <h4 class="section-title ">เลือกซื้อตามหมวดหมู่สินค้า</h4>
+            
+    
+      <div class="col-12">
+        <div class="category-box p-4 rounded-3">
+          <div class="row gy-3 gx-3 justify-content-center">
+            {{-- ตัวอย่าง Card หมวดหมู่สินค้า 4 หมวด --}}
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+              <a href="{{ url('/products?category=books') }}" class="text-decoration-none">
+                <div class="category-text h-100 text-center p-3">
+                  <div class="icon-wrapper mb-2">
+                    {{-- ใช้ไอคอน Font Awesome หรือ Bootstrap Icon ก็ได้ --}}
+                    <i class="bi bi-book-half fs-2 text-pink"></i>
+                  </div>
+                  <div class="category-name fw-semibold">หนังสือ</div>
+                </div>
+              </a>
+            </div>
 
-         
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+              <a href="{{ url('/products?category=science') }}" class="text-decoration-none">
+                <div class="category-text h-100 text-center p-3">
+                  <div class="icon-wrapper mb-2">
+                    <i class="bi bi-beaker-fill fs-2 text-pink"></i>
+                  </div>
+                  <div class="category-name fw-semibold">อุปกรณ์วิทยาศาสตร์</div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+              <a href="{{ url('/products?category=chemicals') }}" class="text-decoration-none">
+                <div class="category-text h-100 text-center p-3">
+                  <div class="icon-wrapper mb-2">
+                    <i class="bi bi-droplet-half fs-2 text-pink"></i>
+                  </div>
+                  <div class="category-name fw-semibold">สารเคมี</div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+              <a href="{{ url('/products?category=drone') }}" class="text-decoration-none">
+                <div class="category-text h-100 text-center p-3">
+                  <div class="icon-wrapper mb-2">
+                    <i class="bi bi-controller fs-2 text-pink"></i>
+                  </div>
+                  <div class="category-name fw-semibold">โดรน</div>
+                </div>
+              </a>
+            </div>
+
+            {{-- เพิ่มเติม: สามารถใส่หมวดสินค้าอื่นต่อได้ตามต้องการ --}}
+          </div>
         </div>
+      </div>
+          
+ </div>
     </section>
 
 
@@ -541,8 +595,12 @@
                                 ]);
                             @endphp
                             @foreach ($drones as $drone)
-                                <x-product-card :img="$drone['img']" :title="$drone['title']" :price="$drone['price']" :category="$drone['category']"
-                                    :variety="$drone['variety']" :item-class="$drone['class']" />
+                                <x-product-card
+                                 :img="$drone['img']" :title="$drone['title']" 
+                                 :price="$drone['price']" 
+                                 :category="$drone['category']"
+                                :variety="$drone['variety']" 
+                                :item-class="$drone['class']" />
                             @endforeach
 
 

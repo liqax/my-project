@@ -5,7 +5,7 @@ namespace App\View\Components;
 use Illuminate\View\Component;
 
 class ProductCard extends Component
-{
+{   
     public $img;
     public $title;
     public $price;

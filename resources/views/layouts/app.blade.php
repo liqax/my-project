@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'PRE-ORDER')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/home.styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/products.styles.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
 </head>
 
@@ -33,17 +33,87 @@
 
             <div class="d-flex align-items-end gap-4 ms-auto">
                 <div class="text-center">
-                    <a href="{{ route('wishlist.index') }}" class="link-icon text-decoration-none">
+                    <a href="{{ route('wishlist.view') }}" class="link-icon text-decoration-none"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://img.icons8.com/ios-filled/28/000000/like.png" alt="like" class="mb-1">
-                        <div class="small fw-light">รายการโปรด</div>
+                        @php $wishlistIds = session('wishlist', []); @endphp
+                        <small class="d-block fw-light">รายการโปรด ({{ count($wishlistIds) }})</small>
                     </a>
+                    <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 300px;">
+                        <h6 class="fw-bold">รายการโปรดของคุณ</h6>
+                        <hr class="mt-1 mb-2">
+                        @php
+                            // ดึงข้อมูลสินค้าที่อยู่ใน wishlist จาก session
+                            $allProducts = (new \App\Http\Controllers\ShopController())->products();
+                            $wishlistItems = collect($wishlistIds)
+                                ->map(
+                                    fn($i) => $allProducts->has($i)
+                                        ? array_merge($allProducts->get($i), ['id' => $i])
+                                        : null,
+                                )
+                                ->filter()
+                                ->all();
+                        @endphp
+
+                        @if (count($wishlistItems))
+                            <h6 class="fw-bold mb-2">รายการโปรดของคุณ</h6>
+                            <hr class="mt-0 mb-2">
+
+                            @foreach ($wishlistItems as $item)
+                                <div class="mb-2 small">
+                                    <div class="fw-semibold">{{ $item['title'] }}</div>
+                                    <div class="text-pink">฿{{ number_format($item['price'], 2) }}</div>
+                                    <form action="{{ route('wishlist.remove') }}" method="POST" class="mt-1">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $item['id'] }}">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            <i class="bi bi-trash-fill"></i> ลบ
+                                        </button>
+                                    </form>
+                                </div>
+                                <hr class="my-2">
+                            @endforeach
+
+                            <div class="text-center">
+                                <a href="{{ route('wishlist.view') }}" class="btn btn-sm btn-dark w-100">
+                                    ดูรายการโปรดทั้งหมด
+                                </a>
+                            </div>
+                        @else
+                            <div class=" text-muted small">
+                                คุณไม่มีสินค้าในรายการโปรด.
+                            </div>
+                        @endif
+                    </div>
                 </div>
+
                 <div class="text-center">
-                    <a href="{{ url('/cart') }}" class="link-icon text-decoration-none">
+                    <a href="{{ url('/cart') }}" class="link-icon text-decoration-none"data-bs-toggle="dropdown">
                         <img src="https://img.icons8.com/ios-filled/28/000000/shopping-cart.png" alt="cart"
                             class="mb-1">
                         <div class="small fw-light">รถเข็น</div>
                     </a>
+                    <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 300px;">
+                        <h6 class="fw-bold">รายการสินค้าของคุณ</h6>
+                        <hr class="mt-1 mb-2">
+                        @php $cart = session('cart', []) @endphp
+
+                        @if (count($cart))
+                            @foreach ($cart as $item)
+                                <div class="mb-2 small">
+                                    <div class="fw-semibold">{{ $item['title'] }}</div>
+                                    <div>จำนวน: {{ $item['qty'] }} × ฿{{ number_format($item['price'], 2) }}</div>
+                                </div>
+                            @endforeach
+                            <hr class="my-2">
+                            <div class="text-end">
+                                <a href="{{ route('cart.view') }}"
+                                    class="btn btn-sm btn-dark w-100">ดูตะกร้าทั้งหมด</a>
+                            </div>
+                        @else
+                            <div class="text-muted small">คุณไม่มีสินค้าในรถเข็น.</div>
+                        @endif
+                    </div>
                 </div>
                 <div class="text-center">
                     <a href="{{ url('/login') }}" class="link-icon text-decoration-none">
@@ -74,33 +144,38 @@
                                 <a href="{{ url('/') }}" class="nav-link  text-white fw-normal px-3">แนะนำ</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('/products') }}" class="nav-link  text-white fw-normal px-3">สินค้า</a>
+                                <a href="{{ url('/products') }}"
+                                    class="nav-link  text-white fw-normal px-3">สินค้า</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ request()->routeIs('home') ? '#bookSection' : url('/') . '#bookSection' }}"
                                     class="nav-link  text-white fw-normal px-3">หนังสือ</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ request()->routeIs('home') ? '#sciSection' : url('/') . '#sciSection' }}" class="nav-link  text-white fw-normal px-2">อุปกรณ์วิทยาศาสตร์</a>
+                                <a href="{{ request()->routeIs('home') ? '#sciSection' : url('/') . '#sciSection' }}"
+                                    class="nav-link  text-white fw-normal px-2">อุปกรณ์วิทยาศาสตร์</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ request()->routeIs('home') ? '#cheSection' : url('/') . '#cheSection' }}" class="nav-link  text-white fw-normal px-2">สารเคมี</a>
+                                <a href="{{ request()->routeIs('home') ? '#cheSection' : url('/') . '#cheSection' }}"
+                                    class="nav-link  text-white fw-normal px-2">สารเคมี</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ request()->routeIs('home') ? '#droneSection' : url('/') . '#droneSection' }}" class="nav-link  text-white fw-normal px-2">โดรน</a>
+                                <a href="{{ request()->routeIs('home') ? '#droneSection' : url('/') . '#droneSection' }}"
+                                    class="nav-link  text-white fw-normal px-2">โดรน</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('/orders') }}"
+                                <a href="{{ url('/orders/history') }}"
                                     class="nav-link  text-white fw-normal px-2">ประวัติคำสั่งซื้อ</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link  dropdown-toggle text-white fw-normal px-2" href="#"
-                                    id="moreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    id="moreDropdown" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
                                     เพิ่มเติม
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdown">
                                     <li><a class="dropdown-item" href="{{ url('/about') }}">เกี่ยวกับเรา</a></li>
-                                    <li><a class="dropdown-item" href="{{ url('/contact') }}">ติดต่อเรา</a></li>
+                                    
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -127,10 +202,14 @@
                         <ul class="list-unstyled footer-menu">
                             <li><a href="#" class="text-white">หน้าหลัก</a></li>
                             <li><a href="/products" class="text-white">สินค้า</a></li>
-                            <li><a href="{{ request()->routeIs('home') ? '#bookSection' : url('/') . '#bookSection' }}" class="text-white">หนังสือ</a></li>
-                            <li><a href="{{ request()->routeIs('home') ? '#sciSection' : url('/') . '#sciSection' }}" class="text-white">อุปกรณ์วิทยาศาสตร์</a></li>
-                            <li><a href="{{ request()->routeIs('home') ? '#cheSection' : url('/') . '#cheSection' }}" class="text-white">สารเคมี</a></li>
-                            <li><a href="{{ request()->routeIs('home') ? '#droneSection' : url('/') . '#droneSection' }}" class="text-white">โดรน</a></li>
+                            <li><a href="{{ request()->routeIs('home') ? '#bookSection' : url('/') . '#bookSection' }}"
+                                    class="text-white">หนังสือ</a></li>
+                            <li><a href="{{ request()->routeIs('home') ? '#sciSection' : url('/') . '#sciSection' }}"
+                                    class="text-white">อุปกรณ์วิทยาศาสตร์</a></li>
+                            <li><a href="{{ request()->routeIs('home') ? '#cheSection' : url('/') . '#cheSection' }}"
+                                    class="text-white">สารเคมี</a></li>
+                            <li><a href="{{ request()->routeIs('home') ? '#droneSection' : url('/') . '#droneSection' }}"
+                                    class="text-white">โดรน</a></li>
                             <li><a href="#" class="text-white">ประวัติคำสั่งซื้อ</a></li>
                             <li><a href="#" class="text-white">เพิ่มเติม</a></li>
                         </ul>

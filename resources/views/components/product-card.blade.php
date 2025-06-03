@@ -1,4 +1,7 @@
-                    <!-- Card  -->
+
+                  
+                  
+                  <!-- Card  -->
                     <div class="col-auto  {{ $itemClass }}"
                          data-variety="{{ $variety }}"
                         data-price="{{ $price }}">
@@ -19,9 +22,14 @@
                                 <button class="btn btn-pink btn-sm">
                                     <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
                                 </button>
+                                 <form action="{{ route('wishlist.add') }}" method="POST" class="d-inline">
+                                     @csrf
+                                     
                                 <button class="btn btn-heart">
                                     <i class="bi bi-heart-fill"></i>
                                 </button>
+                                 </form>
+
                             </div>
                         </div>
                     </div>
