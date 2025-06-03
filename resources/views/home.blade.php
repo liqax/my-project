@@ -106,21 +106,14 @@
         <div class="container">
             <h4 class="section-title ">เลือกซื้อตามหมวดหมู่สินค้า</h4>
 
-            <div class="categories">
-                @foreach ($categories as $cat)
-                    <div class="category-card">
-                        <img src="{{ asset('img/categories/' . $cat['icon']) }}" alt="{{ $cat['label'] }}">
-                        <small>{{ $cat['label'] }}</small>
-                    </div>
-                @endforeach
-            </div>
+         
         </div>
     </section>
 
 
 
 
-    {{-- ... ส่วนหมวดหมู่สินค้า ... --}}
+    
 
     {{-- CTA bar --}}
     <section class="cta-bar text-center mt-4">
@@ -149,7 +142,7 @@
     <!-- ############################################################################################################# -->
 
 
-    <section class="books-section py-5">
+    <section id="bookSection" class="Products-section py-5">
         <div class="container">
 
             <!-- หัวเรื่อง + ปุ่มกรอง -->
@@ -161,163 +154,110 @@
                     <button
                         class="btn btn-outline-secondary bookfilter-btn me-2 mb-2"data-filter='booksci'>หนังสือวิทย์</button>
                     <button class="btn btn-outline-secondary bookfilter-btn mb-2"data-filter='calcu'>หนังสือคณิต</button>
+                    <button class="btn btn-outline-secondary bookfilter-btn mb-2"data-filter='kid'>หนังสือนิทาน</button>
                 </div>
             </div>
 
             <!-- Carousel สินค้า 3 ใบ ต่อสไลด์ -->
             <div id="bookCarousel" class="carousel slide" data-bs-interval="false" data-bs-touch="false">
-                <div class="carousel-inner overflow-visible">
 
+                <div class="carousel-inner overflow-visible">
                     <!-- สไลด์แรก -->
                     <div class="carousel-item active">
-                        <div class="row gx-3 gy-4 justify-content-center" id="bookContainer">
+                        <div class="row gx-3 gy-4 justify-content-center">
 
-                            <!-- Card 1 -->
-                            <div class="col-auto book-item"data-category="booksci">
-                                <div class="card product-card">
-                                    <div class="position-relative">
-                                        <img src="img/books/book1.jpg" class="card-img-top" alt="Book 1">
-
-
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            หนังสือวิทยาศาสตร์และเทคโนโลยี <br>
-                                            เล่ม 1 ม.3
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Card 2 -->
-                            <div class="col-auto  book-item "data-category="calcu">
-                                <div class="card product-card">
-                                    <img src="img/books/book2.jpg" class="card-img-top" alt="Book 2">
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            หนังสือกุญชาญาณ เพื่อส่งเสริม<br>อัจฉริยภาพคณิตศาสตร์สำหรับเด็ก
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Card 3 -->
-                            <div class="col-auto  book-item " data-category="calcu">
-                                <div class="card product-card">
-                                    </button>
-
-                                    <img src="img/books/book3.jpg" class="card-img-top" alt="Book 3">
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            หนังสือ เสริมทักษะ อัจฉริยะ ตัวน้อย
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
+                            @php
+                                $books = collect([
+                                    [
+                                        'img' => 'img/books/book1.jpg',
+                                        'title' => "หนังสือวิทยาศาสตร์และเทคโนโลยี\nเล่ม 1 ม.3",
+                                        'price' => 110.0,
+                                        'category' => 'books',
+                                        'class' => 'book-item',
+                                        'variety' => 'booksci',
+                                    ],
+                                    [
+                                        'img' => 'img/books/book2.jpg',
+                                        'title' => " หนังสือกุญชาญาณ เพื่อส่งเสริม\nอัจฉริยภาพคณิตศาสตร์สำหรับเด็ก",
+                                        'price' => 140.0,
+                                        'category' => 'books',
+                                        'class' => 'book-item',
+                                        'variety' => 'calcu',
+                                    ],
+                                    [
+                                        'img' => 'img/books/book3.jpg',
+                                        'title' => ' หนังสือ เสริมทักษะ อัจฉริยะ ตัวน้อย',
+                                        'price' => 180.0,
+                                        'category' => 'books',
+                                        'class' => 'book-item',
+                                        'variety' => 'calcu',
+                                    ],
+                                ]);
+                            @endphp
+                            @foreach ($books as $id => $book)
+                                <x-product-card :img="$book['img']" :title="$book['title']" :price="$book['price']" :variety="$book['variety']"
+                                    :item-class="$book['class']" />
+                            @endforeach
                         </div>
                     </div>
 
 
                     <div class="carousel-item">
-                        <!-- row gx-3 gy-4… ใส่ card 3 ใบลักษณะเดียวกัน -->
-                        {{-- <div class="row gx-3 gy-4 justify-content-center" id="bookContainer">
+                        <div class="row gx-3 gy-4 justify-content-center" id="bookContainer">
 
-                            <!-- Card 1 -->
-                            <div class="col-auto book-item"data-category="science">
-                                <div class="card product-card">
-                                    <div class="position-relative">
-                                        <img src="img/books/book1.jpg" class="card-img-top" alt="Book 1">
-
-
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            หนังสือวิทยาศาสตร์และเทคโนโลยี เล่ม 1 ม.3
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>   
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Card 2 -->
-                            <div class="col-auto  book-item "data-category="calcu">
-                                <div class="card product-card">
-                                    <img src="img/books/book2.jpg" class="card-img-top" alt="Book 2">
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            หนังสือกุญชาญาณ เพื่อส่งเสริมอัจฉริยภาพคณิตศาสตร์สำหรับเด็ก
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Card 3 -->
-                            <div class="col-auto  book-item " data-category="calcu">
-                                <div class="card product-card">
-                                    </button>
-
-                                    <img src="img/books/book3.jpg" class="card-img-top" alt="Book 3">
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            หนังสือ เสริมทักษะ อัจฉริยะ ตัวน้อย
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div> --}}
+                            @php
+                                $books = collect([
+                                    [
+                                        'img' => 'img/books/book4.jpg',
+                                        'title' => 'หนังสือเมฆน้อยสีเทา',
+                                        'price' => 100.0,
+                                        'category' => 'books',
+                                        'class' => 'book-item',
+                                        'variety' => 'kid',
+                                    ],
+                                    [
+                                        'img' => 'img/books/book5.jpg',
+                                        'title' => ' หนังสือเราเป็นเพื่อนที่ต่อกัน',
+                                        'price' => 120.0,
+                                        'category' => 'books',
+                                        'class' => 'book-item',
+                                        'variety' => 'kid',
+                                    ],
+                                    [
+                                        'img' => 'img/books/book6.jpg',
+                                        'title' => ' หนังสือพี่ชายที่แสนดี',
+                                        'price' => 110.0,
+                                        'category' => 'books',
+                                        'class' => 'book-item',
+                                        'variety' => 'kid',
+                                    ],
+                                ]);
+                            @endphp
+                            @foreach ($books as $book)
+                                <x-product-card :img="$book['img']" :title="$book['title']" :price="$book['price']" :variety="$book['variety']"
+                                    :category="$book['category']" :item-class="$book['class']" />
+                            @endforeach
+                        </div>
                     </div>
                 </div>
+                <!-- ปุ่มสไลด์ซ้าย -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#bookCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">ก่อนหน้า</span>
+                </button>
+
+                <!-- ปุ่มสไลด์ขวา -->
+                <button class="carousel-control-next" type="button" data-bs-target="#bookCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">ถัดไป</span>
+                </button>
+
             </div>
-        </div>
+
+         </div>
+        
     </section>
 
 
@@ -331,7 +271,7 @@
 
 
 
-    <section class="books-section py-5">
+    <section id="sciSection" class="Products-section py-5">
         <div class="container">
 
             <!-- หัวเรื่อง + ปุ่มกรอง -->
@@ -342,97 +282,105 @@
                         class="btn btn-outline-secondary scifilter-btn active me-2 mb-2 "data-filter='all'>ทั้งหมด</button>
                     <button
                         class="btn btn-outline-secondary scifilter-btn me-2 mb-2"data-filter='glassware'>เครื่องแก้ว</button>
-                    <button class="btn btn-outline-secondary scifilter-btn mb-2"data-filter='testtube'>หลอดทดลอง</button>
+                    <button class="btn btn-outline-secondary scifilter-btn mb-2"data-filter='testtube'>อื่นๆ</button>
                 </div>
             </div>
 
             <!-- Carousel สินค้า 3 ใบ ต่อสไลด์ -->
-            <div id="bookCarousel" class="carousel slide" data-bs-interval="false" data-bs-touch="false">
+            <div id="sciCarousel" class="carousel slide" data-bs-interval="false" data-bs-touch="false">
                 <div class="carousel-inner overflow-visible">
 
                     <!-- สไลด์แรก -->
                     <div class="carousel-item active">
                         <div class="row gx-3 gy-4 justify-content-center"id="sciContainer">
-
-                            <!-- Card 1 -->
-                            <div class="col-auto sci-item"data-category="glassware">
-                                <div class="card product-card">
-                                    <div class="position-relative">
-                                        <img src="img/science/1.jpg" class="card-img-top" alt="science">
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            แก้วบีกเกอร์
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Card 2 -->
-                            <div class="col-auto sci-item"data-category="glassware">
-                                <div class="card product-card">
-                                    <img src="img/science/2.jpg" class="card-img-top" alt="science">
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            ขวดทดลอง
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Card 3 -->
-                            <div class="col-auto sci-item" data-category="testtube">
-                                <div class="card product-card">
-                                    </button>
-
-                                    <img src="img/science/3.jpg" class="card-img-top" alt="science">
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            หลอดทดลอง
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
+                            @php
+                                $science = collect([
+                                    [
+                                        'img' => 'img/science/1.jpg',
+                                        'title' => 'แก้วบีกเกอร์',
+                                        'price' => 250.0,
+                                        'category' => 'kits',
+                                        'class' => 'sci-item',
+                                        'variety' => 'glassware',
+                                    ],
+                                    [
+                                        'img' => 'img/science/2.jpg',
+                                        'title' => ' ขวดทดลอง',
+                                        'price' => 100.0,
+                                        'category' => 'kits',
+                                        'class' => 'sci-item',
+                                        'variety' => 'glassware',
+                                    ],
+                                    [
+                                        'img' => 'img/science/3.jpg',
+                                        'title' => ' หลอดทดลอง',
+                                        'price' => 475.0,
+                                        'category' => 'kits',
+                                        'class' => 'sci-item',
+                                        'variety' => 'glassware',
+                                    ],
+                                ]);
+                            @endphp
+                            @foreach ($science as $sci)
+                                <x-product-card :img="$sci['img']" :title="$sci['title']" :price="$sci['price']" :category="$sci['category']"
+                                    :variety="$sci['variety']" :item-class="$sci['class']" />
+                            @endforeach
                         </div>
                     </div>
 
-                    <!-- สไลด์ตัวอย่างถัดไป (วาง Card อีก 3 ใบในลักษณะเดียวกัน) -->
+                    <!-- สไลด์ถัดไป ( Card  3 ใบ) -->
                     <div class="carousel-item">
-                        <!-- row gx-3 gy-4… ใส่ card 3 ใบลักษณะเดียวกัน -->
+                        <div class="row gx-3 gy-4 justify-content-center" id="sciContainer">
+
+                            @php
+                                $science = collect([
+                                    [
+                                        'img' => 'img/science/4.jpg',
+                                        'title' => 'ถาดหลุม',
+                                        'price' => 50.0,
+                                        'category' => 'kits',
+                                        'class' => 'sci-item',
+                                        'variety' => 'testtube',
+                                    ],
+                                    [
+                                        'img' => 'img/science/5.jpg',
+                                        'title' => ' กรวยแก้ว',
+                                        'price' => 85.0,
+                                        'category' => 'kits',
+                                        'class' => 'sci-item',
+                                        'variety' => 'glassware',
+                                    ],
+                                    [
+                                        'img' => 'img/science/6.jpg',
+                                        'title' => 'ถ้วยแก้ว ',
+                                        'price' => 70.0,
+                                        'category' => 'kits',
+                                        'class' => 'sci-item',
+                                        'variety' => 'glassware',
+                                    ],
+                                ]);
+                            @endphp
+                            @foreach ($science as $sci)
+                                <x-product-card :img="$sci['img']" :title="$sci['title']" :price="$sci['price']" :category="$sci['category']"
+                                    :variety="$sci['variety']" :item-class="$sci['class']" />
+                            @endforeach
+                        </div>
                     </div>
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#sciCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#sciCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
             </div>
+
         </div>
     </section>
 
     {{-- ####################################################################################################### --}}
 
-    <section class="books-section py-5">
+    <section id="cheSection" class="Products-section py-5">
         <div class="container">
 
             <!-- หัวเรื่อง + ปุ่มกรอง -->
@@ -441,98 +389,109 @@
                 <div class="filter-buttons">
                     <button
                         class="btn btn-outline-secondary chefilter-btn active me-2 mb-2 "data-filter='all'>ทั้งหมด</button>
-                    <button class="btn btn-outline-secondary chefilter-btn me-2 mb-2"data-filter='sodium'>โซเดียม</button>
-                    <button class="btn btn-outline-secondary chefilter-btn mb-2"data-filter='sulfur'>ซัลเฟอร์</button>
+                    <button
+                        class="btn btn-outline-secondary chefilter-btn me-2 mb-2"data-filter='anin'>สารอนินทรีย์</button>
+                    <button class="btn btn-outline-secondary chefilter-btn mb-2"data-filter='solut'>สารละลาย</button>
                 </div>
             </div>
 
             <!-- Carousel สินค้า 3 ใบ ต่อสไลด์ -->
-            <div id="bookCarousel" class="carousel slide" data-bs-interval="false" data-bs-touch="false">
+            <div id="cheCarousel" class="carousel slide" data-bs-interval="false" data-bs-touch="false">
                 <div class="carousel-inner overflow-visible">
 
                     <!-- สไลด์แรก -->
-                    <div class="carousel-item active">
+                    <di class="carousel-item active">
                         <div class="row gx-3 gy-4 justify-content-center"id="cheContainer">
 
-                            <!-- Card 1 -->
-                            <div class="col-auto che-item"data-category='all'>
-                                <div class="card product-card">
-                                    <div class="position-relative">
-                                        <img src="img/chemistry/1.jpg" class="card-img-top" alt="chemical">
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            Hydrochloric Acid (HCl)
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            @php
+                                $chemistry = collect([
+                                    [
+                                        'img' => 'img/chemistry/1.jpg',
+                                        'title' => 'Hydrochloric Acid (HCl)',
+                                        'price' => 65.0,
+                                        'category' => 'chemecals',
+                                        'class' => 'che-item',
+                                        'variety' => 'all',
+                                    ],
+                                    [
+                                        'img' => 'img/chemistry/2.jpg',
+                                        'title' => ' Sodium Hydroxide (NaOH)',
+                                        'price' => 80.0,
+                                        'category' => 'chemecals',
+                                        'class' => 'che-item',
+                                        'variety' => 'anin',
+                                    ],
+                                    [
+                                        'img' => 'img/chemistry/3.jpg',
+                                        'title' => ' sulfuric acid',
+                                        'price' => 80.0,
+                                        'category' => 'chemecals',
+                                        'class' => 'che-item',
+                                        'variety' => 'anin',
+                                    ],
+                                ]);
+                            @endphp
+                            @foreach ($chemistry as $che)
+                                <x-product-card :img="$che['img']" :title="$che['title']" :price="$che['price']" :category="$che['category']"
+                                    :variety="$che['variety']" :item-class="$che['class']" />
+                            @endforeach
 
-                            <!-- Card 2 -->
-                            <div class="col-auto che-item"data-category='sodium'>
-                                <div class="card product-card ">
-                                    <img src="img/chemistry/2.jpg" class="card-img-top" alt="chemical">
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            Sodium Hydroxide (NaOH)
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                    </di    v> 
 
-                            <!-- Card 3 -->
-                            <div class="col-auto che-item"data-category='sulfur'>
-                                <div class="card product-card">
-                                    </button>
+                    <!-- สไลด์ถัดไป (Card 3) -->
+                    <div class="carousel-item">
+                        <div class="row gx-3 gy-4 justify-content-center"id="cheContainer">
 
-                                    <img src="img/chemistry/3.jpg" class="card-img-top" alt="chemical">
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            sulfur
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            @php
+                                $chemistry = collect([
+                                    [
+                                        'img' => 'img/chemistry/4.jpg',
+                                        'title' => 'สารละลายเมทิลเรด',
+                                        'price' => 75.0,
+                                        'category' => 'chemecals',
+                                        'class' => 'che-item',
+                                        'variety' => 'solut',
+                                    ],
+                                    [
+                                        'img' => 'img/chemistry/5.jpg',
+                                        'title' => 'สารละลายยูนิเวอร์ซัล',
+                                        'price' => 75.0,
+                                        'category' => 'chemecals',
+                                        'class' => 'che-item',
+                                        'variety' => 'solut',
+                                    ],
+                                    [
+                                        'img' => 'img/chemistry/6.jpg',
+                                        'title' => 'กรดไนตริก เจือจาง 2โมล',
+                                        'price' => 85.0,
+                                        'category' => 'chemecals',
+                                        'class' => 'che-item',
+                                        'variety' => 'solut',
+                                    ],
+                                ]);
+                            @endphp
+                            @foreach ($chemistry as $che)
+                                <x-product-card :img="$che['img']" :title="$che['title']" :price="$che['price']" :category="$che['category']"
+                                    :variety="$che['variety']" :item-class="$che['class']" />
+                            @endforeach
 
                         </div>
                     </div>
-
-                    <!-- สไลด์ตัวอย่างถัดไป (วาง Card อีก 3 ใบในลักษณะเดียวกัน) -->
-                    <div class="carousel-item">
-                        <!-- row gx-3 gy-4… ใส่ card 3 ใบลักษณะเดียวกัน -->
-                    </div>
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#cheCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#cheCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
             </div>
         </div>
     </section>
 
     {{-- ####################################################################################################### --}}
 
-    <section class="books-section py-5">
+     <section id="droneSection" class="Products-section py-5">
         <div class="container">
 
             <!-- หัวเรื่อง + ปุ่มกรอง -->
@@ -553,148 +512,55 @@
                     <!-- สไลด์แรก -->
                     <div class="carousel-item active">
                         <div class="row gx-3 gy-4 justify-content-center" id="droneContainer">
+                            @php
+                                $drones = collect([
+                                    [
+                                        'img' => 'img/drone/1.jpg',
+                                        'title' => 'โดรน GEN1',
+                                        'price' => 10000.0,
+                                        'category' => 'drone',
+                                        'class' => 'drone-item',
+                                        'variety' => 'gen1',
+                                    ],
+                                    [
+                                        'img' => 'img/drone/2.jpg',
+                                        'title' => ' โดรน GEN2',
+                                        'price' => 12000.0,
+                                        'category' => 'drone',
+                                        'class' => 'drone-item',
+                                        'variety' => 'gen2',
+                                    ],
+                                    [
+                                        'img' => 'img/drone/3.jpg',
+                                        'title' => ' โดรน GEN2 LT',
+                                        'price' => 15000.0,
+                                        'category' => 'drone',
+                                        'class' => 'drone-item',
+                                        'variety' => 'gen2',
+                                    ],
+                                ]);
+                            @endphp
+                            @foreach ($drones as $drone)
+                                <x-product-card :img="$drone['img']" :title="$drone['title']" :price="$drone['price']" :category="$drone['category']"
+                                    :variety="$drone['variety']" :item-class="$drone['class']" />
+                            @endforeach
 
-                            <!-- Card 1 -->
-                            <div class="col-auto drone-item"data-category="gen1">
-                                <div class="card product-card">
-                                    <div class="position-relative">
-                                        <img src="img/drone/1.jpg" class="card-img-top" alt="">
-
-
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            โดรน
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Card 2 -->
-                            <div class="col-auto drone-item"data-category="gen2">
-                                <div class="card product-card">
-                                    <img src="img/drone/2.jpg" class="card-img-top" alt="">
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            โดรน
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Card 3 -->
-                            <div class="col-auto drone-item"data-category="gen2">
-                                <div class="card product-card">
-                                    </button>
-
-                                    <img src="img/drone/3.jpg" class="card-img-top" alt="">
-                                    <div class="card-body">
-                                        <p class="card-text product-title">
-                                            โดรน
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button class="btn btn-pink btn-sm">
-                                            <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                        </button>
-                                        <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
 
                         </div>
                     </div>
 
-
-
-
-
-
-                    <!-- สไลด์ตัวอย่างถัดไป ( Card อีก 3 ใบในลักษณะเดียวกัน) -->
+                    <!-- สไลด์ถัดไป ( Card  3 ใบ) -->
                     <div class="carousel-item">
-                        <!-- Card 3 -->
-                        <div class="col-auto">
-                            <div class="card product-card">
-                                </button>
 
-                                <img src="img/drone/3.jpg" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <p class="card-text product-title">
-                                        โดรน
-                                    </p>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <button class="btn btn-pink btn-sm">
-                                        <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                    </button>
-                                    <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 1 -->
-                        <div class="col-auto">
-                            <div class="card product-card">
-                                </button>
-
-                                <img src="img/drone/3.jpg" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <p class="card-text product-title">
-                                        โดรน
-                                    </p>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <button class="btn btn-pink btn-sm">
-                                        <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                    </button>
-                                    <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card 2 -->
-                        <div class="col-auto">
-                            <div class="card product-card">
-                                <img src="img/drone/2.jpg" class="card-img-top" alt="">
-                                <div class="card-body">
-                                    <p class="card-text product-title">
-                                        โดรน
-                                    </p>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <button class="btn btn-pink btn-sm">
-                                        <i class="bi bi-cart-fill"></i> เพิ่มสินค้า
-                                    </button>
-                                    <button class="btn btn-heart">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#droneCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#droneCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
             </div>
         </div>
     </section>
@@ -702,10 +568,16 @@
 
 
 
+    <script src="{{ asset('js/home.filter.js') }}"></script>
 
 
-<script src="{{ asset('js/home.filter.js') }}"></script>
+
+ 
+
+
+
+
+
+
+
 @endsection
-
-
-

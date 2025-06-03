@@ -6,48 +6,4 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    function index(){
-        $blogs=[
-            [
-                'title'=>"บทความที่ 1",
-                'content'=>"เนื้อหาบทความที่ 1",
-                'status'=>true
-            ],
-            [
-                'title'=>"บทความที่ 2",
-                'content'=>"เนื้อหาบทความที่ 2",
-                'status'=>false
-            ],
-            [
-                'title'=>"บทความที่ 3",
-                'content'=>"เนื้อหาบทความที่ 3",
-                'status'=>true
-            ],
-            [
-                'title'=>"บทความที่ 4",
-                'content'=>"เนื้อหาบทความที่ 4",
-                'status'=>true
-            ],
-            [
-                'title'=>"บทความที่ 5",
-                'content'=>"เนื้อหาบทความที่ 5",
-                'status'=>false
-            ]
-            ];
-                return view('blog',compact('blogs'));
-    }
-    function about(){
-    $name = "Athiwat";
-    $date = "5 มกราคม 2568";
-    return view('about',compact('name','date'));
-    }
-    function create(){
-        return view('form');
-    }
-    function insert(Request $request){
-        $request->validate([
-            'title'=>'required|max:50',
-            'content'=>'required'
-        ]);
-    }
 }

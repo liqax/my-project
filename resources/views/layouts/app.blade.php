@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/home.styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/products.styles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+
 
 </head>
 
@@ -30,7 +33,7 @@
 
             <div class="d-flex align-items-end gap-4 ms-auto">
                 <div class="text-center">
-                    <a href="{{ url('/wishlist') }}" class="link-icon text-decoration-none">
+                    <a href="{{ route('wishlist.index') }}" class="link-icon text-decoration-none">
                         <img src="https://img.icons8.com/ios-filled/28/000000/like.png" alt="like" class="mb-1">
                         <div class="small fw-light">รายการโปรด</div>
                     </a>
@@ -59,7 +62,7 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
 
                         {{-- ปุ่ม Hamburger --}}
-                    
+
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -74,18 +77,17 @@
                                 <a href="{{ url('/products') }}" class="nav-link  text-white fw-normal px-3">สินค้า</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('/books') }}" class="nav-link  text-white fw-normal px-3">หนังสือ</a>
+                                <a href="{{ request()->routeIs('home') ? '#bookSection' : url('/') . '#bookSection' }}"
+                                    class="nav-link  text-white fw-normal px-3">หนังสือ</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('/science-tools') }}"
-                                    class="nav-link  text-white fw-normal px-2">อุปกรณ์วิทยาศาสตร์</a>
+                                <a href="{{ request()->routeIs('home') ? '#sciSection' : url('/') . '#sciSection' }}" class="nav-link  text-white fw-normal px-2">อุปกรณ์วิทยาศาสตร์</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('/chemicals') }}"
-                                    class="nav-link  text-white fw-normal px-2">สารเคมี</a>
+                                <a href="{{ request()->routeIs('home') ? '#cheSection' : url('/') . '#cheSection' }}" class="nav-link  text-white fw-normal px-2">สารเคมี</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('/drones') }}" class="nav-link  text-white fw-normal px-2">โดรน</a>
+                                <a href="{{ request()->routeIs('home') ? '#droneSection' : url('/') . '#droneSection' }}" class="nav-link  text-white fw-normal px-2">โดรน</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ url('/orders') }}"
@@ -102,12 +104,13 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="{{ url('/private') }}">นโยบายความเป็นส่วนตัว</a>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url('/private') }}">นโยบายความเป็นส่วนตัว</a>
                                     </li>
                                 </ul>
                             </li>
                         </div>
-                        </ul>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -124,10 +127,10 @@
                         <ul class="list-unstyled footer-menu">
                             <li><a href="#" class="text-white">หน้าหลัก</a></li>
                             <li><a href="/products" class="text-white">สินค้า</a></li>
-                            <li><a href="#" class="text-white">หนังสือ</a></li>
-                            <li><a href="#" class="text-white">อุปกรณ์วิทยาศาสตร์</a></li>
-                            <li><a href="#" class="text-white">สารเคมี</a></li>
-                            <li><a href="#" class="text-white">โดรน</a></li>
+                            <li><a href="{{ request()->routeIs('home') ? '#bookSection' : url('/') . '#bookSection' }}" class="text-white">หนังสือ</a></li>
+                            <li><a href="{{ request()->routeIs('home') ? '#sciSection' : url('/') . '#sciSection' }}" class="text-white">อุปกรณ์วิทยาศาสตร์</a></li>
+                            <li><a href="{{ request()->routeIs('home') ? '#cheSection' : url('/') . '#cheSection' }}" class="text-white">สารเคมี</a></li>
+                            <li><a href="{{ request()->routeIs('home') ? '#droneSection' : url('/') . '#droneSection' }}" class="text-white">โดรน</a></li>
                             <li><a href="#" class="text-white">ประวัติคำสั่งซื้อ</a></li>
                             <li><a href="#" class="text-white">เพิ่มเติม</a></li>
                         </ul>
@@ -197,6 +200,11 @@
 
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
     </div>
 
 
