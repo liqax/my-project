@@ -39,11 +39,49 @@
                     </a>
                 </div>
                 <div class="text-center">
-                    <a href="{{ url('/cart') }}" class="link-icon text-decoration-none">
+                    <a href="{{ url('/cart') }}" class="link-icon text-decoration-none"data-bs-toggle="dropdown">
                         <img src="https://img.icons8.com/ios-filled/28/000000/shopping-cart.png" alt="cart"
                             class="mb-1">
                         <div class="small fw-light">รถเข็น</div>
                     </a>
+                    <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 300px;">
+                        <h6 class="fw-bold">รายการสินค้าของคุณ</h6>
+                        <hr class="mt-1 mb-2">
+                        @php $cart = session('cart', []) @endphp
+
+                        @if (count($cart))
+                            @foreach ($cart as $item)
+                                <div class="mb-2 small">
+                                    <div class="fw-semibold">{{ $item['title'] }}</div>
+                                    <div>จำนวน: {{ $item['qty'] }} × ฿{{ number_format($item['price'], 2) }}</div>
+                                </div>
+                            @endforeach
+                            <hr class="my-2">
+                            <div class="text-end">
+                                <a href="{{ route('cart.view') }}" class="btn btn-sm btn-dark w-100">ดูตะกร้าทั้งหมด</a>
+                            </div>
+                        @else
+                            <div class="text-muted small">คุณไม่มีสินค้าในรถเข็น.</div>
+                        @endif
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
                 <div class="text-center">
                     <a href="{{ url('/login') }}" class="link-icon text-decoration-none">
@@ -81,13 +119,16 @@
                                     class="nav-link  text-white fw-normal px-3">หนังสือ</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ request()->routeIs('home') ? '#sciSection' : url('/') . '#sciSection' }}" class="nav-link  text-white fw-normal px-2">อุปกรณ์วิทยาศาสตร์</a>
+                                <a href="{{ request()->routeIs('home') ? '#sciSection' : url('/') . '#sciSection' }}"
+                                    class="nav-link  text-white fw-normal px-2">อุปกรณ์วิทยาศาสตร์</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ request()->routeIs('home') ? '#cheSection' : url('/') . '#cheSection' }}" class="nav-link  text-white fw-normal px-2">สารเคมี</a>
+                                <a href="{{ request()->routeIs('home') ? '#cheSection' : url('/') . '#cheSection' }}"
+                                    class="nav-link  text-white fw-normal px-2">สารเคมี</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ request()->routeIs('home') ? '#droneSection' : url('/') . '#droneSection' }}" class="nav-link  text-white fw-normal px-2">โดรน</a>
+                                <a href="{{ request()->routeIs('home') ? '#droneSection' : url('/') . '#droneSection' }}"
+                                    class="nav-link  text-white fw-normal px-2">โดรน</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ url('/orders') }}"
@@ -127,10 +168,14 @@
                         <ul class="list-unstyled footer-menu">
                             <li><a href="#" class="text-white">หน้าหลัก</a></li>
                             <li><a href="/products" class="text-white">สินค้า</a></li>
-                            <li><a href="{{ request()->routeIs('home') ? '#bookSection' : url('/') . '#bookSection' }}" class="text-white">หนังสือ</a></li>
-                            <li><a href="{{ request()->routeIs('home') ? '#sciSection' : url('/') . '#sciSection' }}" class="text-white">อุปกรณ์วิทยาศาสตร์</a></li>
-                            <li><a href="{{ request()->routeIs('home') ? '#cheSection' : url('/') . '#cheSection' }}" class="text-white">สารเคมี</a></li>
-                            <li><a href="{{ request()->routeIs('home') ? '#droneSection' : url('/') . '#droneSection' }}" class="text-white">โดรน</a></li>
+                            <li><a href="{{ request()->routeIs('home') ? '#bookSection' : url('/') . '#bookSection' }}"
+                                    class="text-white">หนังสือ</a></li>
+                            <li><a href="{{ request()->routeIs('home') ? '#sciSection' : url('/') . '#sciSection' }}"
+                                    class="text-white">อุปกรณ์วิทยาศาสตร์</a></li>
+                            <li><a href="{{ request()->routeIs('home') ? '#cheSection' : url('/') . '#cheSection' }}"
+                                    class="text-white">สารเคมี</a></li>
+                            <li><a href="{{ request()->routeIs('home') ? '#droneSection' : url('/') . '#droneSection' }}"
+                                    class="text-white">โดรน</a></li>
                             <li><a href="#" class="text-white">ประวัติคำสั่งซื้อ</a></li>
                             <li><a href="#" class="text-white">เพิ่มเติม</a></li>
                         </ul>

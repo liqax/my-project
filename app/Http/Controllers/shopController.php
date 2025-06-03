@@ -45,42 +45,106 @@ class ShopController extends Controller
 
         return view('shop.show', compact('product','related'));
     }
+    public function viewCart()
+{
+    $cart = session('cart', []);
+    return view('cart.index', compact('cart'));
+}
 
-    /**
-     * เพิ่มสินค้าเข้าตะกร้า
-     */
+
+    
     public function addToCart(Request $request)
-    {
-        $cart = session()->get('cart', []);
-        $id   = $request->post('id');
-        $qty  = max(1, (int)$request->post('qty', 1));
-        $cart[$id] = ($cart[$id] ?? 0) + $qty;
-        session(['cart' => $cart]);
+{
+    $cart = session()->get('cart', []);
 
-        return back()->with('success','เพิ่มสินค้าแล้ว');
-    }
+    $id = $request->input('id');
+    $title = $request->input('title');
+    $price = $request->input('price');
+    $qty = $request->input('qty', 1);
 
-    /**
-     * ประวัติคำสั่งซื้อ
-     */
-    public function history()
-    {
-        $cart    = session()->get('cart', []);
-        $all     = $this->products();
-        $orders  = [];
+    $cart[$id] = [
+        'title' => $title,
+        'price' => $price,
+        'qty' => $qty
+    ];
 
-        foreach ($cart as $id => $qty) {
-            $p = $all->get($id);
-            $orders[] = [
-                'title' => $p['title'],
-                'price' => $p['price'],
-                'qty'   => $qty,
-                'total' => $p['price'] * $qty,
-            ];
-        }
+    session()->put('cart', $cart);
 
-        return view('shop.history', compact('orders'));
-    }
+    return redirect()->back()->with('success', 'เพิ่มสินค้าในตะกร้าแล้ว');
+}
+
+
+
+use Illuminate\Http\Request;
+
+public function viewWishlist()
+{
+    $wishlist = session()->get('wishlist', []);
+    return view('wishlist.index', compact('wishlist'));
+}
+
+public function addToWishlist(Request $request)
+{
+    $wishlist = session()->get('wishlist', []);
+
+    $id = $request->input('id');
+    $wishlist[$id] = [
+        'title' => $request->input('title'),
+        'price' => $request->input('price'),
+    ];
+
+    session()->put('wishlist', $wishlist);
+    return back()->with('success', 'เพิ่มในรายการโปรดแล้ว');
+}
+
+public function removeFromWishlist(Request $request)
+{
+    $wishlist = session()->get('wishlist', []);
+    unset($wishlist[$request->input('id')]);
+    session()->put('wishlist', $wishlist);
+    return back()->with('success', 'ลบออกจากรายการโปรดแล้ว');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     protected function products()

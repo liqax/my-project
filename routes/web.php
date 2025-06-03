@@ -9,8 +9,13 @@ Route::get('/', function () {
 Route::post('/wishlist/add/{book}', [WishlistController::class, 'add'])->name('wishlist.add');
 Route::get('/products',  [ShopController::class,'index'])->name('shop.index');
 Route::get('/products/{id}', [ShopController::class,'show']) ->name('shop.show');
-Route::post('/cart/add',     [ShopController::class,'addToCart'])->name('shop.add');
-Route::get('/orders', [OrderController::class,'history'])->name('order.history');
+Route::get('/cart', [ShopController::class, 'viewCart'])->name('cart.view');
+Route::post('/cart/add', [ShopController::class, 'addToCart'])->name('shop.add');
+Route::get('/wishlist', [ShopController::class, 'viewWishlist'])->name('wishlist.view');
+Route::post('/wishlist/add', [ShopController::class, 'addToWishlist'])->name('wishlist.add');
+Route::post('/wishlist/remove', [ShopController::class, 'removeFromWishlist'])->name('wishlist.remove');
+
+
 
 
 
