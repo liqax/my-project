@@ -1,5 +1,5 @@
 <?php
-// app/Http/Controllers/ShopController.php
+
 
 namespace App\Http\Controllers;
 
@@ -124,7 +124,7 @@ class ShopController extends Controller
         return redirect()->route('cart.view')->with('success', 'ลบสินค้าออกจากตะกร้าแล้ว');
     }
 
-    // ========== ต่อไปเป็นฟังก์ชันเกี่ยวกับ Wishlist ==========
+    // ==========  Wishlist ==========
 
     /**
      * เพิ่มสินค้าเข้า Wishlist (POST /wishlist/add)

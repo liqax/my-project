@@ -1,6 +1,10 @@
 
-
-
+@props([
+    'id',       // รหัสสินค้า
+    'img',      // เส้นทางรูปภาพ
+    'title',    // ชื่อสินค้า
+    'price',    // ราคาสินค้า
+])
 
 <!-- Card  -->
 <div class="col-auto  {{ $itemClass }}" data-variety="{{ $variety }}" data-price="{{ $price }}">
@@ -18,8 +22,8 @@
         <div class="card-footer text-center">
             <form action="{{ route('cart.add') }}" method="POST" class="d-inline-block">
                 @csrf
-                {{-- ซ่อนค่าเพื่อส่งไปยัง Controller --}}
                 
+                <input type="hidden" name="id" value="{{ $id }}">
                 <input type="hidden" name="title" value="{{ $title }}">
                 <input type="hidden" name="price" value="{{ $price }}">
                 <input type="hidden" name="img" value="{{ $img }}">
@@ -30,7 +34,7 @@
             </form>
             <form action="{{ route('wishlist.add') }}" method="POST" class="d-inline">
                 @csrf
-
+                <input type="hidden" name="product_id" value="{{ $id }}">
                 <button class="btn btn-heart">
                     <i class="bi bi-heart-fill"></i>
                 </button>

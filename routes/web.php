@@ -20,10 +20,6 @@ Route::get('/wishlist', [ShopController::class, 'viewWishlist'])->name('wishlist
 Route::post('/wishlist/add', [ShopController::class, 'addToWishlist'])->name('wishlist.add');
 Route::post('/wishlist/remove', [ShopController::class, 'removeFromWishlist'])->name('wishlist.remove');
 
-Route::get('/more', function () {
-    return 'เพิ่มเติม';
-});
-Route::view('/about', 'about')->name('about');
 
 
 // Cart
@@ -36,3 +32,11 @@ Route::post('/cart/remove', [ShopController::class, 'removeFromCart'])->name('ca
 // (เพิ่มเติมถ้ามีหน้าชำระสินค้า / สถานะคำสั่งซื้อ)
 // Route::get('/checkout', [ShopController::class, 'checkoutPage'])->name('checkout.page');
 // Route::post('/checkout/process', [ShopController::class, 'processCheckout'])->name('checkout.process');
+
+
+
+
+Route::get('/more', function () {
+    return 'เพิ่มเติม';
+});
+Route::view('/about', 'about')->name('about');

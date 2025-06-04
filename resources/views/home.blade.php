@@ -105,69 +105,69 @@
     <section class="category-section pt-4 mt-4 ">
         <div class="container">
             <h4 class="section-title ">เลือกซื้อตามหมวดหมู่สินค้า</h4>
-            
-    
-      <div class="col-12">
-        <div class="category-box p-4 rounded-3">
-          <div class="  row gy-3 gx-3 justify-content-center">
-            {{-- ตัวอย่าง Card หมวดหมู่สินค้า 4 หมวด --}}
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-              <a href="{{ url('/products?category=books') }}" class="text-decoration-none">
-                <div class="category-text h-100 text-center p-3">
-                  <div class="icon-wrapper mb-2">
-                    {{-- ใช้ไอคอน Font Awesome หรือ Bootstrap Icon ก็ได้ --}}
-                    <i class="bi bi-book-half fs-2 text-pink"></i>
-                  </div>
-                  <div class="category-name fw-semibold">หนังสือ</div>
+
+
+            <div class="col-12">
+                <div class="category-box p-4 rounded-3">
+                    <div class="  row gy-3 gx-3 justify-content-center">
+                        {{-- ตัวอย่าง Card หมวดหมู่สินค้า 4 หมวด --}}
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                            <a href="{{ url('/products?category=books') }}" class="text-decoration-none">
+                                <div class="category-text h-100 text-center p-3">
+                                    <div class="icon-wrapper mb-2">
+                                        {{-- ใช้ไอคอน Font Awesome หรือ Bootstrap Icon ก็ได้ --}}
+                                        <i class="bi bi-book-half fs-2 text-pink"></i>
+                                    </div>
+                                    <div class="category-name fw-semibold">หนังสือ</div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                            <a href="{{ url('/products?category=science') }}" class="text-decoration-none">
+                                <div class="category-text h-100 text-center p-3">
+                                    <div class="icon-wrapper mb-2">
+                                        <i class="bi bi-beaker-fill fs-2 text-pink"></i>
+                                    </div>
+                                    <div class="category-name fw-semibold">อุปกรณ์วิทยาศาสตร์</div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                            <a href="{{ url('/products?category=chemicals') }}" class="text-decoration-none">
+                                <div class="category-text h-100 text-center p-3">
+                                    <div class="icon-wrapper mb-2">
+                                        <i class="bi bi-droplet-half fs-2 text-pink"></i>
+                                    </div>
+                                    <div class="category-name fw-semibold">สารเคมี</div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+                            <a href="{{ url('/products?category=drone') }}" class="text-decoration-none">
+                                <div class="category-text h-100 text-center p-3">
+                                    <div class="icon-wrapper mb-2">
+                                        <i class="bi bi-controller fs-2 text-pink"></i>
+                                    </div>
+                                    <div class="category-name fw-semibold">โดรน</div>
+                                </div>
+                            </a>
+                        </div>
+
+                        {{-- เพิ่มเติม: สามารถใส่หมวดสินค้าอื่นต่อได้ตามต้องการ --}}
+                    </div>
                 </div>
-              </a>
             </div>
 
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-              <a href="{{ url('/products?category=science') }}" class="text-decoration-none">
-                <div class="category-text h-100 text-center p-3">
-                  <div class="icon-wrapper mb-2">
-                    <i class="bi bi-beaker-fill fs-2 text-pink"></i>
-                  </div>
-                  <div class="category-name fw-semibold">อุปกรณ์วิทยาศาสตร์</div>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-              <a href="{{ url('/products?category=chemicals') }}" class="text-decoration-none">
-                <div class="category-text h-100 text-center p-3">
-                  <div class="icon-wrapper mb-2">
-                    <i class="bi bi-droplet-half fs-2 text-pink"></i>
-                  </div>
-                  <div class="category-name fw-semibold">สารเคมี</div>
-                </div>
-              </a>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-              <a href="{{ url('/products?category=drone') }}" class="text-decoration-none">
-                <div class="category-text h-100 text-center p-3">
-                  <div class="icon-wrapper mb-2">
-                    <i class="bi bi-controller fs-2 text-pink"></i>
-                  </div>
-                  <div class="category-name fw-semibold">โดรน</div>
-                </div>
-              </a>
-            </div>
-
-            {{-- เพิ่มเติม: สามารถใส่หมวดสินค้าอื่นต่อได้ตามต้องการ --}}
-          </div>
         </div>
-      </div>
-          
- </div>
     </section>
 
 
 
 
-    
+
 
     {{-- CTA bar --}}
     <section class="cta-bar text-center mt-4">
@@ -222,7 +222,7 @@
 
                             @php
                                 $books = collect([
-                                    [
+                                    1 => [
                                         'img' => 'img/books/book1.jpg',
                                         'title' => "หนังสือวิทยาศาสตร์และเทคโนโลยี\nเล่ม 1 ม.3",
                                         'price' => 110.0,
@@ -230,7 +230,7 @@
                                         'class' => 'book-item',
                                         'variety' => 'booksci',
                                     ],
-                                    [
+                                    2 => [
                                         'img' => 'img/books/book2.jpg',
                                         'title' => " หนังสือกุญชาญาณ เพื่อส่งเสริม\nอัจฉริยภาพคณิตศาสตร์สำหรับเด็ก",
                                         'price' => 140.0,
@@ -238,7 +238,7 @@
                                         'class' => 'book-item',
                                         'variety' => 'calcu',
                                     ],
-                                    [
+                                    3 => [
                                         'img' => 'img/books/book3.jpg',
                                         'title' => ' หนังสือ เสริมทักษะ อัจฉริยะ ตัวน้อย',
                                         'price' => 180.0,
@@ -249,8 +249,8 @@
                                 ]);
                             @endphp
                             @foreach ($books as $id => $book)
-                                <x-product-card :img="$book['img']" :title="$book['title']" :price="$book['price']" :variety="$book['variety']"
-                                    :item-class="$book['class']" />
+                                <x-product-card :id="$id" :img="$book['img']" :title="$book['title']" :price="$book['price']"
+                                    :variety="$book['variety']" :item-class="$book['class']" />
                             @endforeach
                         </div>
                     </div>
@@ -261,7 +261,7 @@
 
                             @php
                                 $books = collect([
-                                    [
+                                    4 => [
                                         'img' => 'img/books/book4.jpg',
                                         'title' => 'หนังสือเมฆน้อยสีเทา',
                                         'price' => 100.0,
@@ -269,7 +269,7 @@
                                         'class' => 'book-item',
                                         'variety' => 'kid',
                                     ],
-                                    [
+                                    5 => [
                                         'img' => 'img/books/book5.jpg',
                                         'title' => ' หนังสือเราเป็นเพื่อนที่ต่อกัน',
                                         'price' => 120.0,
@@ -277,7 +277,7 @@
                                         'class' => 'book-item',
                                         'variety' => 'kid',
                                     ],
-                                    [
+                                    6 => [
                                         'img' => 'img/books/book6.jpg',
                                         'title' => ' หนังสือพี่ชายที่แสนดี',
                                         'price' => 110.0,
@@ -287,9 +287,9 @@
                                     ],
                                 ]);
                             @endphp
-                            @foreach ($books as $book)
-                                <x-product-card :img="$book['img']" :title="$book['title']" :price="$book['price']" :variety="$book['variety']"
-                                    :category="$book['category']" :item-class="$book['class']" />
+                            @foreach ($books as $id => $book)
+                                <x-product-card :id="$id" :img="$book['img']" :title="$book['title']" :price="$book['price']"
+                                    :variety="$book['variety']" :category="$book['category']" :item-class="$book['class']" />
                             @endforeach
                         </div>
                     </div>
@@ -310,8 +310,8 @@
 
             </div>
 
-         </div>
-        
+        </div>
+
     </section>
 
 
@@ -349,7 +349,7 @@
                         <div class="row gx-3 gy-4 justify-content-center"id="sciContainer">
                             @php
                                 $science = collect([
-                                    [
+                                    7 => [
                                         'img' => 'img/science/1.jpg',
                                         'title' => 'แก้วบีกเกอร์',
                                         'price' => 250.0,
@@ -357,7 +357,7 @@
                                         'class' => 'sci-item',
                                         'variety' => 'glassware',
                                     ],
-                                    [
+                                    8 => [
                                         'img' => 'img/science/2.jpg',
                                         'title' => ' ขวดทดลอง',
                                         'price' => 100.0,
@@ -365,7 +365,7 @@
                                         'class' => 'sci-item',
                                         'variety' => 'glassware',
                                     ],
-                                    [
+                                    9 => [
                                         'img' => 'img/science/3.jpg',
                                         'title' => ' หลอดทดลอง',
                                         'price' => 475.0,
@@ -375,9 +375,9 @@
                                     ],
                                 ]);
                             @endphp
-                            @foreach ($science as $sci)
-                                <x-product-card :img="$sci['img']" :title="$sci['title']" :price="$sci['price']" :category="$sci['category']"
-                                    :variety="$sci['variety']" :item-class="$sci['class']" />
+                            @foreach ($science as $id => $sci)
+                                <x-product-card :id="$id" :img="$sci['img']" :title="$sci['title']" :price="$sci['price']"
+                                    :category="$sci['category']" :variety="$sci['variety']" :item-class="$sci['class']" />
                             @endforeach
                         </div>
                     </div>
@@ -388,7 +388,7 @@
 
                             @php
                                 $science = collect([
-                                    [
+                                    10 => [
                                         'img' => 'img/science/4.jpg',
                                         'title' => 'ถาดหลุม',
                                         'price' => 50.0,
@@ -396,7 +396,7 @@
                                         'class' => 'sci-item',
                                         'variety' => 'testtube',
                                     ],
-                                    [
+                                    11 => [
                                         'img' => 'img/science/5.jpg',
                                         'title' => ' กรวยแก้ว',
                                         'price' => 85.0,
@@ -404,7 +404,7 @@
                                         'class' => 'sci-item',
                                         'variety' => 'glassware',
                                     ],
-                                    [
+                                    12 => [
                                         'img' => 'img/science/6.jpg',
                                         'title' => 'ถ้วยแก้ว ',
                                         'price' => 70.0,
@@ -414,9 +414,9 @@
                                     ],
                                 ]);
                             @endphp
-                            @foreach ($science as $sci)
-                                <x-product-card :img="$sci['img']" :title="$sci['title']" :price="$sci['price']" :category="$sci['category']"
-                                    :variety="$sci['variety']" :item-class="$sci['class']" />
+                            @foreach ($science as $id => $sci)
+                                <x-product-card :id="$id" :img="$sci['img']" :title="$sci['title']" :price="$sci['price']"
+                                    :category="$sci['category']" :variety="$sci['variety']" :item-class="$sci['class']" />
                             @endforeach
                         </div>
                     </div>
@@ -459,7 +459,7 @@
 
                             @php
                                 $chemistry = collect([
-                                    [
+                                    13 => [
                                         'img' => 'img/chemistry/1.jpg',
                                         'title' => 'Hydrochloric Acid (HCl)',
                                         'price' => 65.0,
@@ -467,7 +467,7 @@
                                         'class' => 'che-item',
                                         'variety' => 'all',
                                     ],
-                                    [
+                                    14 => [
                                         'img' => 'img/chemistry/2.jpg',
                                         'title' => ' Sodium Hydroxide (NaOH)',
                                         'price' => 80.0,
@@ -475,7 +475,7 @@
                                         'class' => 'che-item',
                                         'variety' => 'anin',
                                     ],
-                                    [
+                                    15 => [
                                         'img' => 'img/chemistry/3.jpg',
                                         'title' => ' sulfuric acid',
                                         'price' => 80.0,
@@ -485,13 +485,13 @@
                                     ],
                                 ]);
                             @endphp
-                            @foreach ($chemistry as $che)
-                                <x-product-card :img="$che['img']" :title="$che['title']" :price="$che['price']" :category="$che['category']"
-                                    :variety="$che['variety']" :item-class="$che['class']" />
+                            @foreach ($chemistry as $id => $che)
+                                <x-product-card :id="$id" :img="$che['img']" :title="$che['title']" :price="$che['price']"
+                                    :category="$che['category']" :variety="$che['variety']" :item-class="$che['class']" />
                             @endforeach
 
                         </div>
-                    </di    v> 
+                    </di v>
 
                     <!-- สไลด์ถัดไป (Card 3) -->
                     <div class="carousel-item">
@@ -499,7 +499,7 @@
 
                             @php
                                 $chemistry = collect([
-                                    [
+                                    16 => [
                                         'img' => 'img/chemistry/4.jpg',
                                         'title' => 'สารละลายเมทิลเรด',
                                         'price' => 75.0,
@@ -507,7 +507,7 @@
                                         'class' => 'che-item',
                                         'variety' => 'solut',
                                     ],
-                                    [
+                                    17 => [
                                         'img' => 'img/chemistry/5.jpg',
                                         'title' => 'สารละลายยูนิเวอร์ซัล',
                                         'price' => 75.0,
@@ -515,7 +515,7 @@
                                         'class' => 'che-item',
                                         'variety' => 'solut',
                                     ],
-                                    [
+                                    18 => [
                                         'img' => 'img/chemistry/6.jpg',
                                         'title' => 'กรดไนตริก เจือจาง 2โมล',
                                         'price' => 85.0,
@@ -525,9 +525,9 @@
                                     ],
                                 ]);
                             @endphp
-                            @foreach ($chemistry as $che)
-                                <x-product-card :img="$che['img']" :title="$che['title']" :price="$che['price']" :category="$che['category']"
-                                    :variety="$che['variety']" :item-class="$che['class']" />
+                            @foreach ($chemistry as $id => $che)
+                                <x-product-card :id="$id" :img="$che['img']" :title="$che['title']" :price="$che['price']"
+                                    :category="$che['category']" :variety="$che['variety']" :item-class="$che['class']" />
                             @endforeach
 
                         </div>
@@ -545,7 +545,7 @@
 
     {{-- ####################################################################################################### --}}
 
-     <section id="droneSection" class="Products-section py-5">
+    <section id="droneSection" class="Products-section py-5">
         <div class="container">
 
             <!-- หัวเรื่อง + ปุ่มกรอง -->
@@ -568,7 +568,7 @@
                         <div class="row gx-3 gy-4 justify-content-center" id="droneContainer">
                             @php
                                 $drones = collect([
-                                    [
+                                    19 => [
                                         'img' => 'img/drone/1.jpg',
                                         'title' => 'โดรน GEN1',
                                         'price' => 10000.0,
@@ -576,7 +576,7 @@
                                         'class' => 'drone-item',
                                         'variety' => 'gen1',
                                     ],
-                                    [
+                                    20 => [
                                         'img' => 'img/drone/2.jpg',
                                         'title' => ' โดรน GEN2',
                                         'price' => 12000.0,
@@ -584,7 +584,7 @@
                                         'class' => 'drone-item',
                                         'variety' => 'gen2',
                                     ],
-                                    [
+                                    21 => [
                                         'img' => 'img/drone/3.jpg',
                                         'title' => ' โดรน GEN2 LT',
                                         'price' => 15000.0,
@@ -594,13 +594,9 @@
                                     ],
                                 ]);
                             @endphp
-                            @foreach ($drones as $drone)
-                                <x-product-card
-                                 :img="$drone['img']" :title="$drone['title']" 
-                                 :price="$drone['price']" 
-                                 :category="$drone['category']"
-                                :variety="$drone['variety']" 
-                                :item-class="$drone['class']" />
+                            @foreach ($drones as $id => $drone)
+                                <x-product-card :id="$id" :img="$drone['img']" :title="$drone['title']" :price="$drone['price']"
+                                    :category="$drone['category']" :variety="$drone['variety']" :item-class="$drone['class']" />
                             @endforeach
 
 
@@ -613,10 +609,12 @@
 
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#droneCarousel" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#droneCarousel"
+                    data-bs-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#droneCarousel" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#droneCarousel"
+                    data-bs-slide="next">
                     <span class="carousel-control-next-icon"></span>
                 </button>
             </div>
@@ -630,7 +628,7 @@
 
 
 
- 
+
 
 
 

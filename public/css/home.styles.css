@@ -5,9 +5,11 @@
 #mainNavbar .navbar-toggler {
   margin-left: auto;
 }
-html {
-  scroll-behavior: smooth;
+.navbar{
+ 
+  border-radius: 3px;
 }
+
 .dropdown-menu {
     opacity: 0;
     visibility: hidden;
@@ -19,6 +21,12 @@ html {
 }
 .carousel-item {
   transition: transform 0.8s ease-in-out; 
+}
+
+
+
+html {
+  scroll-behavior: smooth;
 }
 /* ถ้า Navbar คุณเป็น fixed-top แล้วเวลาเลื่อนอาจชนกับ header ให้เผื่อ padding-top */
 #bookSection {
@@ -42,6 +50,9 @@ html {
   color: #e6007e !important;      /* ปรับเปลี่ยนโค้ดสีได้ตามธีมเว็บไซต์ */
 }
 
+.card {
+  border-radius: 5px;
+}
 
 
 /* การ์ดหมวดหมู่ (Category text) */
@@ -440,6 +451,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Footer styling */
 .bg-pink {
   background-color: #ff40a4 !important;
+  
 }
 .footer-menu {
   margin: 0;
@@ -474,7 +486,11 @@ h1, h2, h3, h4, h5, h6 {
   font-size: .9rem;
   opacity: .8;
 }                               
+.site-footer{
+  border-radius: 7px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.65);
 
+}
 
 
 
