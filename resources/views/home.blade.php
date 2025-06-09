@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'home')
+@section('title', 'PRE-ORDER')
 
 @section('content')
 
@@ -59,7 +59,7 @@
             <div class="carousel-item active">
                 <div class="d-flex product-slide-row">
                     <div class="card shadow-sm">
-                        <img src="{{ asset('img/main-banner.jpg') }}" alt="pre order">
+                        <img src="{{ asset('img/bg3.png') }}" alt="pre order">
                     </div>
                     <div class="card shadow-sm">
                         <img src="{{ asset('img/bg2.png') }}" alt="pre order">
@@ -104,18 +104,43 @@
 
     <section class="category-section pt-4 mt-4 ">
         <div class="container">
-            <h4 class="section-title ">เลือกซื้อตามหมวดหมู่สินค้า</h4>
+            <h2 class="section-title ">เลือกซื้อตามหมวดหมู่สินค้า</h2>
 
 
-            <div class="col-12">
-                <div class="category-box p-4 rounded-3">
+            <div class="slideshow ">
+                <div class="items">
+                    <img src="img/slick/หนังสือวิทย์.jpg" alt="">
+                    <p>หนังสือวิทย์</p>
+                </div>
+                <div class="items">
+                    <img src="img/slick/หนังสือคณิต.jpg" alt="">
+                    <p>หนังสือคณิต</p>
+                </div>
+                <div class="items">
+                    <img src="img/slick/ปฐมวัย.jpg" alt="">
+                    <p>หนังสือปฐมวัย</p>
+                </div>
+                <div class="items">
+                    <img src="img/slick/คู่มือครู.jpg" alt="">
+                    <p>หนังสือคู่มือครู</p>
+                </div>
+                <div class="items">
+                    <img src="img/slick/หนังสืออ่านเพิ่ม.jpg" alt="">
+                    <p>หนังสืออ่านเพิ่ม</p>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="col-12 ">
+                <div class="category-box p-4 rounded-3  ">
                     <div class="  row gy-3 gx-3 justify-content-center">
-                        {{-- ตัวอย่าง Card หมวดหมู่สินค้า 4 หมวด --}}
                         <div class="col-6 col-sm-4 col-md-3 col-lg-2">
                             <a href="{{ url('/products?category=books') }}" class="text-decoration-none">
-                                <div class="category-text h-100 text-center p-3">
+                                <div class="category-text h-100  text-center p-3">
                                     <div class="icon-wrapper mb-2">
-                                        {{-- ใช้ไอคอน Font Awesome หรือ Bootstrap Icon ก็ได้ --}}
                                         <i class="bi bi-book-half fs-2 text-pink"></i>
                                     </div>
                                     <div class="category-name fw-semibold">หนังสือ</div>
@@ -156,7 +181,6 @@
                             </a>
                         </div>
 
-                        {{-- เพิ่มเติม: สามารถใส่หมวดสินค้าอื่นต่อได้ตามต้องการ --}}
                     </div>
                 </div>
             </div>
@@ -185,7 +209,7 @@
         <div class="container-fluid px-0">
             <a href="/" target="_blank" rel="noopener">
                 <img src="{{ asset('img/main-banner.jpg') }}" alt="จองสอบภาษาจีน" class="img-fluid w-auto banner-link"
-                    style="max-height: 650px; object-fit: cover;">
+                    style="max-height: 650px;  object-fit: cover;">
             </a>
         </div>
     </section>
@@ -249,8 +273,12 @@
                                 ]);
                             @endphp
                             @foreach ($books as $id => $book)
-                                <x-product-card :id="$id" :img="$book['img']" :title="$book['title']" :price="$book['price']"
-                                    :variety="$book['variety']" :item-class="$book['class']" />
+                                <div class="col-auto book-item" data-variety="{{ $book['variety'] }}">
+                                    <a href="{{ route('shop.show', $id) }}" class="text-decoration-none">
+                                        <x-product-card :id="$id" :img="$book['img']" :title="$book['title']"
+                                            :price="$book['price']" :variety="$book['variety']" :item-class="$book['class']" />
+                                    </a>
+                                </div> 
                             @endforeach
                         </div>
                     </div>
@@ -288,8 +316,12 @@
                                 ]);
                             @endphp
                             @foreach ($books as $id => $book)
+                              <div class="col-auto book-item" data-variety="{{ $book['variety'] }}">
+                                    <a href="{{ route('shop.show', $id) }}" class="text-decoration-none">
                                 <x-product-card :id="$id" :img="$book['img']" :title="$book['title']" :price="$book['price']"
                                     :variety="$book['variety']" :category="$book['category']" :item-class="$book['class']" />
+                                    </a>
+                              </div>
                             @endforeach
                         </div>
                     </div>
@@ -376,8 +408,12 @@
                                 ]);
                             @endphp
                             @foreach ($science as $id => $sci)
-                                <x-product-card :id="$id" :img="$sci['img']" :title="$sci['title']" :price="$sci['price']"
-                                    :category="$sci['category']" :variety="$sci['variety']" :item-class="$sci['class']" />
+                                <div class="col-auto sci-item"data-variety="{{ $sci['variety'] }} ">
+                                    <a href="{{ route('shop.show', $id) }}" class="text-decoration-none">
+                                        <x-product-card :id="$id" :img="$sci['img']" :title="$sci['title']"
+                                            :price="$sci['price']" :category="$sci['category']" :variety="$sci['variety']" :item-class="$sci['class']" />
+                                    </a>
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -415,8 +451,12 @@
                                 ]);
                             @endphp
                             @foreach ($science as $id => $sci)
-                                <x-product-card :id="$id" :img="$sci['img']" :title="$sci['title']" :price="$sci['price']"
-                                    :category="$sci['category']" :variety="$sci['variety']" :item-class="$sci['class']" />
+                                <div class="col-auto sci-item"data-variety="{{ $sci['variety'] }} ">
+                                    <a href="{{ route('shop.show', $id) }}" class="text-decoration-none">
+                                        <x-product-card :id="$id" :img="$sci['img']" :title="$sci['title']"
+                                            :price="$sci['price']" :category="$sci['category']" :variety="$sci['variety']" :item-class="$sci['class']" />
+                                    </a>
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -486,8 +526,12 @@
                                 ]);
                             @endphp
                             @foreach ($chemistry as $id => $che)
-                                <x-product-card :id="$id" :img="$che['img']" :title="$che['title']" :price="$che['price']"
-                                    :category="$che['category']" :variety="$che['variety']" :item-class="$che['class']" />
+                                <div class="col-auto che-item"data-variety="{{ $che['variety'] }} ">
+                                    <a href="{{ route('shop.show', $id) }}" class="text-decoration-none">
+                                        <x-product-card :id="$id" :img="$che['img']" :title="$che['title']"
+                                            :price="$che['price']" :category="$che['category']" :variety="$che['variety']" :item-class="$che['class']" />
+                                    </a>
+                                </div>
                             @endforeach
 
                         </div>
@@ -526,8 +570,12 @@
                                 ]);
                             @endphp
                             @foreach ($chemistry as $id => $che)
-                                <x-product-card :id="$id" :img="$che['img']" :title="$che['title']" :price="$che['price']"
-                                    :category="$che['category']" :variety="$che['variety']" :item-class="$che['class']" />
+                                <div class="col-auto che-item"data-variety="{{ $che['variety'] }} ">
+                                    <a href="{{ route('shop.show', $id) }}" class="text-decoration-none">
+                                        <x-product-card :id="$id" :img="$che['img']" :title="$che['title']"
+                                            :price="$che['price']" :category="$che['category']" :variety="$che['variety']" :item-class="$che['class']" />
+                                    </a>
+                                </div>
                             @endforeach
 
                         </div>
@@ -560,7 +608,7 @@
             </div>
 
             <!-- Carousel สินค้า 3 ใบ ต่อสไลด์ -->
-            <div id="bookCarousel" class="carousel slide" data-bs-interval="false" data-bs-touch="false">
+            <div id="droCarousel" class="carousel slide" data-bs-interval="false" data-bs-touch="false">
                 <div class="carousel-inner overflow-visible">
 
                     <!-- สไลด์แรก -->
@@ -595,8 +643,12 @@
                                 ]);
                             @endphp
                             @foreach ($drones as $id => $drone)
-                                <x-product-card :id="$id" :img="$drone['img']" :title="$drone['title']" :price="$drone['price']"
-                                    :category="$drone['category']" :variety="$drone['variety']" :item-class="$drone['class']" />
+                                <div class="col-auto drone-item"data-variety="{{ $drone['variety'] }} ">
+                                    <a href="{{ route('shop.show', $id) }}" class="text-decoration-none">
+                                        <x-product-card :id="$id" :img="$drone['img']" :title="$drone['title']"
+                                            :price="$drone['price']" :category="$drone['category']" :variety="$drone['variety']" :item-class="$drone['class']" />
+                                    </a>
+                                </div>
                             @endforeach
 
 
@@ -604,17 +656,15 @@
                     </div>
 
                     <!-- สไลด์ถัดไป ( Card  3 ใบ) -->
-                    <div class="carousel-item">
+                    {{-- <div class="carousel-item">
 
 
-                    </div>
+                    </div> --}}
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#droneCarousel"
-                    data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#droCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon"></span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#droneCarousel"
-                    data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#droCarousel" data-bs-slide="next">
                     <span class="carousel-control-next-icon"></span>
                 </button>
             </div>

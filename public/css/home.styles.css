@@ -2,6 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap');
 
+
+.navbar .nav-link:hover {
+    
+    color: #d3dae0 !important; /* สีตัวอักษรขาว */
+}
+
+
+
+
 #mainNavbar .navbar-toggler {
   margin-left: auto;
 }
@@ -9,6 +18,8 @@
  
   border-radius: 3px;
 }
+
+
 
 .dropdown-menu {
     opacity: 0;
@@ -25,29 +36,37 @@
 
 
 
-html {
+
+.category-section .col-12 {
+    position: absolute;
+    bottom: 35px;
+    width: 100%;
+}
+
+
+
+
+html, body {
   scroll-behavior: smooth;
 }
-/* ถ้า Navbar คุณเป็น fixed-top แล้วเวลาเลื่อนอาจชนกับ header ให้เผื่อ padding-top */
 #bookSection {
-  scroll-margin-top: 50px; /* ปรับตามความสูง navbar */
+  scroll-margin-top: 50px; 
 }
 #sciSection {
-  scroll-margin-top: 50px; /* ปรับตามความสูง navbar */
+  scroll-margin-top: 50px; 
 }
 #cheSection {
-  scroll-margin-top: 50px; /* ปรับตามความสูง navbar */
+  scroll-margin-top: 50px; 
 }
 #droneSection {
-  scroll-margin-top: 50px; /* ปรับตามความสูง navbar */
+  scroll-margin-top: 50px; 
 }
 
 
-/* ตัวอย่างใช้ Bootstrap 5 แล้วไฟล์ custom.css ถูกโหลดหลัง bootstrap.min.css */
 
 /* สีชมพูหัวข้อหมวด (ตัวอย่าง) */
 .text-pink {
-  color: #e6007e !important;      /* ปรับเปลี่ยนโค้ดสีได้ตามธีมเว็บไซต์ */
+  color: #e6007e !important;      
 }
 
 .card {
@@ -64,15 +83,14 @@ html {
 }
 
 .category-text:hover {
-  transform: translateY(-4px);
+  transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-}
+}   
 
 /* ขนาดไอคอนภายใน Category text */
 .category-text .icon-wrapper i {
   display: inline-block;
   padding: 0.5rem;
-  background-color: #ffe8e8;
   border-radius: 50%;
 }
 
@@ -81,6 +99,10 @@ html {
   font-size: 0.95rem;
   color: #333333;
   word-break: break-word;  /* ถ้าชื่อยาวเกินบรรทัด จะตัดขึ้นบรรทัดใหม่อัตโนมัติ */
+}
+.category-box{
+  margin-bottom: 0px;
+
 }
 
 /* เมื่อใช้บนมือถือ คุมให้การ์ดมีความสูงไม่สูงเกินไป */
@@ -136,6 +158,14 @@ h1, h2, h3, h4, h5, h6 {
 .link-icon:hover .small {
   color: #ff4384;
 }
+.mb-icon  {
+  max-width: 28px;
+  max-height: 28px;
+
+}
+
+
+
 .text-link {
   color: #fff;
   text-decoration: none;
@@ -144,6 +174,71 @@ h1, h2, h3, h4, h5, h6 {
 .text-link:hover {
   color: #6c757d;
 }
+
+
+
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    opacity: 0;
+    transform: translateX(0);
+    transition: all 0.9s ease;
+    background-color: #6c757d;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+/* เมื่อ hover บน carousel หรือปุ่ม active */
+.carousel:hover .carousel-control-prev-icon {
+    opacity: 1;
+    transform: translateX(5px); /* เข้าจากซ้าย */
+}
+
+.carousel:hover .carousel-control-next-icon {
+    opacity: 1;
+    transform: translateX(-5px); /* เข้าจากขวา */
+}
+
+
+.slideshow{
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+
+.slideshow .items {
+  margin-top: 75px;
+  text-align: center;
+  padding: 0px;
+}
+
+.slideshow .items img {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+.slideshow p {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* เปลี่ยนวงกลม background ของลูกศรเป็นสีดำ */
 #bookCarousel .carousel-control-prev-icon,
@@ -173,17 +268,16 @@ h1, h2, h3, h4, h5, h6 {
 
 /* เมื่อ hover ที่ปุ่ม ให้เปลี่ยนสีและขยายเล็กน้อย */
 #bookCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
-#bookCarousel  .carousel-control-next:hover .carousel-control-next-icon,
+#bookCarousel .carousel-control-next:hover .carousel-control-next-icon,
 #sciCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
-#sciCarousel  .carousel-control-next:hover .carousel-control-next-icon 
+#sciCarousel .carousel-control-next:hover .carousel-control-next-icon,
 #cheCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
-#cheCarousel  .carousel-control-next:hover .carousel-control-next-icon,
+#cheCarousel .carousel-control-next:hover .carousel-control-next-icon,
 #droCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
-#droCarousel  .carousel-control-next:hover .carousel-control-next-icon   {
+#droCarousel .carousel-control-next:hover .carousel-control-next-icon   {
   background-color: #ff4384;    /* พื้นหลังเข้มขึ้นเล็กน้อย */
   transform: scale(1.2);     /* ขยาย 20% */
 }
-
 
 
 
@@ -235,14 +329,16 @@ h1, h2, h3, h4, h5, h6 {
 /* Category section grid */
 .category-section {
   width: 81rem;
-  height: 35rem;
+  height: 40rem;
   background-color: #ffeaea;
   padding: 4rem 0;
+  position: relative;
+   
+
 }
 .section-title {
-  margin: 0 0 2rem 80px;
-  font-size: 2.5rem;
-  font-weight: 500;
+  margin: 25px 0 0  50px;
+ 
 }
 .categories {
   display: grid;

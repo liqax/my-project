@@ -40,3 +40,7 @@ document.addEventListener('DOMContentLoaded', function(){
   priceMin    .addEventListener('input',applyFilter);
   priceMax    .addEventListener('input',applyFilter);
 });
+
+
+
+

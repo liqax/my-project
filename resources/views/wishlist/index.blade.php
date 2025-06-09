@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'PRE-ORDER')
 @section('content')
     <div class="container py-4">
         <h2 class="mb-4">รายการโปรดของคุณ</h2>
@@ -8,14 +8,14 @@
             <div class="row row-grid">
 
                 {{-- เมนูด้านซ้าย --}}
-                <div class=" sidebar bg-light">
-                    <a href="#">บัญชีของฉัน</a>
-                    <a href="#">คำสั่งซื้อของคุณ</a>
-                    <a href="#" class="fw-bold text-pink">รายการโปรดของคุณ</a>
-                    <a href="#">ข้อมูลที่อยู่จัดส่ง</a>
-                    <a href="#">ข้อมูลบัญชี</a>
-                    <a href="#">ประวัติการชำระเงิน</a>
-                    <a href="#">ยืนยันการชำระเงิน</a>
+                 <div class=" sidebar">
+                    <a href="/customer/account">บัญชีของฉัน</a>
+                    <a href="/orders/sale">คำสั่งซื้อของคุณ</a>
+                    <a href="/wishlist"class="fw-bold text-pink">รายการโปรดของคุณ</a>
+                    <a href="/customer/address">ข้อมูลที่อยู่จัดส่ง</a>
+                    <a href="/orders/history">ประวัติคำสั่งซื้อ</a>
+                    <a href="/billing/account">ยืนยันการชำระเงิน</a>
+                    <a href="/customer/gdpr">นโยบายความเป็นส่วนตัว</a>
                 </div>
             </div>
           

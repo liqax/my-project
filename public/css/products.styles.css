@@ -46,8 +46,8 @@
   cursor: pointer;
 }
 .search-box .search-btn img {
-  width: 20px;                  /* ปรับขนาด icon */
-  height: 20px;                 /* หรือ auto ก็ได้ */
+  width: 20px;                 
+  height: 20px;                 
   display: block;
 }
 
@@ -57,7 +57,7 @@
   padding: 8px 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  appearance: right 10px; /* ลบลูกศรดีฟอลต์ ถ้าต้องการ */
+  appearance: right 10px; 
 }
 
 /* Price range */
@@ -127,9 +127,7 @@
   font-weight: 500;
   min-height: 1rem;           /* ให้บรรทัดสองบรรทัดได้ */
   text-align: center;
-    /* ป้องกันไม่ให้ตัดคำกลางประโยคจนกลายเป็นเศษอักษร */
   word-break: keep-all;           
-  /* ถ้าคำยาวเกิน จะขึ้นบรรทัดใหม่ทั้งคำ ไม่ตัดกลางคำ */
   overflow-wrap: break-word;   
 }
 
@@ -154,7 +152,7 @@
 /* (เลือกสไตล์ปุ่มตามเดิม) */
 .filter-buttons .btn {
   margin-right: 0.5rem;
-  margin-bottom: 0.5rem; /* เว้นล่างนิดหน่อย ถ้าจำเป็น */
+  margin-bottom: 0.5rem; 
 }
 
 .product-price {
@@ -200,7 +198,6 @@
 /* ให้รูปใน card มีการ transition */
 .product-card .card-img-top {
   transition: transform 0.3s ease;
-  /* ถ้าอยากให้ภาพไม่เลยออกนอกกรอบ */
   overflow: hidden;
 }
 
@@ -210,4 +207,29 @@
 }
 
 
+
+.zoom-container {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+.product-image {
+  width: 100%;
+  display: block;
+  object-position: 100%;
+
+}
+
+.zoom-lens {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid rgba(193, 54, 133, 0.15);
+  background-repeat: no-repeat;
+  background-size: 200%;
+  pointer-events: none;
+  display: none;
+  z-index: 10;
+}
 

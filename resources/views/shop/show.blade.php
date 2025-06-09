@@ -1,7 +1,8 @@
 @extends('layouts.app')
+@section('title', 'PRE-ORDER')
 @section('content')
     <div class="container py-5">
-        
+
         <a href="{{ route('shop.index') }}" class="btn-back mb-4">
             <i class="bi bi-arrow-left"></i> ย้อนกลับ
         </a>
@@ -9,11 +10,13 @@
 
         <div class="row gy-4">
             {{-- LEFT: Main image + thumbnails --}}
-            <div class="col-md-6 text-center">
-                {{-- give it an id so we can swap it via JS --}}
-                <img id="mainImage" src="{{ asset($product['img']) }}" class="img-fluid rounded"
-                    style="max-height:400px; object-fit:cover;" alt="{{ $product['title'] }}">
-
+            <div  class="col-md-6 text-center  ">
+                <div class="zoom-container">
+                    {{-- give it an id so we can swap it via JS --}}
+                    <img id="mainImage" src="{{ asset($product['img']) }}" class="img-fluid rounded product-image"
+                        style="max-height:400px; object-fit:cover;" alt="{{ $product['title'] }}">
+                    <div class="zoom-lens" id="zoomLens"></div>
+                </div>
                 {{-- thumbnails gallery --}}
                 <div class="mt-3 d-flex justify-content-center gap-2">
                     @foreach ($product['images'] as $img)
@@ -23,6 +26,8 @@
                     @endforeach
                 </div>
             </div>
+            
+           
 
             {{-- RIGHT: Details --}}
             <div class="col-md-6">
@@ -60,4 +65,5 @@
             </div>
         @endif
     </div>
+    <script src="{{ asset('js/show-product.filter.js') }}"></script>
 @endsection

@@ -11,9 +11,14 @@
     <link href="{{ asset('css/home.styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/products.styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/wishlist.styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/account.style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/orders.style.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 
 </head>
 
@@ -25,18 +30,19 @@
 
         <div class="container d-flex justify-content-between align-items-center">
             <!--  LOGO -->
-            <a href="{{ url('/') }}" class="navbar-brand d-flex align-items-center">
+            <a href="{{ url('/') }}" class="navbar-brand d-flex align-items-center "title="PRE-ORDER">
                 <img src="{{ asset('img/box-icon.png') }}" alt="Logo" width="100" class="me-2">
                 <h2 class="mb-0 gradient-text fw-bold text-uppercase py-1">
                     PRE-<span style="font-style: italic;">ORDER</span>
                 </h2>
             </a>
 
+
             <div class="d-flex align-items-end gap-4 ms-auto">
                 <div class="text-center">
                     <a href="#" class="link-icon text-decoration-none" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img src="https://img.icons8.com/ios-filled/28/000000/like.png" alt="like" class="mb-1">
+                        <img src="{{ asset('img/heart.svg') }}" alt="like" class="mb-icon" >
                         @php $wishlistIds = session('wishlist', []); @endphp
                         <div class="small fw-light">รายการโปรด ({{ count($wishlistIds) }})</div>
                     </a>
@@ -89,8 +95,7 @@
 
                 <div class="text-center">
                     <a href="{{ url('/cart') }}" class="link-icon text-decoration-none"data-bs-toggle="dropdown">
-                        <img src="https://img.icons8.com/ios-filled/28/000000/shopping-cart.png" alt="cart"
-                            class="mb-1">
+                        <img src="{{ asset('img/shopping-cart.svg') }}" alt="cart" class="mb-icon">
                         <div class="small fw-light">ตะกร้าสินค้า</div>
                     </a>
 
@@ -166,7 +171,7 @@
 
                 <div class="text-center">
                     <a href="{{ url('/login') }}" class="link-icon text-decoration-none">
-                        <img src="https://img.icons8.com/ios-filled/28/000000/user.png" alt="user" class="mb-1">
+                        <img src="{{ asset('img/user.svg') }}" alt="user" class="mb-icon">
                         <div class="small fw-light">สมาชิก</div>
                     </a>
                 </div>
@@ -229,7 +234,7 @@
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li><a class="dropdown-item"
-                                            href="{{ url('/private') }}">นโยบายความเป็นส่วนตัว</a>
+                                            href="{{ url('/customer/gdpr') }}">นโยบายความเป็นส่วนตัว</a>
                                     </li>
                                 </ul>
                             </li>

@@ -1,0 +1,30 @@
+.account-card {
+  background: #fff;
+  border: 1px solid #e3e3e3;
+  border-radius: 10px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.account-card-header {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.account-card-body p {
+  margin-bottom: 0.5rem;
+}
+
+
+.sidebar a {
+  display: block;
+  padding: 8px 16px;
+  color: #333;
+  text-decoration: none;
+    transition: transform 0.2s ease,color 0.2s ease;
+}
+.sidebar a:hover{
+  transform:translateX(10px);
+  color:#e0308f;
+}
