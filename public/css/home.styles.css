@@ -3,12 +3,142 @@
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap');
 
 
+#bookSection {
+  scroll-margin-top: 50px; 
+}
+#sciSection {
+  scroll-margin-top: 50px; 
+}
+#cheSection {
+  scroll-margin-top: 50px; 
+}
+#droneSection {
+  scroll-margin-top: 50px; 
+}
+
+
+#backToTop {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: none;
+  background: #ff40a4;
+  color: #fff;
+  border: none;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: opacity .3s ease;
+}
+#backToTop.show {
+  display: block;
+  opacity: 1;
+}
+
+.home-cat{
+  width: 100%;
+    max-width: 1380px;
+    margin: 24px 0 0 0;
+    padding: 20px 0 40px 4%;
+    background-color: #f2f2f2;
+     padding-left: 0;
+}
+
+.sale-product{
+    width: 100%;
+    max-width: 1380px;
+    margin: 24px 0 0 0;
+    padding: 20px 0 40px 4%;
+    background-color: #fbd7f3;
+    padding-left: 0;
+}
+
+.modal.fade .modal-dialog {
+  transform: translateY(-50px);
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+.modal.show .modal-dialog {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-content .modal-body {
+  background-color: #fff;       
+  border: 2px solid #fff;         
+  border-radius: 0.5rem;           
+  box-shadow: 
+    0 4px 8px rgba(253, 253, 253, 0.1),   
+    0 2px 4px rgba(255, 255, 255, 0.4);  
+  padding: 1.5rem;                  
+}
+
+/* Transition authTabs */
+#authTabs.fade {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+#authTabs.fade.show {
+  opacity: 1;
+}
+
+/* Transition  tab-pane  */
+.tab-pane.fade {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.tab-pane.fade.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+
 .navbar .nav-link:hover {
     
     color: #d3dae0 !important; /* สีตัวอักษรขาว */
 }
+body {
+  padding-top: 120px; 
+}
 
 
+ .btn-pink {
+        background-color: #ff40a4;
+        color: #fff;
+        transition: background-color 0.3s ease;
+    }
+    .btn-pink:hover {
+        background-color: #e03090;
+    }
+
+    .modal-content {
+        border-radius: 1rem;
+        transition: transform 1s ease;
+    }
+
+    .nav-tabs .nav-link.active {
+        background-color: #ff40a4;
+        color: white;
+    }
+
+    .nav-tabs .nav-link {
+        color: #555;
+    }
+
+
+#registerTab .form-control,
+#loginTab .form-control {
+  display: inline-block;
+  width: 75%;
+}
+#registerTab .form-select{
+  display:inline-block;
+  width: 50%;
+}
 
 
 #mainNavbar .navbar-toggler {
@@ -18,8 +148,6 @@
  
   border-radius: 3px;
 }
-
-
 
 .dropdown-menu {
     opacity: 0;
@@ -37,33 +165,6 @@
 
 
 
-.category-section .col-12 {
-    position: absolute;
-    bottom: 35px;
-    width: 100%;
-}
-
-
-
-
-html, body {
-  scroll-behavior: smooth;
-}
-#bookSection {
-  scroll-margin-top: 50px; 
-}
-#sciSection {
-  scroll-margin-top: 50px; 
-}
-#cheSection {
-  scroll-margin-top: 50px; 
-}
-#droneSection {
-  scroll-margin-top: 50px; 
-}
-
-
-
 /* สีชมพูหัวข้อหมวด (ตัวอย่าง) */
 .text-pink {
   color: #e6007e !important;      
@@ -72,57 +173,15 @@ html, body {
 .card {
   border-radius: 5px;
 }
-
-
-/* การ์ดหมวดหมู่ (Category text) */
-.category-text {
-  background-color: #ffffff;       /* สีพื้นขาว */
-  border: 1px solid #f1f1f1;      /* เส้นกรอบบาง ๆ สีเทาอ่อน */
-  border-radius: 0.5rem;          /* มุมโค้งมน */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+html {
+  scroll-behavior: smooth !important;
 }
-
-.category-text:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-}   
-
-/* ขนาดไอคอนภายใน Category text */
-.category-text .icon-wrapper i {
-  display: inline-block;
-  padding: 0.5rem;
-  border-radius: 50%;
-}
-
-/* ชื่อหมวดหมู่ */
-.category-name {
-  font-size: 0.95rem;
-  color: #333333;
-  word-break: break-word;  /* ถ้าชื่อยาวเกินบรรทัด จะตัดขึ้นบรรทัดใหม่อัตโนมัติ */
-}
-.category-box{
-  margin-bottom: 0px;
-
-}
-
-/* เมื่อใช้บนมือถือ คุมให้การ์ดมีความสูงไม่สูงเกินไป */
-@media (max-width: 575.98px) {
-  .category-text {
-    padding: 0.75rem;   /* ลด padding เล็กน้อยบนมือถือ */
-  }
-}
-
-
-
-
-
-
-
 /* Base reset and typography */
 html, body {
   font-family: 'Kanit', sans-serif;
   margin: 0;
   padding: 0;
+ 
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Kanit', sans-serif;
@@ -161,8 +220,11 @@ h1, h2, h3, h4, h5, h6 {
 .mb-icon  {
   max-width: 28px;
   max-height: 28px;
-
+   
+  color: rgb(47, 47, 47);
+  
 }
+
 
 
 
@@ -184,55 +246,47 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0;
     transform: translateX(0);
     transition: all 0.9s ease;
-    background-color: #6c757d;
-    padding: 0.5rem;
+    background-color: #ff4384;
+    width: 38px ;
+    height: 38px;
+  
+    
     border-radius: 5px;
 }
 
 /* เมื่อ hover บน carousel หรือปุ่ม active */
 .carousel:hover .carousel-control-prev-icon {
     opacity: 1;
-    transform: translateX(5px); /* เข้าจากซ้าย */
+    transform: translateX(20px); /* เข้าจากซ้าย */
 }
 
 .carousel:hover .carousel-control-next-icon {
     opacity: 1;
-    transform: translateX(-5px); /* เข้าจากขวา */
+    transform: translateX(-20px); /* เข้าจากขวา */
 }
 
 
-.slideshow{
-  max-width: 900px;
-  margin: 0 auto;
-}
 
 
-.slideshow .items {
-  margin-top: 75px;
+
+
+
+
+.counter.qty {
+  position: absolute;
+  top: -4px;
+  right: 2px;
+  background-color: #ff4384;
+  color: white;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 7px;
+  border-radius: 100%;
+  line-height: 1;
+  min-width: 5px;
   text-align: center;
-  padding: 0px;
+  z-index: 10;
 }
-
-.slideshow .items img {
-  width: 120px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  border-radius: 8px;
-}
-.slideshow p {
-  margin-top: 8px;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-
-
-
-
-
-
-
 
 
 
@@ -264,6 +318,7 @@ h1, h2, h3, h4, h5, h6 {
 #droCarousel  .carousel-control-prev-icon,
 #droCarousel  .carousel-control-next-icon  {
   transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: all 0.9s ease;
 }
 
 /* เมื่อ hover ที่ปุ่ม ให้เปลี่ยนสีและขยายเล็กน้อย */
@@ -297,22 +352,50 @@ h1, h2, h3, h4, h5, h6 {
 .carousel-hover-show .carousel-control-next {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+  width: 38px;
+  height: 38px;
+  position-area: right;
+  background-color: #ff4384;
+  border-radius: 10px;
+  transform: translateX(0);
+  transition: all 0.9s ease;
   
-
 }
-.carousel-hover-show:hover .carousel-control-prev,
-.carousel-hover-show:hover .carousel-control-next {
-  opacity: 1;
+.carousel-hover-show:hover .carousel-control-prev{
+ opacity: 1;
+    transform: translateX(20px); /* เข้าจากซ้าย */
+}
+.carousel-hover-show:hover .carousel-control-next{
+opacity: 1;
+    transform: translateX(-20px); /* เข้าจากขวา */
 }
 
-/* Product slide row */
+
+
+
+
+
+
+
 .product-slide-row {
-  display: flex;
-  gap: 1rem;
-  padding: 0 1rem;
+  gap: 1rem;  
   justify-content: center;
 }
-
+/* Product slide row */
+.product-slide-row .card {
+  flex: 0 0 auto;      
+  width: 350px;        
+  height: 160px;        
+  overflow: hidden;     
+  border-radius: 8px;   
+  
+}
+.product-slide-row .card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;   
+}
 
 
 /* Product categories section */
@@ -337,7 +420,7 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 .section-title {
-  margin: 25px 0 0  50px;
+  margin: 0px 0 0  25px;
  
 }
 .categories {
@@ -414,25 +497,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bookfilter-btn.active {
-  /* เมื่อถูกเลือก */
+  
   background-color: #ff40a4;
   color: #fff;
   border-color: #ff40a4;
 }
 .scifilter-btn.active {
-  /* เมื่อถูกเลือก */
+ 
   background-color: #ff40a4;
   color: #fff;
   border-color: #ff40a4;
 }
 .chefilter-btn.active {
-  /* เมื่อถูกเลือก */
+ 
   background-color: #ff40a4;
   color: #fff;
   border-color: #ff40a4;
 }
 .dronefilter-btn.active {
-  /* เมื่อถูกเลือก */
+  
   background-color: #ff40a4;
   color: #fff;
   border-color: #ff40a4;
@@ -440,14 +523,14 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .filter-btn:not(.active) {
-  /* ปุ่มที่ไม่ถูกเลือก */
+  
   background-color: transparent;
   color: #333;
 }
 
 
 
-/* Book card component */
+
 .product-card {
   width: 280px;
   border: none;
@@ -462,22 +545,21 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-/* ปรับขนาดภาพให้เต็มกรอบ 280×280 */
 .product-card .card-img-top {
   max-width: 250px;
   max-height: 250px;
   width: auto;
   height: 250px;
   object-fit: cover;
-  margin-left: 15px;
+  margin-left: 10px;
 }
 .position-relative {
   display: flex;
-  justify-content: center; /* กึ่งกลางแนวนอน */
-  align-items: center;     /* กึ่งกลางแนวตั้ง */
+  justify-content: center; 
+  align-items: center;     
 }
 
-/* จัดเนื้อหาใน body ให้กึ่งกลาง และรองรับ 2 บรรทัดได้สวย */
+
 .product-card .card-body {
   
   padding: 1rem;
@@ -487,12 +569,12 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
-/* ฟอนต์และการเว้นบรรทัดของชื่อสินค้า */
+
 .product-title {
   font-size: 0.95rem;
   font-weight: 500;
   margin-bottom: .5rem;
-  word-break: keep-all;     /* ป้องกันตัดคำกลางประโยค */
+  word-break: keep-all;    
   overflow-wrap: break-word;
 }
 
@@ -507,14 +589,14 @@ h1, h2, h3, h4, h5, h6 {
   background: transparent;
   border: none;
   font-size: 1.2rem;
-  color: #000;                  /* หัวใจสีดำ */
+  color: #000;                  
   transition: color .3s ease, transform .3s ease;
   cursor: pointer;
 }
 
 /* Hover effect */
 .btn-heart:hover {
-  color: #e83e8c;               /* หรือสีชมพูตามใจชอบ */
+  color: #e83e8c;               
   transform: scale(1.2);
 }
 
@@ -593,60 +675,57 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-/* ============================= */
+
 /* Responsive: ปรับ filter-bar  */
-/* ============================= */
+
 @media (max-width: 992px) {
-  /* พอจอแคบลง ให้วนหลายบรรทัด แต่ยังจัดชิดขอบได้ */
+  
   .filter-bar {
-    flex-wrap: wrap;             /* ขึ้นหลายแถวได้ */
+    flex-wrap: wrap;             
     justify-content: space-between;
-    gap: 16px;                   /* ลดช่องว่างระหว่าง item */
+    gap: 16px;                  
   }
   .filter-item {
-    flex: 1 1 48%;               /* กินครึ่งแถว 2 ต่อบรรทัด */
-    min-width: 200px;            /* แต่ไม่เล็กเกินไป */
+    flex: 1 1 48%;               
+    min-width: 200px;            
   }
   .search-box input,
   .filter-item select {
-    width: 100% !important;      /* เต็มความกว้าง filter-item */
+    width: 100% !important;    
   }
 }
 
-/* ================================ */
+
 /* Responsive: จอแท็บเล็ต–มือถือ     */
-/* ================================ */
+
 @media (max-width: 768px) {
   .filter-bar {
-    flex-direction: column;      /* เรียงบนลงล่าง */
-    align-items: stretch;        /* ให้แต่ละ item เต็มความกว้าง */
+    flex-direction: column;     
+    align-items: stretch;       
     gap: 12px;
   }
   .filter-item {
-    width: 100%;                 /* เต็มแถว */
-    margin-bottom: 8px;
+    width: 100%;                
   }
   .search-box input {
-    width: 100%;                 /* เต็มช่อง */
+    width: 100%;                
   }
 }
 
-/* ============================= */
+
 /* Responsive: ปรับการ์ดสินค้า   */
-/* ============================= */
+
 @media (max-width: 576px) {
   .product-card {
-    width: 100% !important;      /* ให้การ์ดเต็มแถว */
+    width: 100% !important;     
     max-width: none;
   }
   .product-card .card-img-top {
-    width: 100%;                 /* ภาพเต็มความกว้าง */
-    height: auto;                /* รักษาอัตราส่วนอัตโนมัติ */
-    max-height: 250px;           /* ไม่ให้สูงเกินไป */
+    width: 100%;                 
+    height: auto;                
+    max-height: 250px;           
   }
 }
-
-
 
 /* Responsive for product images */
 @media (max-width: 768px) {
@@ -664,3 +743,116 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 80%;
   }
 }
+
+
+
+
+/* ให้ overflow ซ่อน และ disable scrollbars */
+.swiper {
+  overflow: hidden;
+}
+
+/* จัด .swiper-wrapper ให้เป็น flex และใส่ transition */
+.swiper-wrapper {
+  display: flex;
+  transition: transform 0.3s ease;
+  padding: 10px 0 0 10px;
+}
+
+/* แต่ละ slide ให้ flex-shrink=0 และเว้นขอบระหว่างกัน */
+.swiper-slide {
+  flex-shrink: 0;
+  width: auto;           
+  margin-right: 1rem;
+  
+}
+.swiper-slide:last-child {
+  margin-right: 0;
+}
+
+
+.swiper-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+.swiper-button{
+   display: flex;
+  gap: 0.5rem;
+}
+
+
+.category-item img{
+
+  max-width: 100px;
+  max-height: 100px;
+
+}
+.category-item {
+
+  max-width: 250px;
+  max-height: 250px;
+
+}
+
+
+ /* Swiper carousel  */
+.swiper-prev,
+.swiper-next {
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+  background: #F1F1F1;
+  color: #222222;
+  padding: 0;
+  text-align: center;
+  border-radius: 10px;
+  --bs-btn-border-color: transparent;
+  --bs-btn-active-bg: #ec9b22;
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-hover-bg: #FFC43F;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-disabled-color: #ccc;
+  --bs-btn-disabled-bg: #eaeaea;
+  --bs-btn-disabled-border-color: #eaeaea
+}
+.swiper-prev:hover,
+.swiper-next:hover {
+  background: #FFC43F;
+}
+.btn-link {
+  margin-right: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: right;
+  text-transform: capitalize;
+  color: #787878;
+}
+/* category carousel */
+.category-carousel .category-item {
+  background: #FFFFFF;
+  border: 1px solid #FBFBFB;
+  box-shadow: 0px 5px 22px rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
+  text-align: center;
+  padding: 60px 20px;
+  margin: 20px 0;
+  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
+}
+.category-carousel .category-item:hover {
+  transform: translate3d(0,-10px,0);
+  box-shadow: 0px 21px 44px rgba(0, 0, 0, 0.08);
+}
+.category-carousel .category-item .category-title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 27px;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  color: #222222;
+  margin-top: 20px;
+}
+
+
+
+

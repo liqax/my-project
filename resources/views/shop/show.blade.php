@@ -39,8 +39,11 @@
                     @csrf
                     <input type="hidden" name="id" value="{{ $product['id'] }}">
                     <input type="number" name="qty" value="1" min="1" class="form-control w-auto me-3">
+                    <input type="hidden" name="title" value="{{ $product['title'] }}">
+                    <input type="hidden" name="price" value="{{ $product['price'] }}">
+                    <input type="hidden" name="img" value="{{ $product['img'] }}">
                     <button class="btn btn-pink me-2">
-                        <i class="bi bi-cart-fill"></i> เติมตะกร้า
+                        <i class="bi bi-cart-fill"></i> เพิ่มในตะกร้า
                     </button>
                 </form>
 

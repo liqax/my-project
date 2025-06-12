@@ -19,10 +19,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+
 
 </head>
 
 <body>
+
+
 
     <div class="container">
 
@@ -42,9 +47,21 @@
                 <div class="text-center">
                     <a href="#" class="link-icon text-decoration-none" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img src="{{ asset('img/heart.svg') }}" alt="like" class="mb-icon" >
-                        @php $wishlistIds = session('wishlist', []); @endphp
-                        <div class="small fw-light">รายการโปรด ({{ count($wishlistIds) }})</div>
+                        <div class="position-relative">
+                            <svg class="mb-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+                                    2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
+                                                      C13.09 3.81 14.76 3 16.5 3
+                                                    19.58 3 22 5.42 22 8.5
+                                                  c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg>
+                            @php $wishlistIds = session('wishlist', []); @endphp
+                            @if (count($wishlistIds) > 0)
+                                <span class="counter qty">{{ count($wishlistIds) }}</span>
+                            @endif
+                        </div>
+                        <div class="small fw-light">รายการโปรด </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 300px;">
                         <h6 class="fw-bold">รายการโปรดของคุณ</h6>
@@ -93,9 +110,23 @@
                     </div>
                 </div>
 
-                <div class="text-center">
+                <div class="text-center position-relative">
                     <a href="{{ url('/cart') }}" class="link-icon text-decoration-none"data-bs-toggle="dropdown">
-                        <img src="{{ asset('img/shopping-cart.svg') }}" alt="cart" class="mb-icon">
+                        <svg class="mb-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                            viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10
+            0c-1.1 0-1.99.9-1.99 2S15.9 22 17
+            22s2-.9 2-2-.9-2-2-2zM7.2 14h9.45c.75 0
+            1.41-.41 1.75-1.03l3.58-6.49A1
+            1 0 0 0 21 5H5.21L4.27 3H1v2h2l3.6
+            7.59-1.35 2.44C4.52 15.37 5.48
+            17 7 17h12v-2H7.42c-.14
+            0-.25-.11-.25-.25l.03-.12L7.2 14z" />
+                        </svg>
+                        @php $cart = session('cart', []); @endphp
+                        @if (count($cart) > 0)
+                            <span class="counter qty">{{ count($cart) }}</span>
+                        @endif
                         <div class="small fw-light">ตะกร้าสินค้า</div>
                     </a>
 
@@ -170,17 +201,149 @@
                 </div>
 
                 <div class="text-center">
-                    <a href="{{ url('/login') }}" class="link-icon text-decoration-none">
-                        <img src="{{ asset('img/user.svg') }}" alt="user" class="mb-icon">
+                    <button class="link-icon text-decoration-none border-0 bg-transparent" data-bs-toggle="modal"
+                        data-bs-target="#authModal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                            viewBox="0 0 16 16" class="mb-icon">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3z" />
+                            <path fill-rule="evenodd" d="M8 8a3 3 0 100-6 3 3 0 000 6z" />
+                        </svg>
                         <div class="small fw-light">สมาชิก</div>
-                    </a>
+                    </button>
+                    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content rounded-4 shadow-sm animate__animated animate__fadeIn">
+                                <div class="modal-body p-4 bg-light ">
+                                    <ul class="nav nav-tabs mb-3 justify-content-center" id="authTabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-bs-toggle="tab"
+                                                href="#loginTab">ลงชื่อเข้าใช้</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-bs-toggle="tab"
+                                                href="#registerTab">ลงทะเบียน</a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <!-- Login -->
+                                        <div class="tab-pane fade show active" id="loginTab">
+                                            <form>
+                                                <div class="mb-3">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="ชื่อผู้ใช้*" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <input type="password" class="form-control"
+                                                        placeholder="รหัสผ่าน*" required>
+                                                </div>
+
+                                                <button type="submit"
+                                                    class="btn btn-primary w-25">เข้าสู่ระบบ</button>
+
+                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <div class="form-check small">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="rememberLogin">
+                                                        <label class="form-check-label"
+                                                            for="rememberLogin">จดจำรหัส</label>
+                                                    </div>
+                                                    <a href="#forgotTab" id="forgot-tab" class="small text-muted"
+                                                        data-bs-toggle="tab" data-bs-target="#forgotTab"
+                                                        role="tab" aria-controls="forgotTab"
+                                                        aria-selected="false">ลืมรหัสผ่าน?</a>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="forgotTab" role="tabpanel"
+                                            aria-labelledby="forgot-tab">
+                                            <form>
+                                                <h2>ลืมรหัสผ่าน</h2>
+                                                <p>กรุณากรอกอีเมลของท่านเพื่อรับรหัสผ่านใหม่</p>
+                                                <div class="mb-3">
+                                                    <input type="email" class="form-control"
+                                                        placeholder="อีเมลที่ลงทะเบียน*" required>
+                                                </div>
+                                                <button type="submit"
+                                                    class="btn btn-warning w-25">ส่งลิงก์รีเซ็ต</button>
+                                                <div class="mt-3">
+                                                    <a href="#loginTab" class="small text-muted" data-bs-toggle="tab"
+                                                        data-bs-target="#loginTab">ย้อนกลับไปล็อกอิน</a>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <!-- Register -->
+                                        <div class="tab-pane fade" id="registerTab">
+                                            <form>
+                                                <div class="mb-2">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="ชื่อผู้ใช้*" required>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <input type="email" class="form-control" placeholder="อีเมล*"
+                                                        required>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <input type="password" class="form-control"
+                                                        placeholder="รหัสผ่าน*" required>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <input type="password" class="form-control"
+                                                        placeholder="ยืนยันรหัสผ่าน*" required>
+                                                </div>
+                                                <div class="mb-2">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="หมายเลขโทรศัพท์*" required>
+                                                </div>
+
+                                                <!-- เพศ -->
+                                                <div class="mb-2">
+                                                    <select class="form-select" required>
+                                                        <option value="" disabled selected>กรุณาเลือกเพศ</option>
+                                                        <option value="ชาย">ชาย</option>
+                                                        <option value="หญิง">หญิง</option>
+                                                        <option value="ไม่ระบุ">ไม่ระบุ</option>
+                                                    </select>
+                                                </div>
+
+                                                <!-- อาชีพ -->
+                                                <div class="mb-3">
+                                                    <select class="form-select" required>
+                                                        <option value="" disabled selected>กรุณาเลือกอาชีพ
+                                                        </option>
+                                                        <option value="ครู">ครู</option>
+                                                        <option value="นักเรียน">นักเรียน</option>
+                                                        <option value="ผู้ปกครอง">ผู้ปกครอง</option>
+                                                        <option value="เจ้าหน้าที่รัฐ">เจ้าหน้าที่รัฐ</option>
+                                                        <option value="โรงเรียน/หน่วยงานรัฐ">โรงเรียน/หน่วยงานรัฐ
+                                                        </option>
+                                                        <option value="ร้านค้า/บริษัท">ร้านค้า/บริษัท</option>
+                                                        <option value="อื่นๆ">อื่นๆ</option>
+                                                    </select>
+                                                </div>
+
+                                                <button type="submit" class="btn btn-pink w-40">ลงทะเบียน
+                                                    สมาชิก</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
         </div>
 
 
-        <nav class="navbar navbar-expand-lg py-1" style="background-color: #ff40a4;" id="mainNavbar">
+        <nav class="navbar navbar-expand-lg py-1  " style="background-color: #ff40a4;" id="mainNavbar">
             <div class="container">
                 <div class="collapse navbar-collapse show">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
@@ -228,7 +391,8 @@
                                     เพิ่มเติม
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdown">
-                                    <li><a class="dropdown-item" href="{{ url('/about') }}">เกี่ยวกับเรา</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('/about') }}">เกี่ยวกับเรา</a>
+                                    </li>
 
                                     <li>
                                         <hr class="dropdown-divider">
@@ -239,10 +403,21 @@
                                 </ul>
                             </li>
                         </div>
+
+
                     </ul>
                 </div>
             </div>
         </nav>
+
+
+
+
+
+
+
+
+
 
 
         @yield('content')
@@ -298,7 +473,7 @@
         </footer>
 
 
-
+        <button id="backToTop" aria-label="Back to top">↑</button>
 
 
 
@@ -333,7 +508,8 @@
 
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+        {{-- swiper --}}
+        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
 
 

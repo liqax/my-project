@@ -50,10 +50,6 @@ Route::post('/cart/add', [ShopController::class, 'addToCart'])->name('cart.add')
 Route::post('/cart/update', [ShopController::class, 'updateCart'])->name('cart.update');
 Route::post('/cart/remove', [ShopController::class, 'removeFromCart'])->name('cart.remove');
 
-// (เพิ่มเติมถ้ามีหน้าชำระสินค้า / สถานะคำสั่งซื้อ)
-// Route::get('/checkout', [ShopController::class, 'checkoutPage'])->name('checkout.page');
-// Route::post('/checkout/process', [ShopController::class, 'processCheckout'])->name('checkout.process');
-
 
 
 

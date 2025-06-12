@@ -251,3 +251,99 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const loginPane    = document.getElementById('loginTab');
+  const registerPane = document.getElementById('registerTab');
+  const forgotPane   = document.getElementById('forgotTab');
+  const authTabs     = document.getElementById('authTabs'); // แท็บ login/register
+
+  // ฟังก์ชันช่วยสลับ pane พร้อม hide/show nav-tabs
+  function showPane(pane) {
+    // ซ่อนทุก pane
+    [loginPane, registerPane, forgotPane].forEach(el => el.classList.remove('show','active'));
+    // ซ่อนหรือแสดง nav-tabs
+    if (pane === forgotPane) authTabs.classList.add('d-none');
+    else                    authTabs.classList.remove('d-none');
+    // แสดง pane ที่ต้องการ
+    pane.classList.add('show','active');
+  }
+
+  // ลิงก์ "ลืมรหัสผ่าน?"
+  document.getElementById('forgot-tab').addEventListener('click', function(e) {
+    e.preventDefault();
+    showPane(forgotPane);
+  });
+
+  // ลิงก์ย้อนกลับไปล็อกอิน (ใน forgotTab)
+  document.querySelector('#forgotTab a[data-bs-target="#loginTab"]')
+    .addEventListener('click', function(e) {
+      e.preventDefault();
+      showPane(loginPane);
+  });
+
+  // ถ้าใช้ nav-link ของ register/login ธรรมดา ก็ bind เพิ่มให้กลับมาแสดง nav-tabs
+  document.querySelectorAll('#authTabs a[data-bs-toggle="tab"]').forEach(link => {
+    link.addEventListener('shown.bs.tab', () => {
+      authTabs.classList.remove('d-none');
+    });
+  });
+});
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+            // 3.1 Category Carousel
+            new Swiper('.category-carousel', {
+                slidesPerView: 'auto', // แสดงกี่ slide ตามความกว้างของเนื้อหา
+                spaceBetween: 16, // ช่องว่างระหว่าง slide (px)
+                navigation: {
+                    prevEl: '.category-carousel-prev',
+                    nextEl: '.category-carousel-next',
+                },
+                // ถ้าต้องการให้ loop
+                loop: false,
+            });
+
+            // 3.2 Brand Carousel
+            new Swiper('.brand-carousel', {
+                slidesPerView: 3, // Desktop แสดง 3 แถว
+                spaceBetween: 16,
+                navigation: {
+                    prevEl: '.brand-carousel-prev',
+                    nextEl: '.brand-carousel-next',
+                },
+                breakpoints: {
+                    0: {
+                        slidesPerView: 1
+                    }, // Mobile
+                    576: {
+                        slidesPerView: 2
+                    }, // Tablet
+                    992: {
+                        slidesPerView: 3
+                    } // Desktop
+                },
+                loop: false,
+            });
+        });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const backBtn = document.getElementById('backToTop');
+  const showAfter = 300;  // เลื่อนลงมาเกิน 300px จึงแสดงปุ่ม
+
+  // ตรวจเช็คการเลื่อน
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > showAfter) {
+      backBtn.classList.add('show');
+    } else {
+      backBtn.classList.remove('show');
+    }
+  });
+
+  // กดปุ่ม → เลื่อนขึ้นบนสุดแบบ smooth
+  backBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});

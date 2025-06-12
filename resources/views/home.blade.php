@@ -15,7 +15,7 @@
                 <img src="{{ asset('img/main-banner.jpg') }}" class="d-block w-100" alt="banner">
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('img/bg2.png') }}" class="d-block w-100" alt="bg2">
+                <img src="{{ asset('img/bg2.png') }}" class="d-block w-100 " alt="bg2">
             </div>
             <div class="carousel-item">
                 <img src="{{ asset('img/bg3.png') }}" class="d-block w-100" alt="bg3">
@@ -24,10 +24,10 @@
 
         <!--  ปุ่มเลื่อน -->
         <button class="carousel-control-prev" type="button" data-bs-target="#mainSlider" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
+            ❮
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#mainSlider" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
+            ❯
         </button>
 
 
@@ -45,6 +45,9 @@
     <!-- ####################################################################################################### -->
 
 
+
+
+
     <div id="productCarousel" class="carousel slide carousel-hover-show mt-1" data-bs-interval="false">
 
         <!-- INDICATORS -->
@@ -59,13 +62,13 @@
             <div class="carousel-item active">
                 <div class="d-flex product-slide-row">
                     <div class="card shadow-sm">
-                        <img src="{{ asset('img/bg3.png') }}" alt="pre order">
+                        <img src="{{ asset('images/banner-1.jpg') }}" alt="pre order">
                     </div>
                     <div class="card shadow-sm">
-                        <img src="{{ asset('img/bg2.png') }}" alt="pre order">
+                        <img src="{{ asset('images/banner-2.jpg') }}" alt="pre order">
                     </div>
                     <div class="card shadow-sm">
-                        <img src="{{ asset('img/bg3.png') }}" alt="pre order">
+                        <img src="{{ asset('images/bg4.png') }}" alt="pre order">
                     </div>
                 </div>
             </div>
@@ -73,26 +76,26 @@
             <div class="carousel-item">
                 <div class="d-flex product-slide-row">
                     <div class="card shadow-sm">
-                        <img src="{{ asset('img/bg2.png') }}" alt="pre order">
+                        <img src="{{ asset('images/bg5.jpg') }}" alt="pre order">
                     </div>
                     <div class="card shadow-sm">
-                        <img src="{{ asset('img/bg3.png') }}" alt="pre order">
+                        <img src="{{ asset('images/banner-2.jpg') }}" alt="pre order">
                     </div>
                     <div class="card shadow-sm">
-                        <img src="{{ asset('img/bg2.png') }}" alt="pre order">
+                        <img src="{{ asset('images/banner-1.jpg') }}" alt="pre order">
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- CONTROLS -->
-        <button class="carousel-control-prev custom-carousel-btn" type="button" data-bs-target="#productCarousel"
+        <button class="carousel-control-prev btn btn-pink  " type="button" data-bs-target="#productCarousel"
             data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
+            ❮
         </button>
-        <button class="carousel-control-next custom-carousel-btn" type="button" data-bs-target="#productCarousel"
+        <button class="carousel-control-next btn btn-pink" type="button" data-bs-target="#productCarousel"
             data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
+            ❯
         </button>
     </div>
 
@@ -101,119 +104,266 @@
 
 
     <!-- หมวดหมู่สินค้า -->
+    <section class="home-cat py-5 overflow-hidden">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
 
-    <section class="category-section pt-4 mt-4 ">
-        <div class="container">
-            <h2 class="section-title ">เลือกซื้อตามหมวดหมู่สินค้า</h2>
+                    <div class="section-header d-flex flex-wrap justify-content-between mb-5">
+                        <h2 class="section-title">เลือกซื้อตามหมวดหมู่สินค้า</h2>
 
-
-            <div class="slideshow ">
-                <div class="items">
-                    <img src="img/slick/หนังสือวิทย์.jpg" alt="">
-                    <p>หนังสือวิทย์</p>
-                </div>
-                <div class="items">
-                    <img src="img/slick/หนังสือคณิต.jpg" alt="">
-                    <p>หนังสือคณิต</p>
-                </div>
-                <div class="items">
-                    <img src="img/slick/ปฐมวัย.jpg" alt="">
-                    <p>หนังสือปฐมวัย</p>
-                </div>
-                <div class="items">
-                    <img src="img/slick/คู่มือครู.jpg" alt="">
-                    <p>หนังสือคู่มือครู</p>
-                </div>
-                <div class="items">
-                    <img src="img/slick/หนังสืออ่านเพิ่ม.jpg" alt="">
-                    <p>หนังสืออ่านเพิ่ม</p>
-                </div>
-
-            </div>
-
-
-
-
-            <div class="col-12 ">
-                <div class="category-box p-4 rounded-3  ">
-                    <div class="  row gy-3 gx-3 justify-content-center">
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                            <a href="{{ url('/products?category=books') }}" class="text-decoration-none">
-                                <div class="category-text h-100  text-center p-3">
-                                    <div class="icon-wrapper mb-2">
-                                        <i class="bi bi-book-half fs-2 text-pink"></i>
-                                    </div>
-                                    <div class="category-name fw-semibold">หนังสือ</div>
-                                </div>
-                            </a>
+                        <div class="d-flex align-items-center">
+                            <a href="/products" class="btn-link text-decoration-none">ดูสินค้าทั้งหมดในหมวดหมู่ →</a>
+                            <div class="swiper-buttons">
+                                <button class="swiper-prev category-carousel-prev btn btn-pink">❮</button>
+                                <button class="swiper-next category-carousel-next btn btn-pink">❯</button>
+                            </div>
                         </div>
-
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                            <a href="{{ url('/products?category=science') }}" class="text-decoration-none">
-                                <div class="category-text h-100 text-center p-3">
-                                    <div class="icon-wrapper mb-2">
-                                        <i class="bi bi-beaker-fill fs-2 text-pink"></i>
-                                    </div>
-                                    <div class="category-name fw-semibold">อุปกรณ์วิทยาศาสตร์</div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                            <a href="{{ url('/products?category=chemicals') }}" class="text-decoration-none">
-                                <div class="category-text h-100 text-center p-3">
-                                    <div class="icon-wrapper mb-2">
-                                        <i class="bi bi-droplet-half fs-2 text-pink"></i>
-                                    </div>
-                                    <div class="category-name fw-semibold">สารเคมี</div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                            <a href="{{ url('/products?category=drone') }}" class="text-decoration-none">
-                                <div class="category-text h-100 text-center p-3">
-                                    <div class="icon-wrapper mb-2">
-                                        <i class="bi bi-controller fs-2 text-pink"></i>
-                                    </div>
-                                    <div class="category-name fw-semibold">โดรน</div>
-                                </div>
-                            </a>
-                        </div>
-
                     </div>
+
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
 
-        </div>
-    </section>
+                    <div class="category-carousel swiper">
+                        <div class="swiper-wrapper">
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
+                                <h3 class="category-title">หนังสือ</h3>
+                            </a>
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-bread-baguette.png" alt="Category Thumbnail">
+                                <h3 class="category-title">อุปกรณ์วิทยาศาสตร์</h3>
+                            </a>
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-soft-drinks-bottle.png" alt="Category Thumbnail">
+                                <h3 class="category-title">สารเคมี</h3>
+                            </a>
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-wine-glass-bottle.png" alt="Category Thumbnail">
+                                <h3 class="category-title">โดรน</h3>
+                            </a>
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-animal-products-drumsticks.png" alt="Category Thumbnail">
+                                <h3 class="category-title">สินค้าอื่นๆ</h3>
+                            </a>
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-bread-herb-flour.png" alt="Category Thumbnail">
+                                <h3 class="category-title">สินค้าอื่นๆ</h3>
+                            </a>
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
+                                <h3 class="category-title">สินค้าอื่นๆ</h3>
+                            </a>
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
+                                <h3 class="category-title">สินค้าอื่นๆ</h3>
+                            </a>
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
+                                <h3 class="category-title">สินค้าอื่นๆ</h3>
+                            </a>
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
+                                <h3 class="category-title">สินค้าอื่นๆ</h3>
+                            </a>
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
+                                <h3 class="category-title">สินค้าอื่นๆ</h3>
+                            </a>
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
+                                <h3 class="category-title">สินค้าอื่นๆ</h3>
+                            </a>
 
+                        </div>
+                    </div>
 
-
-
-
-
-    {{-- CTA bar --}}
-    <section class="cta-bar text-center mt-4">
-        <div class="container-fluid px-0">
-            <div class="py-3" style="background-color: #ff40a4;">
-                <h5 class="mb-0 text-white" style="font-weight: 700; font-size: 2rem;">
-                    “จองที่นั่งสอบภาษาจีนของคุณตอนนี้เลย!”
-                </h5>
+                </div>
             </div>
         </div>
     </section>
 
-    {{-- Banner --}}
-    <section class="mt-3">
-        <div class="container-fluid px-0">
-            <a href="/" target="_blank" rel="noopener">
-                <img src="{{ asset('img/main-banner.jpg') }}" alt="จองสอบภาษาจีน" class="img-fluid w-auto banner-link"
-                    style="max-height: 650px;  object-fit: cover;">
-            </a>
+
+    <section class="py-5 overflow-hidden">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="section-header d-flex flex-wrap flex-wrap justify-content-between mb-5">
+
+                        <h2 class="section-title">สินค้าขายดี!</h2>
+
+                        <div class="d-flex align-items-center">
+                            <a href="/products" class="btn-link text-decoration-none">ดูสินค้าทั้งหมดในหมวดหมู่ →</a>
+                            <div class="swiper-buttons">
+                                <button class="swiper-prev brand-carousel-prev btn btn-pink">❮</button>
+                                <button class="swiper-next brand-carousel-next btn btn-pink">❯</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="brand-carousel swiper">
+                        <div class="swiper-wrapper">
+
+                            <div class="swiper-slide">
+                                <div class="card mb-3 p-3 rounded-4 shadow border-0">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="/images/images/product-thumb-11.jpg" class="img-fluid rounded"
+                                                alt="Card title">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body py-0">
+                                                <p class="text-muted mb-0">Amber Jar</p>
+                                                <h5 class="card-title">Honey best nectar you wish to get</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="card mb-3 p-3 rounded-4 shadow border-0">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="/images/images/product-thumb-12.jpg" class="img-fluid rounded"
+                                                alt="Card title">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body py-0">
+                                                <p class="text-muted mb-0">Amber Jar</p>
+                                                <h5 class="card-title">Honey best nectar you wish to get</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="card mb-3 p-3 rounded-4 shadow border-0">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="/images/images/product-thumb-13.jpg" class="img-fluid rounded"
+                                                alt="Card title">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body py-0">
+                                                <p class="text-muted mb-0">Amber Jar</p>
+                                                <h5 class="card-title">Honey best nectar you wish to get</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="card mb-3 p-3 rounded-4 shadow border-0">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="/images/images/product-thumb-14.jpg" class="img-fluid rounded"
+                                                alt="Card title">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body py-0">
+                                                <p class="text-muted mb-0">Amber Jar</p>
+                                                <h5 class="card-title">Honey best nectar you wish to get</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="card mb-3 p-3 rounded-4 shadow border-0">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="/images/images/product-thumb-11.jpg" class="img-fluid rounded"
+                                                alt="Card title">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body py-0">
+                                                <p class="text-muted mb-0">Amber Jar</p>
+                                                <h5 class="card-title">Honey best nectar you wish to get</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="card mb-3 p-3 rounded-4 shadow border-0">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <img src="/images/images/product-thumb-12.jpg" class="img-fluid rounded"
+                                                alt="Card title">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body py-0">
+                                                <p class="text-muted mb-0">Amber Jar</p>
+                                                <h5 class="card-title">Honey best nectar you wish to get</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </section>
 
+   
+
+
+    
+{{--    
+   <section class="sale-product py-5 overflow-hidden">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="section-header d-flex flex-wrap justify-content-between mb-5">
+                        <h2 class="section-title">สินค้าใหม่!</h2>
+                        <div class="d-flex align-items-center">
+                            <a href="/products" class="btn-link text-decoration-none">ดูสินค้าทั้งหมด →</a>
+                            <div class="swiper-buttons">
+                                <button class="swiper-prev category-carousel-prev btn btn-pink">❮</button>
+                                <button class="swiper-next category-carousel-next btn btn-pink">❯</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="category-carousel swiper">
+                        <div class="swiper-wrapper">
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
+                                <h3 class="category-title">หนังสือ</h3>
+                            </a>
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-bread-baguette.png" alt="Category Thumbnail">
+                                <h3 class="category-title">อุปกรณ์วิทยาศาสตร์</h3>
+                            </a>
+                            <a href="index.html" class="nav-link category-item swiper-slide">
+                                <img src="/images/images/icon-soft-drinks-bottle.png" alt="Category Thumbnail">
+                                <h3 class="category-title">สารเคมี</h3>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section> --}}
 
 
 
@@ -224,8 +374,9 @@
         <div class="container">
 
             <!-- หัวเรื่อง + ปุ่มกรอง -->
-            <div class="d-flex flex-wrap align-items-center mb-4 ">
+            <div class="d-flex flex-wrap align-items-center mb-4 " style="justify-content: space-between;">
                 <h2 class="ms-0 section-title">หนังสือ</h2>
+                 <a href="/products" class="btn-link text-decoration-none">ดูทั้งหมด →</a>
                 <div class="filter-buttons">
                     <button
                         class="btn btn-outline-secondary bookfilter-btn active me-2 mb-2"data-filter='all'>ทั้งหมด</button>
@@ -278,7 +429,7 @@
                                         <x-product-card :id="$id" :img="$book['img']" :title="$book['title']"
                                             :price="$book['price']" :variety="$book['variety']" :item-class="$book['class']" />
                                     </a>
-                                </div> 
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -316,12 +467,12 @@
                                 ]);
                             @endphp
                             @foreach ($books as $id => $book)
-                              <div class="col-auto book-item" data-variety="{{ $book['variety'] }}">
+                                <div class="col-auto book-item" data-variety="{{ $book['variety'] }}">
                                     <a href="{{ route('shop.show', $id) }}" class="text-decoration-none">
-                                <x-product-card :id="$id" :img="$book['img']" :title="$book['title']" :price="$book['price']"
-                                    :variety="$book['variety']" :category="$book['category']" :item-class="$book['class']" />
+                                        <x-product-card :id="$id" :img="$book['img']" :title="$book['title']"
+                                            :price="$book['price']" :variety="$book['variety']" :category="$book['category']" :item-class="$book['class']" />
                                     </a>
-                              </div>
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -361,8 +512,9 @@
         <div class="container">
 
             <!-- หัวเรื่อง + ปุ่มกรอง -->
-            <div class="d-flex flex-wrap align-items-center mb-4">
+            <div class="d-flex flex-wrap align-items-center mb-4" style="justify-content: space-between;">
                 <h2 class="ms-0 section-title">อุปกรณ์วิทยาศาสตร์</h2>
+                 <a href="/products" class="btn-link text-decoration-none">ดูทั้งหมด →</a>
                 <div class="filter-buttons">
                     <button
                         class="btn btn-outline-secondary scifilter-btn active me-2 mb-2 "data-filter='all'>ทั้งหมด</button>
@@ -478,8 +630,9 @@
         <div class="container">
 
             <!-- หัวเรื่อง + ปุ่มกรอง -->
-            <div class="d-flex flex-wrap align-items-center mb-4">
+            <div class="d-flex flex-wrap align-items-center mb-4" style="justify-content: space-between;">
                 <h2 class="ms-0 section-title">สารเคมี</h2>
+                 <a href="/products" class="btn-link text-decoration-none">ดูทั้งหมด →</a>
                 <div class="filter-buttons">
                     <button
                         class="btn btn-outline-secondary chefilter-btn active me-2 mb-2 "data-filter='all'>ทั้งหมด</button>
@@ -597,8 +750,9 @@
         <div class="container">
 
             <!-- หัวเรื่อง + ปุ่มกรอง -->
-            <div class="d-flex flex-wrap align-items-center mb-4">
+            <div class="d-flex flex-wrap align-items-center mb-4" style="justify-content: space-between;">
                 <h2 class="ms-0 section-title">โดรน</h2>
+                 <a href="/products" class="btn-link text-decoration-none">ดูทั้งหมด →</a>
                 <div class="filter-buttons">
                     <button
                         class="btn btn-outline-secondary dronefilter-btn active me-2 mb-2 "data-filter='all'>ทั้งหมด</button>
@@ -675,7 +829,6 @@
 
 
     <script src="{{ asset('js/home.filter.js') }}"></script>
-
 
 
 

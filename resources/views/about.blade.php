@@ -36,9 +36,7 @@
 
         {{-- แถวที่ 3: แผนที่ด้านซ้าย + ข้อมูลติดต่อด้านขวา --}}
         <div class="row">
-            {{-- คอลัมน์ซ้าย: แผนที่ --}}
             <div class="col-lg-6 mb-4 mb-lg-0">
-                {{-- ปรับ “src” เป็น URL Google Maps หรือเว็บไซต์แผนที่ที่ต้องการฝังลงไป --}}
                 <div class="ratio ratio-16x9 shadow-sm rounded">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.2069973004975!2d100.53667571536204!3d13.782583190439258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d64a0b5b6e5f9%3A0x48f78c280ca35519!2z4Lit4LiE4Liy4Lil4Lij4LiZ4LmA4Lit4Li44Lii4Liy4Lij4Liw!5e0!3m2!1sth!2sth!4v1688734722483!5m2!1sth!2sth"

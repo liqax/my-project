@@ -37,16 +37,16 @@
                                         <h6 class="card-title">{!! nl2br(e($item['title'])) !!}</h6>
                                         <p class="text-pink fw-bold mb-3">฿{{ number_format($item['price'], 2) }}</p>
 
-                                        <div class=" mt-auto">
+                                        <div class=" mt-auto d-flex ">
                                             <a href="{{ route('shop.show', $item['id']) }}"
-                                                class="btn btn-outline-secondary btn-sm w-100 mb-2">
+                                                class="btn btn-outline-secondary btn-sm w-10 mb-2  ">
                                                 ดูรายละเอียด
                                             </a>
 
                                             <form action="{{ route('wishlist.remove') }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{ $item['id'] }}">
-                                                <button type="submit" class="btn btn-sm btn-outline-danger w-100">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger w-10 ms-0">
                                                     <i class="bi bi-trash-fill me-1"></i> ลบออก
                                                 </button>
                                             </form>
