@@ -3,6 +3,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap');
 
 
+
+
+
+html {
+  scroll-behavior: smooth ;
+}
 #bookSection {
   scroll-margin-top: 50px; 
 }
@@ -46,6 +52,15 @@
     background-color: #f2f2f2;
      padding-left: 0;
 }
+.home-new{
+    width: 100%;
+    max-width: 1380px;
+    margin: 24px 0 0 0;
+    padding: 20px 0 40px 4%;
+    background-color: #fcf3e5;
+     padding-left: 0;
+}
+
 
 .sale-product{
     width: 100%;
@@ -95,6 +110,54 @@
   transform: translateX(0);
 }
 
+
+/* Container for three dots (ไม่ต้องเปลี่ยน) */
+.preloader-dots {
+  display: flex;
+  gap: 15px;
+}
+
+/* Style each dot */
+.preloader-dots span {
+  width: 25px;
+  height: 25px;
+  background-color: #e91e63; /* สีชมพู */
+  border-radius: 50%;
+  animation: dots-scale 1s infinite ease-in-out both;
+}
+
+/* ดีเลย์ ให้แต่ละจุดไม่ขยับพร้อมกัน */
+.preloader-dots span:nth-child(1) { animation-delay: 0s; }
+.preloader-dots span:nth-child(2) { animation-delay: 0.2s; }
+.preloader-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+/* Keyframes สำหรับขยาย–หด */
+@keyframes dots-scale {
+  0%, 100%   { transform: scale(0.5); opacity: 0.5; }
+  50%        { transform: scale(1.2); opacity: 1; }
+}
+
+/* ส่วน preloader overlay ไม่ต้องเปลี่ยน */
+#preloader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+}
+#preloader {
+  /* fade-out delay 30s, duration 0.3s */
+  transition: opacity 0.3s ease 2s;
+}
+#preloader.loaded {
+  opacity: 0;
+  /* visibility จะซ่อนทันที แต่ถ้าอยาก delay ให้เอาออกได้ */
+  /* visibility: hidden; */
+}
 
 
 .navbar .nav-link:hover {
@@ -174,7 +237,7 @@ body {
   border-radius: 5px;
 }
 html {
-  scroll-behavior: smooth !important;
+  scroll-behavior: smooth ;
 }
 /* Base reset and typography */
 html, body {
@@ -249,10 +312,11 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #ff4384;
     width: 38px ;
     height: 38px;
-  
-    
     border-radius: 5px;
 }
+
+
+
 
 /* เมื่อ hover บน carousel หรือปุ่ม active */
 .carousel:hover .carousel-control-prev-icon {
@@ -287,11 +351,6 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   z-index: 10;
 }
-
-
-
-
-
 
 
 /* เปลี่ยนวงกลม background ของลูกศรเป็นสีดำ */
@@ -671,6 +730,159 @@ opacity: 1;
 }
 
 
+/* ให้ overflow ซ่อน และ disable scrollbars */
+.swiper {
+  overflow: hidden;
+}
+
+/* จัด .swiper-wrapper ให้เป็น flex และใส่ transition */
+.swiper-wrapper {
+  display: flex;
+  transition: transform 0.3s ease;
+  padding: 10px 0 0 10px;
+}
+
+/* แต่ละ slide ให้ flex-shrink=0 และเว้นขอบระหว่างกัน */
+.swiper-slide {
+  flex-shrink: 0;
+  width: auto;           
+  margin-right: 1rem;
+  align-items: center;
+}
+
+.swiper-slide:last-child {
+  margin-right: 0;
+}
+
+.swiper-buttons-new {
+  display: flex;
+  gap: 0.5rem;
+}
+.swiper-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+.swiper-button{
+   display: flex;
+  gap: 0.5rem;
+}
+
+
+.category-item img{
+
+  max-width: 100px;
+  max-height: 100px;
+
+}
+.category-item {
+
+  max-width: 250px;
+  max-height: 250px;
+
+}
+
+
+.product-card-new {
+    flex: 0 0 auto;
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 10px;
+    text-align: center;
+}
+.product-card-new img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.product-card-new .title {
+    font-size: 0.9rem;
+    margin: 10px 0;
+}
+
+.product-card-new .price {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.product-card-new .sale {
+    color: #e74c3c;
+    font-weight: bold;
+}
+.add-btn {
+    background: #ff40a4;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    margin-top: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+
+ /* Swiper carousel  */
+.swiper-prev,
+.swiper-next {
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+  background: #F1F1F1;
+  color: #222222;
+  padding: 0;
+  text-align: center;
+  border-radius: 10px;
+  --bs-btn-border-color: transparent;
+  --bs-btn-active-bg: #ec9b22;
+  --bs-btn-active-border-color: transparent;
+  --bs-btn-hover-bg: #FFC43F;
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-disabled-color: #ccc;
+  --bs-btn-disabled-bg: #eaeaea;
+  --bs-btn-disabled-border-color: #eaeaea
+}
+.swiper-prev:hover,
+.swiper-next:hover {
+  background: #FFC43F;
+}
+.btn-link {
+  margin-right: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: right;
+  text-transform: capitalize;
+  color: #787878;
+}
+/* category carousel */
+.category-carousel .category-item {
+  background: #FFFFFF;
+  border: 1px solid #FBFBFB;
+  box-shadow: 0px 5px 22px rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
+  text-align: center;
+  padding: 60px 20px;
+  margin: 20px 0;
+  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
+}
+.category-carousel .category-item:hover {
+  transform: translate3d(0,-10px,0);
+  box-shadow: 0px 21px 44px rgba(0, 0, 0, 0.08);
+}
+.category-carousel .category-item .category-title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 27px;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  color: #222222;
+  margin-top: 20px;
+}
+
+
+
 
 
 
@@ -745,113 +957,6 @@ opacity: 1;
 }
 
 
-
-
-/* ให้ overflow ซ่อน และ disable scrollbars */
-.swiper {
-  overflow: hidden;
-}
-
-/* จัด .swiper-wrapper ให้เป็น flex และใส่ transition */
-.swiper-wrapper {
-  display: flex;
-  transition: transform 0.3s ease;
-  padding: 10px 0 0 10px;
-}
-
-/* แต่ละ slide ให้ flex-shrink=0 และเว้นขอบระหว่างกัน */
-.swiper-slide {
-  flex-shrink: 0;
-  width: auto;           
-  margin-right: 1rem;
-  
-}
-.swiper-slide:last-child {
-  margin-right: 0;
-}
-
-
-.swiper-buttons {
-  display: flex;
-  gap: 0.5rem;
-}
-.swiper-button{
-   display: flex;
-  gap: 0.5rem;
-}
-
-
-.category-item img{
-
-  max-width: 100px;
-  max-height: 100px;
-
-}
-.category-item {
-
-  max-width: 250px;
-  max-height: 250px;
-
-}
-
-
- /* Swiper carousel  */
-.swiper-prev,
-.swiper-next {
-  width: 38px;
-  height: 38px;
-  line-height: 38px;
-  background: #F1F1F1;
-  color: #222222;
-  padding: 0;
-  text-align: center;
-  border-radius: 10px;
-  --bs-btn-border-color: transparent;
-  --bs-btn-active-bg: #ec9b22;
-  --bs-btn-active-border-color: transparent;
-  --bs-btn-hover-bg: #FFC43F;
-  --bs-btn-hover-border-color: transparent;
-  --bs-btn-disabled-color: #ccc;
-  --bs-btn-disabled-bg: #eaeaea;
-  --bs-btn-disabled-border-color: #eaeaea
-}
-.swiper-prev:hover,
-.swiper-next:hover {
-  background: #FFC43F;
-}
-.btn-link {
-  margin-right: 30px;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 22px;
-  text-align: right;
-  text-transform: capitalize;
-  color: #787878;
-}
-/* category carousel */
-.category-carousel .category-item {
-  background: #FFFFFF;
-  border: 1px solid #FBFBFB;
-  box-shadow: 0px 5px 22px rgba(0, 0, 0, 0.04);
-  border-radius: 16px;
-  text-align: center;
-  padding: 60px 20px;
-  margin: 20px 0;
-  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
-}
-.category-carousel .category-item:hover {
-  transform: translate3d(0,-10px,0);
-  box-shadow: 0px 21px 44px rgba(0, 0, 0, 0.08);
-}
-.category-carousel .category-item .category-title {
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 27px;
-  letter-spacing: 0.02em;
-  text-transform: capitalize;
-  color: #222222;
-  margin-top: 20px;
-}
 
 
 

@@ -16,18 +16,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-
+    
 
 
 </head>
 
 <body>
 
-
+      {{-- Preloader --}}
+  @include('partials.preloader')
 
     <div class="container">
 
@@ -501,11 +499,6 @@
 
 
 
-
-
-
-
-
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         {{-- swiper --}}
@@ -516,7 +509,14 @@
 
     </div>
 
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const pre = document.getElementById('preloader');
+      if (!pre) return;
+      pre.classList.add('loaded');
+      setTimeout(() => pre.remove(), 2000);
+    });
+  </script>
 
 
 </body>

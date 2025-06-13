@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\OrderController;
-
+use App\Http\Controllers\CheckoutController;
 
 
 Route::get('/', function () {
@@ -45,10 +45,18 @@ Route::post('/wishlist/remove', [ShopController::class, 'removeFromWishlist'])->
 
 // Cart
 Route::get('/cart', [ShopController::class, 'viewCart'])->name('cart.view');
-Route::get('/checkout', [ShopController::class, 'checkoutPage'])->name('checkout.page');
 Route::post('/cart/add', [ShopController::class, 'addToCart'])->name('cart.add');
 Route::post('/cart/update', [ShopController::class, 'updateCart'])->name('cart.update');
 Route::post('/cart/remove', [ShopController::class, 'removeFromCart'])->name('cart.remove');
+
+
+
+//checkout 
+Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.page');
+// ส่งข้อมูลการชำระเงิน
+Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
+
+
 
 
 

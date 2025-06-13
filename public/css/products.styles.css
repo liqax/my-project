@@ -232,3 +232,66 @@
   z-index: 10;
 }
 
+
+
+@media (max-width: 1400px) {
+  .filter-bar {
+    gap: 16px;
+    padding: 12px;
+  }
+  .product-card {
+    max-width: calc(100% / 3- 30px); 
+  }
+}
+
+@media (max-width: 1200px) {
+  .filter-bar {
+    gap: 16px;
+    padding: 12px;
+  }
+  .product-card {
+    max-width: calc(100% - 25px);  
+  }
+}
+
+/* Desktop → Tablet (<= 992px) */
+@media (max-width: 992px) {
+  .products-row {
+    gap: 12px;
+  }
+  .product-card {
+    max-width: 100%;  /* 1 คอลัมน์ เต็มหน้าจอ */
+    margin: 8px 0;
+  }
+  .filter-buttons {
+    gap: 4px;
+  }
+  .filter-buttons .btn {
+    max-width: none;
+    flex: 1 1 45%;
+  }
+}
+
+
+
+
+  
+
+
+/* Mobile กลาง → Mobile เล็ก (<= 576px) */
+@media (max-width: 576px) {
+  .products-row {
+    gap: 12px;
+  }
+  .product-card {
+    max-width: 100%;  /* 1 คอลัมน์ เต็มหน้าจอ */
+    margin: 8px 0;
+  }
+  .filter-buttons {
+    gap: 4px;
+  }
+  .filter-buttons .btn {
+    max-width: none;
+    flex: 1 1 45%;
+  }
+}

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('title', 'PRE-ORDER')
-
 @section('content')
 
 
@@ -23,10 +22,10 @@
         </div>
 
         <!--  ปุ่มเลื่อน -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#mainSlider" data-bs-slide="prev">
+        <button class="carousel-control-prev btn btn-pink" type="button" data-bs-target="#mainSlider" data-bs-slide="prev">
             ❮
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#mainSlider" data-bs-slide="next">
+        <button class="carousel-control-next  btn btn-pink" type="button" data-bs-target="#mainSlider" data-bs-slide="next">
             ❯
         </button>
 
@@ -196,7 +195,7 @@
                         <h2 class="section-title">สินค้าขายดี!</h2>
 
                         <div class="d-flex align-items-center">
-                            <a href="/products" class="btn-link text-decoration-none">ดูสินค้าทั้งหมดในหมวดหมู่ →</a>
+                            <a href="/products" class="btn-link text-decoration-none">ดูทั้งหมด →</a>
                             <div class="swiper-buttons">
                                 <button class="swiper-prev brand-carousel-prev btn btn-pink">❮</button>
                                 <button class="swiper-next brand-carousel-next btn btn-pink">❯</button>
@@ -207,7 +206,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 ">
 
                     <div class="brand-carousel swiper">
                         <div class="swiper-wrapper">
@@ -317,23 +316,21 @@
         </div>
     </section>
 
-   
 
-
-    
-{{--    
-   <section class="sale-product py-5 overflow-hidden">
+    <section class=" home-new py-5 overflow-hidden">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
 
-                    <div class="section-header d-flex flex-wrap justify-content-between mb-5">
+                    <div class="section-header d-flex flex-wrap flex-wrap justify-content-between mb-5">
+
                         <h2 class="section-title">สินค้าใหม่!</h2>
+
                         <div class="d-flex align-items-center">
                             <a href="/products" class="btn-link text-decoration-none">ดูสินค้าทั้งหมด →</a>
-                            <div class="swiper-buttons">
-                                <button class="swiper-prev category-carousel-prev btn btn-pink">❮</button>
-                                <button class="swiper-next category-carousel-next btn btn-pink">❯</button>
+                            <div class="swiper-buttons-new">
+                                <button class="swiper-prev new-carousel-prev btn btn-pink">❮</button>
+                                <button class="swiper-next new-carousel-next btn btn-pink">❯</button>
                             </div>
                         </div>
                     </div>
@@ -343,27 +340,82 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <div class="category-carousel swiper">
+                    <div class="new-carousel swiper">
                         <div class="swiper-wrapper">
-                            <a href="index.html" class="nav-link category-item swiper-slide">
-                                <img src="/images/images/icon-vegetables-broccoli.png" alt="Category Thumbnail">
-                                <h3 class="category-title">หนังสือ</h3>
-                            </a>
-                            <a href="index.html" class="nav-link category-item swiper-slide">
-                                <img src="/images/images/icon-bread-baguette.png" alt="Category Thumbnail">
-                                <h3 class="category-title">อุปกรณ์วิทยาศาสตร์</h3>
-                            </a>
-                            <a href="index.html" class="nav-link category-item swiper-slide">
-                                <img src="/images/images/icon-soft-drinks-bottle.png" alt="Category Thumbnail">
-                                <h3 class="category-title">สารเคมี</h3>
-                            </a>
+                            <div class="swiper-slide">
+                                    <div class="product-card-new">
+                                        <img src="/img/slick/หนังสืออ่านเพิ่ม.jpg" alt="สินค้า">
+                                        <div class="info">
+                                            <p class="title">สยามรวมมิตร</p>
+                                            <p class="price"><del>฿190.00</del> <span class="sale">฿120.50</span></p>
+                                            <button class="add-btn">เพิ่มลงตะกร้า</button>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="swiper-slide">
+                                    <div class="product-card-new">
+                                        <img src="/img/slick/หนังสืออ่านเพิ่ม.jpg" alt="สินค้า">
+                                        <div class="info">
+                                            <p class="title">สยามรวมมิตร</p>
+                                            <p class="price"><del>฿190.00</del> <span class="sale">฿120.50</span></p>
+                                            <button class="add-btn">เพิ่มลงตะกร้า</button>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="swiper-slide">
+                                    <div class="product-card-new">
+                                        <img src="/img/slick/หนังสืออ่านเพิ่ม.jpg" alt="สินค้า">
+                                        <div class="info">
+                                            <p class="title">สยามรวมมิตร</p>
+                                            <p class="price"><del>฿190.00</del> <span class="sale">฿120.50</span></p>
+                                            <button class="add-btn">เพิ่มลงตะกร้า</button>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="swiper-slide">
+                                    <div class="product-card-new">
+                                        <img src="/img/slick/หนังสืออ่านเพิ่ม.jpg" alt="สินค้า">
+                                        <div class="info">
+                                            <p class="title">สยามรวมมิตร</p>
+                                            <p class="price"><del>฿190.00</del> <span class="sale">฿120.50</span></p>
+                                            <button class="add-btn">เพิ่มลงตะกร้า</button>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="swiper-slide">
+                                    <div class="product-card-new">
+                                        <img src="/img/slick/หนังสืออ่านเพิ่ม.jpg" alt="สินค้า">
+                                        <div class="info">
+                                            <p class="title">สยามรวมมิตร</p>
+                                            <p class="price"><del>฿190.00</del> <span class="sale">฿120.50</span></p>
+                                            <button class="add-btn">เพิ่มลงตะกร้า</button>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="swiper-slide">
+                                    <div class="product-card-new">
+                                        <img src="/img/slick/หนังสืออ่านเพิ่ม.jpg" alt="สินค้า">
+                                        <div class="info">
+                                            <p class="title">สยามรวมมิตร</p>
+                                            <p class="price"><del>฿190.00</del> <span class="sale">฿120.50</span></p>
+                                            <button class="add-btn">เพิ่มลงตะกร้า</button>
+                                        </div>
+                                    </div>
+                            </div>
+
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
+
+
+
+
+
+
 
 
 
@@ -376,7 +428,7 @@
             <!-- หัวเรื่อง + ปุ่มกรอง -->
             <div class="d-flex flex-wrap align-items-center mb-4 " style="justify-content: space-between;">
                 <h2 class="ms-0 section-title">หนังสือ</h2>
-                 <a href="/products" class="btn-link text-decoration-none">ดูทั้งหมด →</a>
+                <a href="/products" class="btn-link text-decoration-none">ดูทั้งหมด →</a>
                 <div class="filter-buttons">
                     <button
                         class="btn btn-outline-secondary bookfilter-btn active me-2 mb-2"data-filter='all'>ทั้งหมด</button>
@@ -514,7 +566,7 @@
             <!-- หัวเรื่อง + ปุ่มกรอง -->
             <div class="d-flex flex-wrap align-items-center mb-4" style="justify-content: space-between;">
                 <h2 class="ms-0 section-title">อุปกรณ์วิทยาศาสตร์</h2>
-                 <a href="/products" class="btn-link text-decoration-none">ดูทั้งหมด →</a>
+                <a href="/products" class="btn-link text-decoration-none">ดูทั้งหมด →</a>
                 <div class="filter-buttons">
                     <button
                         class="btn btn-outline-secondary scifilter-btn active me-2 mb-2 "data-filter='all'>ทั้งหมด</button>
@@ -632,7 +684,7 @@
             <!-- หัวเรื่อง + ปุ่มกรอง -->
             <div class="d-flex flex-wrap align-items-center mb-4" style="justify-content: space-between;">
                 <h2 class="ms-0 section-title">สารเคมี</h2>
-                 <a href="/products" class="btn-link text-decoration-none">ดูทั้งหมด →</a>
+                <a href="/products" class="btn-link text-decoration-none">ดูทั้งหมด →</a>
                 <div class="filter-buttons">
                     <button
                         class="btn btn-outline-secondary chefilter-btn active me-2 mb-2 "data-filter='all'>ทั้งหมด</button>
@@ -752,7 +804,7 @@
             <!-- หัวเรื่อง + ปุ่มกรอง -->
             <div class="d-flex flex-wrap align-items-center mb-4" style="justify-content: space-between;">
                 <h2 class="ms-0 section-title">โดรน</h2>
-                 <a href="/products" class="btn-link text-decoration-none">ดูทั้งหมด →</a>
+                <a href="/products" class="btn-link text-decoration-none">ดูทั้งหมด →</a>
                 <div class="filter-buttons">
                     <button
                         class="btn btn-outline-secondary dronefilter-btn active me-2 mb-2 "data-filter='all'>ทั้งหมด</button>
@@ -830,8 +882,7 @@
 
     <script src="{{ asset('js/home.filter.js') }}"></script>
 
-
-
+   
 
 
 

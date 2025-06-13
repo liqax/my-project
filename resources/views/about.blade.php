@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('title', 'PRE-ORDER')
+
 @section('content')
+  
     <div class="container py-5">
         {{-- แถวที่ 1: หัวข้อ --}}
         <div class="row mb-4">
