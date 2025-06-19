@@ -265,8 +265,8 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('DOMContentLoaded', function() {
             // 3.1 Category Carousel
             new Swiper('.category-carousel', {
-                slidesPerView: 'auto', // แสดงกี่ slide ตามความกว้างของเนื้อหา
-                spaceBetween: 16, // ช่องว่างระหว่าง slide (px)
+                slidesPerView: 4, // แสดงกี่ slide ตามความกว้างของเนื้อหา
+                spaceBetween: 20, // ช่องว่างระหว่าง slide (px)
                 navigation: {
                     prevEl: '.category-carousel-prev',
                     nextEl: '.category-carousel-next',
@@ -277,8 +277,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // 3.2 Brand Carousel
             new Swiper('.brand-carousel', {
-                slidesPerView: 3, // Desktop แสดง 3 แถว
-                spaceBetween: 16,
+                slidesPerView: 4, // Desktop แสดง 3 แถว
+                spaceBetween: 30,
                 navigation: {
                     prevEl: '.brand-carousel-prev',
                     nextEl: '.brand-carousel-next',
@@ -297,8 +297,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 loop: false,
             });
             new Swiper('.new-carousel', {
-                slidesPerView: 5, 
-                spaceBetween: 4,
+                slidesPerView: 4, 
+                spaceBetween: 20,
                 navigation: {
                     prevEl: '.new-carousel-prev',
                     nextEl: '.new-carousel-next',

@@ -41,7 +41,7 @@ class OrderController extends Controller
                 'date'   => '2024-05-28',
             ],
             
-            // … ต้องส่งข้อมูลมาที่นี่
+          
         ]);
 
         // กรองตาม status ถ้ามี parameter 'status' ส่งมา (เช่น ?status=shipped)
@@ -90,5 +90,15 @@ class OrderController extends Controller
             'filterStatus' => $request->status ?? 'all',
             'filterMonth'  => $request->month  ?? '',
         ]);
-    }
+       }
+
+    public function viewOrders()
+    {
+    $orders = Order::with('items.product')->where('user_id', auth()->id())->get();
+
+    return view('order.index', compact('orders'));
+}
+
+
+
 }

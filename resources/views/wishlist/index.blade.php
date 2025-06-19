@@ -31,7 +31,7 @@
                         @foreach ($items as $item)
                             <div class="row col-12 col-md-4 col-lg-4 justify-content-center mt-5 mb-5">
                                 <div class="card h-75 w-75 shadow-sm">
-                                    <img src="{{ asset($item['img']) }}" class="card-img-top" alt="{{ $item['title'] }}"
+                                    <img src="{{ asset($item['image']) }}" class="card-img-top" alt="{{ $item['title'] }}"
                                         style="height: 200px; object-fit: cover; width:200px; margin:0 auto">
                                     <div class="card-body d-flex flex-column">
                                         <h6 class="card-title">{!! nl2br(e($item['title'])) !!}</h6>

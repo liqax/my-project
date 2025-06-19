@@ -20,7 +20,7 @@
             </div>
 
             <div class="product-grid wishlist md-2  ">
-                <div class="container-flude py-3">
+                <div class="container-flude py-5 ms-5 md-5 ml-5">
                     {{-- ฟอร์มกรองข้อมูล --}}
                     <form action="{{ route('orders.history') }}" method="GET" class="row g-3 align-items-end mb-4">
                         {{-- เลือกสถานะ --}}

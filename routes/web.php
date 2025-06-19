@@ -3,12 +3,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\HomeController;
 
-
-Route::get('/', function () {
- return view('home');
-});
-
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products',  [ShopController::class,'index'])->name('shop.index');
 Route::get('/products/{id}', [ShopController::class,'show']) ->name('shop.show');
 
@@ -58,6 +55,33 @@ Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout
 
 
 
+// หน้า login
+Route::get('/login', function () {
+    return view('auth.login'); // ให้คุณสร้างไฟล์ resources/views/auth/login.blade.php ด้วย
+})->name('login');
+
+// หน้า register
+Route::get('/register', function () {
+    return view('auth.register'); // สร้าง views เหมือนกัน
+})->name('register');
+
+// logout
+Route::post('/logout', function () {
+    auth()->logout();
+    return redirect('/');
+})->name('logout');
+
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+
+    return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]);
+})->name('password.email');
 
 
 

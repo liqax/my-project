@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'PRE-ORDER')
 @section('content')
-   
+
     <div class="filter-bar mt-3">
         <div class="filter-item">
             <label for="search">ค้นหา</label>
@@ -36,11 +36,11 @@
 
     <div class="container py-5">
         <div id="productRow" class="row gx-4 gy-4 justify-content-start">
-            @foreach ($products as $id => $p)
+            @foreach ($products as $product)
                 <div class="col-6 col-md-3">
-                    <a href="{{ route('shop.show', $id) }}" class="text-decoration-none">
-                        <x-product-card :id="$id" :img="$p['img']" :title="$p['title']" :price="$p['price']"
-                            :category="$p['category']" :size="$p['size']" :item-class="'h-100'" />
+                    <a href="{{ route('shop.show', $product->id) }}" class="text-decoration-none">
+                        <x-product-card :id="$product->id" :img="$product->image" :title="$product->title" :price="$product->price"
+                            :category="$product->category" :size="$product->size" :product-class="'h-100'" />
                     </a>
                 </div>
             @endforeach
