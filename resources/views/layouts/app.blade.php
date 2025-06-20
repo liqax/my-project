@@ -24,6 +24,7 @@
 
 <body>
 
+
     {{-- Preloader --}}
     @include('partials.preloader')
 
@@ -187,17 +188,43 @@
 
                     </div>
                 </div>
-                    <div class="text-center">
-                        <button class="link-icon text-decoration-none border-0 bg-transparent" data-bs-toggle="modal"
-                            data-bs-target="#authModal">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
-                                fill="currentColor" viewBox="0 0 16 16" class="mb-icon">
-                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3z" />
-                                <path fill-rule="evenodd" d="M8 8a3 3 0 100-6 3 3 0 000 6z" />
-                            </svg>
-                            <div class="small fw-light">สมาชิก</div>
-                        </button>
 
+                <div class="text-center">
+                    <button class="link-icon text-decoration-none border-0 bg-transparent" data-bs-toggle="modal"
+                        data-bs-target="#authModal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                            viewBox="0 0 16 16" class="mb-icon">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3z" />
+                            <path fill-rule="evenodd" d="M8 8a3 3 0 100-6 3 3 0 000 6z" />
+                        </svg>
+                        @guest
+                            <div class="small fw-light">สมาชิก</div>
+                        @endguest
+                    </button>
+
+                    @auth
+                        <div class="text-end">
+
+                            <!-- ปุ่ม dropdown -->
+                            <a class=" small fw-light text-decoration-none" href="#"
+                                role="button" id="dropdownUserMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                                สวัสดี, {{ Auth::user()->name }}
+                            </a>
+
+                            <!-- เนื้อหาเมนู dropdown -->
+                            <ul class="dropdown-menu text-center p-2" aria-labelledby="dropdownUserMenu">
+                                <li>
+                                    <a class="dropdown-item text-danger small" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        ออกจากระบบ
+                                    </a>
+                                </li>
+                            </ul>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    @else
                         <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel"
                             aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
@@ -222,8 +249,7 @@
 
                                                     <div class="mb-3">
                                                         <input type="email" name="email" class="form-control"
-                                                            placeholder="อีเมล*" required
-                                                            value="{{ old('email') }}">
+                                                            placeholder="อีเมล*" required value="{{ old('email') }}">
                                                     </div>
 
                                                     <div class="mb-3">
@@ -234,8 +260,7 @@
                                                     <button type="submit"
                                                         class="btn btn-primary w-25">เข้าสู่ระบบ</button>
 
-                                                    <div
-                                                        class="d-flex justify-content-between align-items-center mb-3">
+                                                    <div class="d-flex justify-content-between align-items-center mb-3">
                                                         <div class="form-check small">
                                                             <input class="form-check-input" type="checkbox"
                                                                 name="remember" id="rememberLogin"
@@ -267,8 +292,7 @@
                                                     <button type="submit"
                                                         class="btn btn-warning w-25">ส่งลิงก์รีเซ็ต</button>
                                                     <div class="mt-3">
-                                                        <a href="#loginTab" class="small text-muted"
-                                                            data-bs-toggle="tab"
+                                                        <a href="#loginTab" class="small text-muted" data-bs-toggle="tab"
                                                             data-bs-target="#loginTab">ย้อนกลับไปล็อกอิน</a>
                                                     </div>
                                                 </form>
@@ -292,8 +316,7 @@
                                                     </div>
                                                     <div class="mb-2">
                                                         <input type="password" name="password_confirmation"
-                                                            class="form-control" placeholder="ยืนยันรหัสผ่าน*"
-                                                            required>
+                                                            class="form-control" placeholder="ยืนยันรหัสผ่าน*" required>
                                                     </div>
                                                     <div class="mb-2">
                                                         <input type="text" name="phone" class="form-control"
@@ -337,14 +360,10 @@
                                 </div>
                             </div>
                         </div>
-
-                    </div>
-
-
-
+                    @endauth
                 </div>
-
             </div>
+        </div>
 
         <nav class="navbar navbar-expand-lg py-1  " style="background-color: #ff40a4;" id="mainNavbar">
             <div class="container">
