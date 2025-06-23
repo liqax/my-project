@@ -137,107 +137,36 @@
 
                     <div class="brand-carousel swiper">
                         <div class="swiper-wrapper">
+                            
+                            @foreach ($products as $product)
+                                <div class="swiper-slide">
+                                    <div class="card mb-3 p-3 rounded-4 shadow border-0">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="{{ asset($product->image) }}" class="img-fluid rounded"
+                                                    alt="{{ $product->name }}">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-body py-0">
+                                                    <p class="card-title mb-2 text-truncate-2">{{ $product->title }}</p>
+                                                    <h5 class="card-title text-danger">
+                                                        ฿{{ number_format($product->sale_price ?? $product->price, 2) }}
+                                                    </h5>
+                                                    @if ($product->sale_price)
+                                                        
+                                                            <span class="text-decoration-line-through     text-muted">฿{{ number_format($product->price, 2) }}</span>
 
-                            <div class="swiper-slide">
-                                <div class="card mb-3 p-3 rounded-4 shadow border-0">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img src="/images/images/product-thumb-11.jpg" class="img-fluid rounded"
-                                                alt="Card title">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body py-0">
-                                                <p class="text-muted mb-0">Amber Jar</p>
-                                                <h5 class="card-title">Honey best nectar you wish to get</h5>
+                                                             
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card mb-3 p-3 rounded-4 shadow border-0">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img src="/images/images/product-thumb-12.jpg" class="img-fluid rounded"
-                                                alt="Card title">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body py-0">
-                                                <p class="text-muted mb-0">Amber Jar</p>
-                                                <h5 class="card-title">Honey best nectar you wish to get</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card mb-3 p-3 rounded-4 shadow border-0">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img src="/images/images/product-thumb-13.jpg" class="img-fluid rounded"
-                                                alt="Card title">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body py-0">
-                                                <p class="text-muted mb-0">Amber Jar</p>
-                                                <h5 class="card-title">Honey best nectar you wish to get</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card mb-3 p-3 rounded-4 shadow border-0">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img src="/images/images/product-thumb-14.jpg" class="img-fluid rounded"
-                                                alt="Card title">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body py-0">
-                                                <p class="text-muted mb-0">Amber Jar</p>
-                                                <h5 class="card-title">Honey best nectar you wish to get</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card mb-3 p-3 rounded-4 shadow border-0">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img src="/images/images/product-thumb-11.jpg" class="img-fluid rounded"
-                                                alt="Card title">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body py-0">
-                                                <p class="text-muted mb-0">Amber Jar</p>
-                                                <h5 class="card-title">Honey best nectar you wish to get</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card mb-3 p-3 rounded-4 shadow border-0">
-                                    <div class="row g-0">
-                                        <div class="col-md-4">
-                                            <img src="/images/images/product-thumb-12.jpg" class="img-fluid rounded"
-                                                alt="Card title">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body py-0">
-                                                <p class="text-muted mb-0">Amber Jar</p>
-                                                <h5 class="card-title">Honey best nectar you wish to get</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
 
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -285,7 +214,6 @@
                                                 <del>฿{{ number_format($product->price, 2) }}</del>
                                                 <span class="sale">฿{{ number_format($product->sale_price, 2) }}</span>
                                             </p>
-                                            <button class="add-btn">เพิ่มลงตะกร้า</button>
                                         </div>
                                     </div>
                                 </div>
@@ -346,11 +274,8 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">ถัดไป</span>
                     </button>
-
                 </div>
-
             </div>
-
     </section>
 
     {{-- ######################################################################################################################### --}}

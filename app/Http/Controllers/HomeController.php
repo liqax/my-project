@@ -11,6 +11,10 @@ class HomeController extends Controller
 {
     public function index()
     {
+
+        //bestsell
+        $products = Product::where('is_best_seller', true)->take(6)->get();
+
         // 1) mainSlider
         $mainSlides = Slide::where('type','main')
                            ->orderBy('slide_index')
@@ -40,9 +44,10 @@ class HomeController extends Controller
          $science = Product::where('category', 'kits')->get();
          $chemistry = Product::where('category', 'chemecals')->get();
         $drones = Product::where('category', 'drone')->get();
+     
+        
 
 
-
-        return view('home', compact('mainSlides','productSlides','categories','brandSlides','newProducts','books', 'science', 'chemistry', 'drones'));
+        return view('home', compact('mainSlides','productSlides','categories','brandSlides','newProducts','books', 'science', 'chemistry', 'drones','products'));
     }
 }

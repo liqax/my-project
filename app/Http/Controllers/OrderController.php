@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Http\Controllers\OrderController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\Models\Order;
+
+
 class OrderController extends Controller
 {
     /**
      * แสดงประวัติคำสั่งซื้อ
      * รองรับการกรองด้วย 'status' และ 'month' (เป็นเลขเดือน 1–12)
      */
-    public function history(Request $request)
+     public function history(Request $request)
     {
         // สร้างข้อมูลตัวอย่าง $orders เป็น Collection ของ Array แต่ละคำสั่งซื้อ
         $orders = collect([
@@ -99,6 +104,117 @@ class OrderController extends Controller
     return view('order.index', compact('orders'));
 }
 
+  public function showCheckoutPage()
+    {
+        $cart = session('cart', []);
+        return view('checkout', compact('cart'));
+    }
 
+    public function submitOrder(Request $request)
+    {
+        $cart = session('cart', []);
+        if (empty($cart)) return redirect()->route('cart.show')->with('error', 'ไม่มีสินค้าในตะกร้า');
+
+        $order = new Order();
+        $order->user_id = Auth::id();
+        $order->total = $request->input('total');
+        $order->shipping_address = $request->input('address');
+        $order->payment_method = $request->input('payment');
+        $order->status = 'รอดำเนินการ';
+        $order->items = json_encode($cart);
+        $order->save();
+
+        Session::forget('cart');
+        return redirect()->route('order.status')->with('success', 'สั่งซื้อสำเร็จ');
+    }
+
+    public function orderStatus()
+    {
+        $orders = Order::where('user_id', Auth::id())->latest()->get();
+        return view('order-status', compact('orders'));
+    }
+
+    public function store(Request $request)
+{
+    // ตัวอย่าง: บันทึกคำสั่งซื้อ
+    $order = new \App\Models\Order();
+    $order->user_id = auth()->id();
+    $order->total = $request->input('total');
+    $order->payment_method = $request->input('payment_method');
+    $order->save();
+
+    // ตัวอย่าง: Redirect หลังบันทึก
+    return redirect()->route('orders.status')->with('success', 'ทำรายการสั่งซื้อเรียบร้อยแล้ว');
+
+       
 
 }
+ public function placeOrder(Request $request)
+    {
+        // 1. ตรวจสอบข้อมูลที่ส่งมา
+        $request->validate([
+            'selected_items' => 'required|array|min:1',
+            'payment_method' => 'required|string',
+        ]);
+
+        // 2. ดึงข้อมูลตะกร้าจาก Session
+        $cart = Session::get('cart', []);
+        $selectedItemIds = $request->input('selected_items');
+
+        // 3. กรองเอาเฉพาะสินค้าที่ผู้ใช้เลือกจริงๆ
+        $itemsToOrder = array_filter($cart, function($id) use ($selectedItemIds) {
+            return in_array($id, $selectedItemIds);
+        }, ARRAY_FILTER_USE_KEY);
+
+        if (empty($itemsToOrder)) {
+            return redirect()->back()->with('error', 'กรุณาเลือกสินค้าที่ต้องการสั่งซื้อ');
+        }
+
+        // 4. คำนวณยอดรวมฝั่ง Server อีกครั้ง (เพื่อความปลอดภัย)
+        $subtotal = 0;
+        foreach ($itemsToOrder as $item) {
+            $subtotal += $item['price'] * $item['qty'];
+        }
+        $shippingCost = 50; // ควรมาจากฐานข้อมูลหรือ config
+        $vatAmount = $subtotal * 0.07;
+        $grandTotal = $subtotal + $shippingCost + $vatAmount;
+
+        // 5. ดึงที่อยู่จัดส่งของผู้ใช้
+        $user = Auth::user();
+        $shippingAddress = $user->shippingAddress; // สมมติว่าคุณมี relationship นี้
+
+        if (!$shippingAddress) {
+             return redirect()->route('cart.index')->with('error', 'ไม่พบที่อยู่จัดส่ง');
+        }
+
+        // 6. บันทึกข้อมูลการสั่งซื้อลงฐานข้อมูล (ตัวอย่าง)
+        // DB::transaction(function() use ($user, $shippingAddress, $itemsToOrder, $grandTotal, $request) {
+        //     $order = Order::create([
+        //         'user_id' => $user->id,
+        //         'shipping_address_id' => $shippingAddress->id,
+        //         'total_amount' => $grandTotal,
+        //         'payment_method' => $request->input('payment_method'),
+        //         'status' => 'pending', // สถานะเริ่มต้น
+        //     ]);
+        //
+        //     foreach ($itemsToOrder as $id => $item) {
+        //         OrderItem::create([
+        //             'order_id' => $order->id,
+        //             'product_id' => $id, // หรือ $item['product_id']
+        //             'quantity' => $item['qty'],
+        //             'price' => $item['price'],
+        //             'size' => $item['size'] ?? null,
+        //         ]);
+        //     }
+        // });
+
+        // 7. ลบสินค้าที่สั่งซื้อแล้วออกจากตะกร้า
+        $newCart = array_diff_key($cart, $itemsToOrder);
+        Session::put('cart', $newCart);
+
+        // 8. Redirect ไปยังหน้าขอบคุณ หรือหน้าสถานะคำสั่งซื้อ
+        return redirect()->route('order.success')->with('success', 'ได้รับคำสั่งซื้อของคุณเรียบร้อยแล้ว!');
+    }
+    }
+
+

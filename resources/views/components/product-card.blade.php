@@ -1,17 +1,15 @@
 @props([
-    'id',       // รหัสสินค้า
-    'img',      // เส้นทางรูปภาพ
-    'title',    // ชื่อสินค้า
-    'price',    // ราคาสินค้า
+    'id', // รหัสสินค้า
+    'img', // เส้นทางรูปภาพ
+    'title', // ชื่อสินค้า
+    'price', // ราคาสินค้า
 ])
 
 <!-- Card  -->
 <div class="col-auto  {{ $itemClass }}" data-variety="{{ $variety }}" data-price="{{ $price }}">
     <div class="card product-card  product-item " data-category="{{ $category }}" data-price="{{ $price }}">
-
         <div class="position-relative">
             <img src="{{ asset($img) }}" class="card-img-top" alt="{{ $title }}">
-
         </div>
         <div class="card-body">
             <p class="card-text product-title">
@@ -21,7 +19,6 @@
         <div class="card-footer text-center">
             <form action="{{ route('cart.add') }}" method="POST" class="d-inline-block">
                 @csrf
-                
                 <input type="hidden" name="id" value="{{ $id }}">
                 <input type="hidden" name="title" value="{{ $title }}">
                 <input type="hidden" name="price" value="{{ $price }}">
@@ -38,7 +35,6 @@
                     <i class="bi bi-heart-fill"></i>
                 </button>
             </form>
-
         </div>
     </div>
 </div>

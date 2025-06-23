@@ -27,11 +27,10 @@
                         <div class="card shadow-sm rounded-4 p-4 mx-auto" style="max-width: 720px;">
                             <h4 class="text-center fw-bold mb-4">ข้อมูลที่อยู่จัดส่งสินค้า</h4>
 
-                            <form action="/shipping/save" method="POST">
-                                <!-- @csrf -->
+                           <form action="{{ route('shipping.save') }}" method="POST">
+                                @csrf
 
                                 <div class="row g-3">
-
                                     <!-- ชื่อและนามสกุล -->
                                     <div class="col-md-6">
                                         <label class="form-label">ชื่อจริง</label>
@@ -95,23 +94,14 @@
                                             <!-- เพิ่มประเทศอื่น ๆ ได้ -->
                                         </select>
                                     </div>
-
                                 </div>
-
                                 <div class="d-grid mt-4">
                                     <button type="submit" class="btn btn-primary btn-lg">บันทึกที่อยู่จัดส่ง</button>
                                 </div>
-
                             </form>
                         </div>
                     </div>
                 </section>
-
-
-
-
-
-
             </div>
         </div>
     </div>

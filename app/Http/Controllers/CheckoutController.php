@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Cart;
+use App\Models\ShippingAddress;
 
 class CheckoutController extends Controller
 {
@@ -25,4 +26,13 @@ class CheckoutController extends Controller
         // ตรงนี้สามารถเขียนต่อหรือ mock ก่อนก็ได้
         return redirect()->route('home')->with('success', 'ชำระเงินสำเร็จ');
     }
+
+   public function checkout()
+{
+    $address = ShippingAddress::where('user_id', auth()->id())->latest()->first();
+
+    $cart = session('cart', []); // ถ้ามีตะกร้า
+
+    return view('checkout', compact('address', 'cart'));
+}
 }

@@ -6,12 +6,14 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\ShippingAddressController;
+use App\Http\Controllers\CustomerController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products',  [ShopController::class,'index'])->name('shop.index');
 Route::get('/products/{id}', [ShopController::class,'show']) ->name('shop.show');
 Route::view('/about', 'about')->name('about');
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::get('/orders/history', [OrderController::class, 'history'])->name('orders.history');
 Route::get('/orders/sale', function () {return view('orders.sale');});
 Route::get('/billing/account', function () {return view('billing.account');});
@@ -39,4 +41,15 @@ Route::post('/forgot-password', function (Request $request) {$request->validate(
 })->name('password.email');
 Route::post('/logout', function () {Auth::logout(); return redirect('/'); })->name('logout');
 
+Route::middleware('auth')->group(function () {
+Route::get('/checkout', [App\Http\Controllers\OrderController::class, 'showCheckoutPage'])->name('checkout.page');
+Route::post('/checkout', [App\Http\Controllers\OrderController::class, 'submitOrder'])->name('checkout.submit');
+Route::get('/order-status', [App\Http\Controllers\OrderController::class, 'orderStatus'])->name('order.status');
+});
+Route::get('/shipping', [ShippingAddressController::class, 'create'])->name('shipping.create');
+Route::post('/shipping/save', [ShippingAddressController::class, 'store'])->name('shipping.save');
+Route::get('/best-sellers', [ProductController::class, 'bestSellers']);
 
+
+Route::get('/customer/address', [CustomerController::class, 'address'])->name('customer.address');
+Route::post('/customer/address/save', [CustomerController::class, 'saveAddress'])->name('customer.address.save');

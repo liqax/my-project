@@ -7,7 +7,6 @@
             <i class="bi bi-arrow-left"></i> ย้อนกลับ
         </a>
 
-
         <div class="row gy-4">
             {{-- LEFT: Main image + thumbnails --}}
             <div class="col-md-6 text-center  ">
@@ -26,8 +25,6 @@
                     @endforeach
                 </div>
             </div>
-
-
 
             {{-- RIGHT: Details --}}
             <div class="col-md-6">

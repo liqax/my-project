@@ -20,7 +20,8 @@ Product::create([
     'category' => 'books',
     'variety' => 'booksci',
     'size' => 'A4',
-    'description' => 'หนังสือเรียนวิทยาศาสตร์พื้นฐาน สำหรับนักเรียนระดับมัธยมศึกษาปีที่ 3'
+    'description' => 'หนังสือเรียนวิทยาศาสตร์พื้นฐาน สำหรับนักเรียนระดับมัธยมศึกษาปีที่ 3',
+    'is_best_seller' => true,
 ]);
 
 Product::create([
@@ -30,7 +31,8 @@ Product::create([
     'category' => 'books',
     'variety' => 'calcu',
     'size' => 'B5',
-    'description' => 'คู่มือคณิตศาสตร์เพื่อพัฒนาทักษะอัจฉริยะทางตัวเลขสำหรับเด็กเล็ก'
+    'description' => 'คู่มือคณิตศาสตร์เพื่อพัฒนาทักษะอัจฉริยะทางตัวเลขสำหรับเด็กเล็ก',
+    'is_best_seller'=> true,
 ]);
 
 Product::create([
@@ -40,7 +42,8 @@ Product::create([
     'category' => 'books',
     'variety' => 'calcu',
     'size' => 'A5',
-    'description' => 'หนังสือฝึกทักษะพื้นฐานด้านตรรกะและคณิตศาสตร์สำหรับเด็กอนุบาล'
+    'description' => 'หนังสือฝึกทักษะพื้นฐานด้านตรรกะและคณิตศาสตร์สำหรับเด็กอนุบาล',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -50,7 +53,8 @@ Product::create([
     'category' => 'books',
     'variety' => 'kid',
     'size' => 'A5',
-    'description' => 'นิทานภาพเสริมจินตนาการสำหรับเด็กเล็ก เรื่องราวของเมฆน้อยและมิตรภาพ'
+    'description' => 'นิทานภาพเสริมจินตนาการสำหรับเด็กเล็ก เรื่องราวของเมฆน้อยและมิตรภาพ',
+    'is_best_seller'=> true,
 ]);
 
 Product::create([
@@ -60,7 +64,8 @@ Product::create([
     'category' => 'books',
     'variety' => 'kid',
     'size' => 'A5',
-    'description' => 'นิทานอบอุ่นใจสอนเรื่องการแบ่งปันและการอยู่ร่วมกันในสังคม'
+    'description' => 'นิทานอบอุ่นใจสอนเรื่องการแบ่งปันและการอยู่ร่วมกันในสังคม',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -70,7 +75,8 @@ Product::create([
     'category' => 'books',
     'variety' => 'kid',
     'size' => 'A5',
-    'description' => 'นิทานส่งเสริมความรักในครอบครัวสำหรับเด็ก'
+    'description' => 'นิทานส่งเสริมความรักในครอบครัวสำหรับเด็ก',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -80,7 +86,8 @@ Product::create([
     'category' => 'kits',
     'variety' => 'glassware',
     'size' => '250ml',
-    'description' => 'แก้วบีกเกอร์สำหรับใช้ในการทดลองวิทยาศาสตร์ วัสดุทนความร้อน'
+    'description' => 'แก้วบีกเกอร์สำหรับใช้ในการทดลองวิทยาศาสตร์ วัสดุทนความร้อน',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -90,7 +97,8 @@ Product::create([
     'category' => 'kits',
     'variety' => 'glassware',
     'size' => '100ml',
-    'description' => 'ขวดแก้วใสสำหรับใช้เก็บสารเคมีหรือสารทดลอง'
+    'description' => 'ขวดแก้วใสสำหรับใช้เก็บสารเคมีหรือสารทดลอง',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -100,7 +108,8 @@ Product::create([
     'category' => 'kits',
     'variety' => 'glassware',
     'size' => '16x100mm',
-    'description' => 'หลอดทดลองแก้วใสคุณภาพสูง สำหรับใช้งานทั่วไปในห้องแล็บ'
+    'description' => 'หลอดทดลองแก้วใสคุณภาพสูง สำหรับใช้งานทั่วไปในห้องแล็บ',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -110,7 +119,8 @@ Product::create([
     'category' => 'kits',
     'variety' => 'testtube',
     'size' => '12 ช่อง',
-    'description' => 'ถาดพลาสติกสำหรับใส่สารในปริมาณน้อย ใช้ในการทดลองต่าง ๆ'
+    'description' => 'ถาดพลาสติกสำหรับใส่สารในปริมาณน้อย ใช้ในการทดลองต่าง ๆ',
+    'is_best_seller'=> true,
 ]);
 
 Product::create([
@@ -120,7 +130,8 @@ Product::create([
     'category' => 'kits',
     'variety' => 'glassware',
     'size' => '60mm',
-    'description' => 'กรวยแก้วสำหรับกรองสารเคมี ทนกรดด่างได้ดี'
+    'description' => 'กรวยแก้วสำหรับกรองสารเคมี ทนกรดด่างได้ดี',
+    'is_best_seller'=>true,
 ]);
 
 Product::create([
@@ -130,7 +141,8 @@ Product::create([
     'category' => 'kits',
     'variety' => 'glassware',
     'size' => '100ml',
-    'description' => 'ถ้วยแก้วสำหรับเตรียมหรือผสมสารในปริมาณเล็กน้อย'
+    'description' => 'ถ้วยแก้วสำหรับเตรียมหรือผสมสารในปริมาณเล็กน้อย',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -140,7 +152,8 @@ Product::create([
     'category' => 'chemecals',
     'variety' => 'all',
     'size' => '100ml',
-    'description' => 'กรดไฮโดรคลอริกเข้มข้น เหมาะสำหรับใช้ในห้องปฏิบัติการ'
+    'description' => 'กรดไฮโดรคลอริกเข้มข้น เหมาะสำหรับใช้ในห้องปฏิบัติการ',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -150,7 +163,8 @@ Product::create([
     'category' => 'chemecals',
     'variety' => 'anin',
     'size' => '100g',
-    'description' => 'เบสเข้มข้นในรูปแบบของแข็ง ใช้ในกระบวนการทางเคมีต่าง ๆ'
+    'description' => 'เบสเข้มข้นในรูปแบบของแข็ง ใช้ในกระบวนการทางเคมีต่าง ๆ',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -160,7 +174,8 @@ Product::create([
     'category' => 'chemecals',
     'variety' => 'anin',
     'size' => '100ml',
-    'description' => 'กรดซัลฟิวริกสำหรับการทดลองเคมีหรือกระบวนการในห้องแล็บ'
+    'description' => 'กรดซัลฟิวริกสำหรับการทดลองเคมีหรือกระบวนการในห้องแล็บ',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -170,7 +185,8 @@ Product::create([
     'category' => 'chemecals',
     'variety' => 'solut',
     'size' => '50ml',
-    'description' => 'สารละลายอินดิเคเตอร์ชนิดหนึ่ง สำหรับการไทเทรต'
+    'description' => 'สารละลายอินดิเคเตอร์ชนิดหนึ่ง สำหรับการไทเทรต',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -180,7 +196,8 @@ Product::create([
     'category' => 'chemecals',
     'variety' => 'solut',
     'size' => '50ml',
-    'description' => 'สารละลายตรวจสอบค่าความเป็นกรด-ด่าง (pH) แบบกว้าง'
+    'description' => 'สารละลายตรวจสอบค่าความเป็นกรด-ด่าง (pH) แบบกว้าง',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -190,7 +207,8 @@ Product::create([
     'category' => 'chemecals',
     'variety' => 'solut',
     'size' => '100ml',
-    'description' => 'กรดไนตริกเจือจางสำหรับการทดลองทั่วไปในห้องแล็บ'
+    'description' => 'กรดไนตริกเจือจางสำหรับการทดลองทั่วไปในห้องแล็บ',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -200,7 +218,8 @@ Product::create([
     'category' => 'drone',
     'variety' => 'gen1',
     'size' => 'กลาง',
-    'description' => 'โดรน GEN1 สำหรับใช้งานทั่วไป พร้อมกล้องความละเอียด HD'
+    'description' => 'โดรน GEN1 สำหรับใช้งานทั่วไป พร้อมกล้องความละเอียด HD',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -210,7 +229,8 @@ Product::create([
     'category' => 'drone',
     'variety' => 'gen2',
     'size' => 'กลาง',
-    'description' => 'โดรน GEN2 พร้อมระบบควบคุมระยะไกล และกล้อง Full HD'
+    'description' => 'โดรน GEN2 พร้อมระบบควบคุมระยะไกล และกล้อง Full HD',
+    'is_best_seller'=> false,
 ]);
 
 Product::create([
@@ -220,7 +240,8 @@ Product::create([
     'category' => 'drone',
     'variety' => 'gen2',
     'size' => 'ใหญ่',
-    'description' => 'รุ่นอัปเกรดของ GEN2 พร้อมแบตเตอรี่ใช้งานได้นานและ GPS ในตัว'
+    'description' => 'รุ่นอัปเกรดของ GEN2 พร้อมแบตเตอรี่ใช้งานได้นานและ GPS ในตัว',
+    'is_best_seller'=> true,
 ]);
 
     }

@@ -87,7 +87,7 @@
                             @endforeach
 
                             <div class="text-center">
-                                <a href="{{ route('wishlist.view') }}" class="btn btn-sm btn-dark w-100">
+                                <a href="{{ route('wishlist.view') }}" class="btn btn-primary w-100">
                                     ดูรายการโปรดทั้งหมด
                                 </a>
                             </div>
@@ -171,13 +171,10 @@
 
                             {{-- ปุ่มลิงก์ไปหน้าดูตะกร้าทั้งหมด (cart.view) --}}
                             <div class="d-grid">
-                                <a href="{{ route('cart.view') }}" class="btn btn-sm btn-dark w-100 mb-2">
+                                <a href="{{ route('cart.view') }}" class="btn btn-primary w-100 mb-2">
                                     ดูตะกร้าทั้งหมด
                                 </a>
-                                {{-- ปุ่มชำระสินค้าต่อ (checkout) --}}
-                                <a href="{{ route('checkout.page') }}" class="btn btn-sm btn-primary w-100">
-                                    ไปชำระสินค้า
-                                </a>
+
                             </div>
                         @else
                             {{-- กรณีตะกร้าว่าง --}}
@@ -206,8 +203,8 @@
                         <div class="text-end">
 
                             <!-- ปุ่ม dropdown -->
-                            <a class=" small fw-light text-decoration-none" href="#"
-                                role="button" id="dropdownUserMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class=" small fw-light text-decoration-none" href="#" role="button"
+                                id="dropdownUserMenu" data-bs-toggle="dropdown" aria-expanded="false">
                                 สวัสดี, {{ Auth::user()->name }}
                             </a>
 
@@ -436,11 +433,11 @@
 
 
 
-        <footer class="site-footer bg-pink text-white pt-5 pb-3 mt-5">
+        <footer class="site-footer bg-pink text-white pt-5 pb-3 mt-5 ">
             <div class="container">
-                <div class="row">
+                <div class="row ms-5">
                     <!-- Column 1: Main menu -->
-                    <div class="col-12 col-md-4 mb-4 mb-md-0">
+                    <div class="col-12 col-md-4 mb-4 mb-md-0 ">
                         <ul class="list-unstyled footer-menu">
                             <li><a href="#" class="text-white">หน้าหลัก</a></li>
                             <li><a href="/products" class="text-white">สินค้า</a></li>

@@ -203,6 +203,18 @@ body {
   width: 50%;
 }
 
+/* ทำให้ body เต็มจอ และดัน footer ไปล่างสุด */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ดัน footer ไปล่างสุดเมื่อเนื้อหาน้อย */
+main {
+    flex: 1;
+}
 
 #mainNavbar .navbar-toggler {
   margin-left: auto;
@@ -578,6 +590,15 @@ opacity: 1;
   border-color: #ff40a4;
 }
 
+.text-truncate-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* limit to 2 lines */
+    -webkit-box-orient: vertical;
+    line-height: 1.4;
+    max-height: 2.8em;
+}   
+
 
 .filter-btn:not(.active) {
   
@@ -639,7 +660,7 @@ opacity: 1;
 
 .product-card-new .add-btn {
     margin-top: 10px;
-    background-color: #ff3366;
+    background-color: #ff40a4;
     border: none;
     color: white;
     padding: 6px 14px;

@@ -19,12 +19,9 @@
                     <a href="/customer/gdpr">นโยบายความเป็นส่วนตัว</a>
                 </div>
             </div>
-
+          
             <div class="product-grid wishlist md-2  ">
-
-
                 <div class="account-section container my-4">
-
                     <!-- กล่องข้อมูลบัญชี -->
                     <div class="account-card mb-4">
                         <div class="account-card-header">
@@ -63,13 +60,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
-
-
-
             </div>
         </div>
     </div>

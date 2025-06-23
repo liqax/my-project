@@ -18,6 +18,7 @@ return new class extends Migration
         $table->decimal('price', 8, 2);
         $table->string('category'); // books, kits, chemecals, drone
         $table->string('variety');  // booksci, calcu, kid, gen1, gen2, etc.
+        $table->boolean('is_best_seller')->default(false);
         $table->timestamps();
     });
     }

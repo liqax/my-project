@@ -33,7 +33,6 @@
         </div>
     </div>
 
-
     <div class="container py-5">
         <div id="productRow" class="row gx-4 gy-4 justify-content-start">
             @foreach ($products as $product)
