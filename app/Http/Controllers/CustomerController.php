@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ShippingAddress;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Address; 
 
 class CustomerController extends Controller
 {
@@ -39,4 +40,14 @@ class CustomerController extends Controller
 
         return redirect()->back()->with('message', 'บันทึกที่อยู่เรียบร้อยแล้ว');
     }
-}
+
+
+
+
+  
+     
+    public function address()
+    {
+        return view('customer.address');
+         }
+    }

@@ -3,11 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ShippingAddressController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ExamBookingController;
+
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products',  [ShopController::class,'index'])->name('shop.index');
@@ -20,36 +23,56 @@ Route::get('/billing/account', function () {return view('billing.account');});
 Route::get('/customer/account', function () {return view('customer.account');});
 Route::get('/customer/address', function () { return view('customer.address');});
 Route::get('/customer/gdpr', function () { return view('customer.gdpr');});
-Route::get('/wishlist', [ShopController::class, 'viewWishlist'])->name('wishlist.view');
+Route::get('/wishlist', [ShopController::class, 'viewWishlist'])->name('wishlist.view');  
 Route::post('/wishlist/add', [ShopController::class, 'addToWishlist'])->name('wishlist.add');
 Route::post('/wishlist/remove', [ShopController::class, 'removeFromWishlist'])->name('wishlist.remove');
 Route::get('/cart', [ShopController::class, 'viewCart'])->name('cart.view');
 Route::post('/cart/add', [ShopController::class, 'addToCart'])->name('cart.add');
 Route::post('/cart/update', [ShopController::class, 'updateCart'])->name('cart.update');
 Route::post('/cart/remove', [ShopController::class, 'removeFromCart'])->name('cart.remove');
-Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.page');
-Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process'); 
-Route::get('/dashboard', function () {return view('dashboard');})->middleware(['auth', 'verified']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/account', [AccountController::class, 'showAccountPage'])->name('account.page');
+    Route::get('/account/address/edit', [AccountController::class, 'editAddress'])->name('address.edit');
+});
+
+
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/forgot-password', function (Request $request) {$request->validate(['email' => 'required|email']);
- $status = Password::sendResetLink($request->only('email')
-    );
-    return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
-                : back()->withErrors(['email' => __($status)]);
-})->name('password.email');
+Route::post('/forgot-password', function (Request $request) { 
+    $request->validate(['email' => 'required|email']);
+    // ส่งอีเมลรีเซ็ตรหัสผ่าน
+    $status = Password::sendResetLink($request->only('email'));
+    // ตรวจสอบสถานะและส่งกลับไปพร้อมข้อความ
+    if ($status === Password::RESET_LINK_SENT) {
+        return back()->with(['status' => __($status)]);
+    }
+    return back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
 Route::post('/logout', function () {Auth::logout(); return redirect('/'); })->name('logout');
 
-Route::middleware('auth')->group(function () {
-Route::get('/checkout', [App\Http\Controllers\OrderController::class, 'showCheckoutPage'])->name('checkout.page');
-Route::post('/checkout', [App\Http\Controllers\OrderController::class, 'submitOrder'])->name('checkout.submit');
-Route::get('/order-status', [App\Http\Controllers\OrderController::class, 'orderStatus'])->name('order.status');
-});
+
 Route::get('/shipping', [ShippingAddressController::class, 'create'])->name('shipping.create');
 Route::post('/shipping/save', [ShippingAddressController::class, 'store'])->name('shipping.save');
-Route::get('/best-sellers', [ProductController::class, 'bestSellers']);
-
-
 Route::get('/customer/address', [CustomerController::class, 'address'])->name('customer.address');
 Route::post('/customer/address/save', [CustomerController::class, 'saveAddress'])->name('customer.address.save');
+
+
+
+
+
+Route::get('/admin/export-bookings', [ExamBookingController::class, 'exportBookings'])->name('admin.bookings.export');
+// Route to display the form
+Route::get('/book-exam', [ExamBookingController::class, 'showBookingForm'])->name('exam.booking.form');
+
+// Route to handle form submission
+Route::post('/book-exam', [ExamBookingController::class, 'submitBookingForm'])->name('exam.booking.submit');
+
+// Optional: Routes for Terms and Privacy pages (if they exist)
+Route::get('/terms', function () {
+    return view('terms'); // Create a resources/views/terms.blade.php file
+})->name('terms');
+
+Route::get('/privacy', function () {
+    return view('privacy'); // Create a resources/views/privacy.blade.php file
+})->name('privacy');

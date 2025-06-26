@@ -9,7 +9,7 @@
             <div class="row row-grid">
 
                 {{-- เมนูด้านซ้าย --}}
-                 <div class=" sidebar ">
+                <div class=" sidebar ">
                     <a href="/customer/account">บัญชีของฉัน</a>
                     <a href="/orders/sale">คำสั่งซื้อของคุณ</a>
                     <a href="/wishlist">รายการโปรดของคุณ</a>
@@ -27,7 +27,7 @@
                         <div class="card shadow-sm rounded-4 p-4 mx-auto" style="max-width: 720px;">
                             <h4 class="text-center fw-bold mb-4">ข้อมูลที่อยู่จัดส่งสินค้า</h4>
 
-                           <form action="{{ route('shipping.save') }}" method="POST">
+                            <form action="{{ route('shipping.save') }}" method="POST">
                                 @csrf
 
                                 <div class="row g-3">
@@ -91,7 +91,7 @@
                                             <option value="TH">ประเทศไทย</option>
                                             <option value="US">United States</option>
                                             <option value="JP">Japan</option>
-                                            <!-- เพิ่มประเทศอื่น ๆ ได้ -->
+                                            <option value="CN">China</option>
                                         </select>
                                     </div>
                                 </div>

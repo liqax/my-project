@@ -19,10 +19,10 @@
                     <a href="/customer/gdpr">นโยบายความเป็นส่วนตัว</a>
                 </div>
             </div>
-          
-            <div class="product-grid wishlist md-2  ">
+
+            <div class="product-grid wishlist md-2">
                 <div class="account-section container my-4">
-                    <!-- กล่องข้อมูลบัญชี -->
+                    <!-- ข้อมูลบัญชี -->
                     <div class="account-card mb-4">
                         <div class="account-card-header">
                             <h5>ข้อมูลบัญชี</h5>
@@ -30,8 +30,15 @@
                         <div class="account-card-body d-flex justify-content-between flex-wrap">
                             <div>
                                 <p class="fw-semibold mb-1">ข้อมูลติดต่อ</p>
-                                <p>Rang NK<br>killerprotv008@gmail.com</p>
-                                <a href="#" class="text-primary small">เปลี่ยนรหัสผ่าน</a>
+                                @auth
+                                    {{-- ส่วนนี้จะแสดงก็ต่อเมื่อผู้ใช้ล็อกอินแล้ว --}}
+                                    <p>{{ Auth::user()->name }}<br>{{ Auth::user()->email }}</p>
+                                    <a href="{{ url('/change-password') }}">เปลี่ยนรหัสผ่าน</a>
+                                @else
+                                    {{-- ส่วนนี้จะแสดงก็ต่อเมื่อผู้ใช้ยังไม่ได้ล็อกอิน --}}
+                                    <p>โปรด <a href="/">เข้าสู่ระบบ</a> เพื่อดูข้อมูลส่วนตัวของคุณ</p>
+                                    
+                                @endauth
                             </div>
                             <div>
                                 <p class="fw-semibold mb-1">จดหมายข่าว</p>
@@ -40,28 +47,32 @@
                         </div>
                     </div>
 
-                    <!-- กล่องข้อมูลที่อยู่ -->
+                    <!-- ข้อมูลที่อยู่ -->
                     <div class="account-card mb-4">
                         <div class="account-card-header d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">ข้อมูลที่อยู่จัดส่งสินค้า</h5>
-                            <a href="#" class="btn btn-outline-dark btn-sm">
+                            <a href="{{ route('address.edit') }}" class="btn btn-outline-dark btn-sm">
                                 จัดการข้อมูลที่อยู่ <i class="bi bi-box-arrow-up-right ms-1"></i>
                             </a>
                         </div>
                         <div class="account-card-body d-flex justify-content-between flex-wrap">
                             <div>
                                 <p class="fw-semibold mb-1">ที่อยู่เริ่มต้นสำหรับออกใบเสร็จ</p>
-                                <p class="text-muted">คุณไม่ได้ตั้งค่าที่อยู่ในใบเสร็จ</p>
+                                <p class="text-muted">{{ $billingAddress->address ?? 'คุณไม่ได้ตั้งค่าที่อยู่ในใบเสร็จ' }}
+                                </p>
                             </div>
                             <div>
                                 <p class="fw-semibold mb-1">ที่อยู่จัดส่งสินค้า</p>
-                                <p class="text-muted">คุณไม่ได้ตั้งค่าที่อยู่จัดส่งสินค้า</p>
-                                <a href="#" class="text-primary small">แก้ไขที่อยู่จัดส่งสินค้า</a>
+                                <p class="text-muted">
+                                    {{ $shippingAddress->address ?? 'คุณไม่ได้ตั้งค่าที่อยู่จัดส่งสินค้า' }}</p>
+                                <a href="{{ route('address.edit') }}"
+                                    class="text-primary small">แก้ไขที่อยู่จัดส่งสินค้า</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 @endsection

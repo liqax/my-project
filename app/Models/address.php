@@ -2,24 +2,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Address extends Model
 {
-    protected $fillable = ['user_id', 'name', 'address_line', 'phone'];
-}
+    use HasFactory;
 
-// app/Models/Coupon.php
-namespace App\Models;
+    protected $fillable = [
+        'user_id',
+        'type',     // เช่น 'shipping', 'billing'
+        'address',  // รายละเอียดที่อยู่
+    ];
 
-use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
-
-class Coupon extends Model
-{
-    protected $fillable = ['code', 'discount_amount', 'expires_at'];
-
-    public function isExpired()
+    public function user()
     {
-        return Carbon::parse($this->expires_at)->isPast();
+        return $this->belongsTo(User::class);
     }
-} 
+}

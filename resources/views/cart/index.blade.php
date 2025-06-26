@@ -45,27 +45,22 @@
                                 <label class="form-check-label" for="selectAll">เลือกทั้งหมด ({{ count($cart) }}
                                     รายการ)</label>
                             </div>
-                            <script>
-                                // เมื่อ checkbox #selectAll ถูกเปลี่ยนสถานะ
-                                document.getElementById('selectAll')?.addEventListener('change', function() {
-                                    const checkboxes = document.querySelectorAll('.item-checkbox');
-                                    checkboxes.forEach(cb => cb.checked = this.checked);
-                                });
-                            </script>
-                            {{-- ลูปรายการสินค้า  --}}
+
+                            {{-- ลูปรายการสินค้า --}}
                             @foreach ($cart as $id => $item)
                                 @php
                                     // คำนวณราคาเดิมและราคาหลังลด
                                     $original_price = $item['original_price'] ?? $item['price'];
                                     $discounted_price = $item['price'];
                                 @endphp
-                                <div class="card mb-3" style="background-color: #ffecec;">
+                                <div class="card mb-3 item-card" style="background-color: #ffecec;">
                                     <div class="row g-0 align-items-center">
                                         {{-- Checkbox --}}
                                         <div class="col-auto ps-3 pe-0">
                                             <div class="form-check">
                                                 <input class="form-check-input item-checkbox" type="checkbox"
-                                                    name="select_item[]" value="{{ $id }}">
+                                                    name="select_item[]" value="{{ $id }}"
+                                                    data-price="{{ $item['price'] }}" data-qty="{{ $item['qty'] }}">
                                             </div>
                                         </div>
 
@@ -85,7 +80,9 @@
                                                     </p>
                                                 @endif
                                                 <p class="text-danger fw-bold mb-1">
-                                                    ฿{{ number_format($discounted_price, 2) }}</p>
+                                                    ฿<span
+                                                        class="item-display-price">{{ number_format($discounted_price, 2) }}</span>
+                                                </p>
 
                                                 {{-- ตัวเลือกขนาด (ถ้ามี) --}}
                                                 @if (isset($item['size']))
@@ -119,33 +116,15 @@
                                                         <button type="button" class="btn btn-outline-secondary"
                                                             onclick="decreaseQty('{{ $id }}')">−</button>
                                                         <input type="text" name="qty" id="qty-{{ $id }}"
-                                                            value="{{ $item['qty'] }}" class="form-control text-center"
-                                                            style="width: 60px;">
+                                                            value="{{ $item['qty'] }}"
+                                                            class="form-control text-center item-qty" style="width: 60px;"
+                                                            readonly> {{-- เพิ่ม readonly เพื่อป้องกันการพิมพ์ตรงๆ --}}
                                                         <button type="button" class="btn btn-outline-secondary"
                                                             onclick="increaseQty('{{ $id }}')">+</button>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
-                                        <script>
-                                            function increaseQty(id) {
-                                                const input = document.getElementById('qty-' + id);
-                                                let qty = parseInt(input.value) || 1;
-                                                qty++;
-                                                input.value = qty;
-                                                document.getElementById('update-form-' + id).submit();
-                                            }
-
-                                            function decreaseQty(id) {
-                                                const input = document.getElementById('qty-' + id);
-                                                let qty = parseInt(input.value) || 1;
-                                                if (qty > 1) {
-                                                    qty--;
-                                                    input.value = qty;
-                                                    document.getElementById('update-form-' + id).submit();
-                                                }
-                                            }
-                                        </script>
 
                                         {{-- ปุ่มลบสินค้า --}}
                                         <div class="col-auto pe-3">
@@ -167,6 +146,7 @@
                             </div>
                         @endif
                     </div>
+                   
 
                     {{-- แท็บ 2: ชำระสินค้า (Placeholder) --}}
                     <div class="tab-pane fade" id="checkout" role="tabpanel">
@@ -231,6 +211,13 @@
                                 <button class="btn btn-sm btn-primary ms-2" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#addressForm">
                                     เพิ่มที่อยู่
+                                </button>
+                            </div>
+                              <div class="alert alert-warning">
+                                คุณยังไม่เลือกวิธีชำระเงิน, กรุณาเลือกวิธีการชำระเงินเพื่อดำเนินการต่อ
+                                <button class="btn btn-sm btn-primary ms-2" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#addressForm">
+                                    เลือกวิธี
                                 </button>
                             </div>
                             <div id="addressForm" class="collapse mt-3">
@@ -310,83 +297,181 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title mb-3">สรุปยอดชำระสินค้า</h5>
-                        @php
-                            $subtotal = 0;
-                            $totalItems = 0;
-                            foreach ($cart as $id => $item) {
-                                $subtotal += $item['price'] * $item['qty'];
-                                $totalItems += $item['qty'];
-                            }
-                            $shipping = $subtotal > 0 ? 50 : 0; // สมมติค่าขนส่ง 50 บาท (ถ้ามียอด)
-                            $vatPercent = 7; // สมมติ VAT 7%
-                            $vatAmount = round(($subtotal * $vatPercent) / 100, 2);
-                            $grandTotal = $subtotal + $shipping + $vatAmount;
-                        @endphp
 
                         <div class="d-flex justify-content-between mb-2">
-                            <span>รวมเงินสินค้า ({{ $totalItems }} ชิ้น)</span>
-                            <span>฿{{ number_format($subtotal, 2) }}</span>
+                            <span>รวมเงินสินค้า (<span id="summaryTotalItems">0</span> ชิ้น)</span>
+                            <span>฿<span id="summarySubtotal">0.00</span></span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
                             <span>ค่าจัดส่ง</span>
-                            <span>฿{{ number_format($shipping, 2) }}</span>
+                            <span>฿<span id="summaryShipping">0.00</span></span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
-                            <span>VAT ({{ $vatPercent }}%)</span>
-                            <span>฿{{ number_format($vatAmount, 2) }}</span>
+                            <span>VAT (7%)</span> 
+                            <span>฿<span id="summaryVatAmount">0.00</span></span>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between fw-bold mb-3">
                             <span>ยอดชำระสุทธิ</span>
-                            <span>฿{{ number_format($grandTotal, 2) }}</span>
+                            <span>฿<span id="summaryGrandTotal">0.00</span></span>
                         </div>
 
                         {{-- ปุ่มชำระสินค้า --}}
                         @guest
-                            {{-- ถ้ายังไม่ล็อกอิน เปิด modal --}}
-                            <button class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#authModal">
+                            
+                            <button class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#authModal"
+                                id="guestCheckoutButton" disabled>
                                 กรุณาเข้าสู่ระบบก่อนชำระสินค้า
                             </button>
                         @else
-                            {{-- ถ้าล็อกอินแล้ว ไปแท็บชำระสินค้า --}}
-                            <button class="btn btn-primary w-100" onclick="document.getElementById('checkout-tab').click();">
+                            
+                            <button class="btn btn-primary w-100" onclick="document.getElementById('checkout-tab').click();"
+                                id="loggedInCheckoutButton" disabled>
                                 ชำระสินค้า
                             </button>
                         @endguest
                     </div>
                 </div>
             </div>
-        </div>
 
-        {{-- แถบสรุปด้านล่าง --}}
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <p class="text-muted">
-                    สินค้า {{ count($cart) }} รายการ
-                    &nbsp;|&nbsp;
-                    ยอดชำระสินค้า: <span class="fw-bold text-primary">฿{{ number_format($grandTotal, 2) }}</span>
-                </p>
+         
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <p class="text-muted">
+                        สินค้าทั้งหมดในตะกร้า: {{ count($cart) }} รายการ
+                        &nbsp;|&nbsp;
+                        ยอดชำระสินค้าที่เลือก: <span class="fw-bold text-primary">฿<span
+                                id="footerGrandTotal">0.00</span></span>
+                    </p>
+                </div>
             </div>
 
+            <script>
+              
+
+                function updateSummaryPrices() {
+                    let selectedSubtotal = 0;
+                    let selectedTotalItems = 0;
+
+                    // วนลูปเฉพาะ checkbox ที่ถูกเลือก
+                    document.querySelectorAll('.item-checkbox:checked').forEach(checkbox => {
+                        const price = parseFloat(checkbox.dataset.price);
+                        const qty = parseInt(checkbox.dataset.qty);
+                        if (!isNaN(price) && !isNaN(qty)) {
+                            selectedSubtotal += price * qty;
+                            selectedTotalItems += qty;
+                        }
+                    });
+
+                    const shipping = selectedSubtotal > 0 ? 50 : 0; // ค่าจัดส่ง 50 บาท ถ้ามีสินค้าที่เลือก
+                    const vatPercent = 7; // VAT 7%
+                    const vatAmount = parseFloat(((selectedSubtotal * vatPercent) / 100).toFixed(2));
+                    const grandTotal = parseFloat((selectedSubtotal + shipping + vatAmount).toFixed(2));
+
+                    // อัปเดตค่าในส่วน Summary
+                    document.getElementById('summaryTotalItems').innerText = selectedTotalItems;
+                    document.getElementById('summarySubtotal').innerText = selectedSubtotal.toFixed(2);
+                    document.getElementById('summaryShipping').innerText = shipping.toFixed(2);
+                    document.getElementById('summaryVatAmount').innerText = vatAmount.toFixed(2);
+                    document.getElementById('summaryGrandTotal').innerText = grandTotal.toFixed(2);
+                    document.getElementById('footerGrandTotal').innerText = grandTotal.toFixed(2); // อัปเดตใน footer ด้วย
+
+                    // เรียกใช้ฟังก์ชันตรวจสอบสถานะปุ่มชำระเงิน
+                    checkCheckoutButtonStatus();
+                }
+
+                // ฟังก์ชันเดิม: สำหรับตรวจสอบสถานะปุ่มชำระเงิน
+                function checkCheckoutButtonStatus() {
+                    const selectedItemsCount = document.querySelectorAll('.item-checkbox:checked').length;
+
+                    const guestCheckoutButton = document.getElementById('guestCheckoutButton');
+                    const loggedInCheckoutButton = document.getElementById('loggedInCheckoutButton');
+
+                    if (guestCheckoutButton) {
+                        if (selectedItemsCount > 0) {
+                            guestCheckoutButton.removeAttribute('disabled');
+                        } else {
+                            guestCheckoutButton.setAttribute('disabled', 'true');
+                        }
+                    }
+
+                    if (loggedInCheckoutButton) {
+                        if (selectedItemsCount > 0) {
+                            loggedInCheckoutButton.removeAttribute('disabled');
+                        } else {
+                            loggedInCheckoutButton.setAttribute('disabled', 'true');
+                        }
+                    }
+                }
+
+
+                
+                document.getElementById('selectAll')?.addEventListener('change', function() {
+                    const checkboxes = document.querySelectorAll('.item-checkbox');
+                    checkboxes.forEach(cb => {
+                        cb.checked = this.checked;
+                    });
+                    updateSummaryPrices(); 
+                });
+
+                
+                document.querySelectorAll('.item-checkbox').forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        updateSummaryPrices(); 
+                       
+                        const totalCheckboxes = document.querySelectorAll('.item-checkbox').length;
+                        const checkedCheckboxes = document.querySelectorAll('.item-checkbox:checked').length;
+                        document.getElementById('selectAll').checked = totalCheckboxes === checkedCheckboxes;
+                    });
+                });
+
+               
+                function increaseQty(id) {
+                    const input = document.getElementById('qty-' + id);
+                    let qty = parseInt(input.value) || 1;
+                    qty++;
+                    input.value = qty;
+                    const checkbox = document.querySelector(`.item-checkbox[value="${id}"]`);
+                    if (checkbox) {
+                        checkbox.dataset.qty = qty; 
+                    }
+                   
+                    document.getElementById('update-form-' + id).submit();
+                }
+
+                function decreaseQty(id) {
+                    const input = document.getElementById('qty-' + id);
+                    let qty = parseInt(input.value) || 1;
+                    if (qty > 1) {
+                        qty--;
+                        input.value = qty;
+                        const checkbox = document.querySelector(`.item-checkbox[value="${id}"]`);
+                        if (checkbox) {
+                            checkbox.dataset.qty = qty; 
+                        }
+                      
+                        document.getElementById('update-form-' + id).submit();
+                    }
+                }
+
+               
+                function updateCart(id) {
+                    const sizeSelect = document.getElementById('size-' + id);
+                    const hiddenSizeInput = document.getElementById('hidden-size-' + id);
+                    if (sizeSelect && hiddenSizeInput) {
+                        hiddenSizeInput.value = sizeSelect.value;
+                    }
+                   
+                    document.getElementById('update-form-' + id).submit();
+                }
+
+
+              
+                document.addEventListener('DOMContentLoaded', () => {
+                    updateSummaryPrices(); 
+                });
+            </script>
         </div>
-    </div>
-@endsection
+    @endsection
 
-@push('scripts')
-    <script>
-        // เพิ่ม/ลดจำนวน แล้ว submit form
-        // เมื่อเปลี่ยนขนาด จะเก็บค่า size ลง hidden แล้ว submit form
-        function updateCart(id) {
-            let sizeSel = document.getElementById('size-' + id);
-            let hiddenSize = document.getElementById('hidden-size-' + id);
-            hiddenSize.value = sizeSel.value;
-            document.getElementById('update-form-' + id).submit();
-        }
-
-        // ฟังก์ชัน select all checkbox (ถ้ามี logic อื่น ๆ)
-        document.getElementById('selectAll')?.addEventListener('change', function() {
-            let checkboxes = document.querySelectorAll('.item-checkbox');
-            checkboxes.forEach(cb => cb.checked = this.checked);
-        });
-    </script>
-@endpush
+   

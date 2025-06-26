@@ -6,6 +6,9 @@
     <title>@yield('title', 'PRE-ORDER')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="shortcut icon" href="img/box-icon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="img/box-icon.png">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/home.styles.css') }}" rel="stylesheet">
@@ -72,16 +75,20 @@
 
 
                             @foreach ($wishlistItems as $item)
-                                <div class="mb-2 small">
-                                    <div class="fw-semibold">{{ $item['title'] }}</div>
-                                    <div class="text-pink">฿{{ number_format($item['price'], 2) }}</div>
-                                    <form action="{{ route('wishlist.remove') }}" method="POST" class="mt-1">
-                                        @csrf
-                                        <input type="hidden" name="product_id" value="{{ $item['id'] }}">
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">
-                                            <i class="bi bi-trash-fill"></i> ลบ
-                                        </button>
-                                    </form>
+                                <div class="d-flex mb-2 small">
+                                    <img src="{{ asset($item['image']) }}" alt=""
+                                        style="width:40px; height:40px; object-fit:cover; margin-right: 0.5rem;">
+                                    <div class="flex-grow-1" style="max-width: 250px">
+                                        <div class="fw-semibold">{{ $item['title'] }}</div>
+                                        <div class="text-pink">฿{{ number_format($item['price'], 2) }}</div>
+                                        <form action="{{ route('wishlist.remove') }}" method="POST" class="mt-1">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $item['id'] }}">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <i class="bi bi-trash-fill"></i> ลบ
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                                 <hr class="my-2">
                             @endforeach
@@ -142,8 +149,9 @@
                                     $subtotal = $item['price'] * $item['qty'];
                                 @endphp
                                 <div class="d-flex mb-2 small">
-                                    {{-- (ถ้ามีรูปสินค้า อยากโชว์ ให้เพิ่ม <img> ตรงนี้) --}}
-                                    {{-- <img src="{{ asset($item['img']) }}" alt="" style="width:40px; height:40px; object-fit:cover; margin-right: 0.5rem;"> --}}
+
+                                    <img src="{{ asset($item['img']) }}" alt=""
+                                        style="width:40px; height:40px; object-fit:cover; margin-right: 0.5rem;">
 
                                     <div class="flex-grow-1">
                                         {{-- ชื่อสินค้า --}}
@@ -189,11 +197,11 @@
                 <div class="text-center">
                     <button class="link-icon text-decoration-none border-0 bg-transparent" data-bs-toggle="modal"
                         data-bs-target="#authModal">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
-                            viewBox="0 0 16 16" class="mb-icon">
-                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3z" />
-                            <path fill-rule="evenodd" d="M8 8a3 3 0 100-6 3 3 0 000 6z" />
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                                    fill="currentColor" viewBox="0 0 16 16" class="mb-icon">
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3z" />
+                                    <path fill-rule="evenodd" d="M8 8a3 3 0 100-6 3 3 0 000 6z" />
+                                </svg>
                         @guest
                             <div class="small fw-light">สมาชิก</div>
                         @endguest
@@ -201,9 +209,8 @@
 
                     @auth
                         <div class="text-end">
-
                             <!-- ปุ่ม dropdown -->
-                            <a class=" small fw-light text-decoration-none" href="#" role="button"
+                            <a class=" fw-small text-decoration-none" href="#" role="button"
                                 id="dropdownUserMenu" data-bs-toggle="dropdown" aria-expanded="false">
                                 สวัสดี, {{ Auth::user()->name }}
                             </a>
@@ -211,7 +218,7 @@
                             <!-- เนื้อหาเมนู dropdown -->
                             <ul class="dropdown-menu text-center p-2" aria-labelledby="dropdownUserMenu">
                                 <li>
-                                    <a class="dropdown-item text-danger small" href="{{ route('logout') }}"
+                                    <a class="dropdown-item fw-small" href="{{ route('logout') }}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         ออกจากระบบ
                                     </a>
@@ -389,7 +396,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{ request()->routeIs('home') ? '#sciSection' : url('/') . '#sciSection' }}"
-                                    class="nav-link  text-white fw-normal px-2">อุปกรณ์วิทยาศาสตร์</a>
+                                    class="nav-link  text-white fw-normal px-2">อุปกรณ์วิทย์</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ request()->routeIs('home') ? '#cheSection' : url('/') . '#cheSection' }}"
@@ -402,6 +409,10 @@
                             <li class="nav-item">
                                 <a href="{{ url('/orders/history') }}"
                                     class="nav-link  text-white fw-normal px-2">ประวัติคำสั่งซื้อ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url('/book-exam') }}"
+                                    class="nav-link  text-white fw-normal px-2">จองสอบภาษาจีน</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link  dropdown-toggle text-white fw-normal px-2" href="#"
@@ -427,77 +438,294 @@
             </div>
         </nav>
 
-
-
-        @yield('content')
-
-
-
-        <footer class="site-footer bg-pink text-white pt-5 pb-3 mt-5 ">
+        <nav class="navbar navbar-expand-lg py-1 sticky-navbar" id="stickyNavbar">
             <div class="container">
-                <div class="row ms-5">
-                    <!-- Column 1: Main menu -->
-                    <div class="col-12 col-md-4 mb-4 mb-md-0 ">
-                        <ul class="list-unstyled footer-menu">
-                            <li><a href="#" class="text-white">หน้าหลัก</a></li>
-                            <li><a href="/products" class="text-white">สินค้า</a></li>
-                            <li><a href="{{ request()->routeIs('home') ? '#bookSection' : url('/') . '#bookSection' }}"
-                                    class="text-white">หนังสือ</a></li>
-                            <li><a href="{{ request()->routeIs('home') ? '#sciSection' : url('/') . '#sciSection' }}"
-                                    class="text-white">อุปกรณ์วิทยาศาสตร์</a></li>
-                            <li><a href="{{ request()->routeIs('home') ? '#cheSection' : url('/') . '#cheSection' }}"
-                                    class="text-white">สารเคมี</a></li>
-                            <li><a href="{{ request()->routeIs('home') ? '#droneSection' : url('/') . '#droneSection' }}"
-                                    class="text-white">โดรน</a></li>
-                            <li><a href="#" class="text-white">ประวัติคำสั่งซื้อ</a></li>
-                            <li><a href="#" class="text-white">เพิ่มเติม</a></li>
-                        </ul>
-                    </div>
+                <div class="collapse navbar-collapse show" id="stickyNavbarMenu">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
+                        <li class="nav-item">
+                            <a href="{{ url('/') }}" class="nav-link text-white fw-normal px-3">แนะนำ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/products') }}" class="nav-link text-white fw-normal px-3">สินค้า</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ request()->routeIs('home') ? '#bookSection' : url('/') . '#bookSection' }}"
+                                class="nav-link text-white fw-normal px-3">หนังสือ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ request()->routeIs('home') ? '#sciSection' : url('/') . '#sciSection' }}"
+                                class="nav-link text-white fw-normal px-2">อุปกรณ์วิทย์</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ request()->routeIs('home') ? '#cheSection' : url('/') . '#cheSection' }}"
+                                class="nav-link text-white fw-normal px-2">สารเคมี</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ request()->routeIs('home') ? '#droneSection' : url('/') . '#droneSection' }}"
+                                class="nav-link text-white fw-normal px-2">โดรน</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/orders/history') }}"
+                                class="nav-link text-white fw-normal px-2">ประวัติคำสั่งซื้อ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('/book-exam') }}"
+                                class="nav-link text-white fw-normal px-2">จองสอบภาษาจีน</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white fw-normal px-2" href="#"
+                                id="moreDropdownSticky" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                เพิ่มเติม
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdownSticky">
+                                <li><a class="dropdown-item" href="{{ url('/about') }}">เกี่ยวกับเรา</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{{ url('/customer/gdpr') }}">นโยบายความเป็นส่วนตัว</a></li>
+                            </ul>
+                        </li>
+                    </ul>
 
-                    <!-- Column 2: Company info -->
-                    <div class="col-12 col-md-4 mb-4 mb-md-0 mt-4">
-                        <p class="mb-1">บริษัท พรีออเดอร์ จำกัด</p>
-                        <p class="mb-1">123/45 ถนน×××××××× แขวง×××××× เขต×××××</p>
-                        <p class="mb-1">กรุงเทพฯ ×××××</p>
-                        <p class="mb-1">โทร: 02-123-4567</p>
-                        <p class="mb-1">อีเมล: contact@lightshop.co.th</p>
-                        <p class="mb-0">เวลาทำการ: จันทร์ – เสาร์ 09:00 – 18:00 น.</p>
-                    </div>
+                    <div class="d-flex align-items-end gap-4 ms-auto text-white">
+                        <div class="text-center">
+                            <a href="#" class="link-icon text-decoration-none text-white"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="position-relative">
+                                    <svg class="mb-icon" xmlns="http://www.w3.org/2000/svg" width="28"
+                                        height="28" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5
+                                            2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
+                                            C13.09 3.81 14.76 3 16.5 3
+                                            19.58 3 22 5.42 22 8.5
+                                            c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                    </svg>
+                                    @php $wishlistIds = session('wishlist', []); @endphp
+                                    @if (count($wishlistIds) > 0)
+                                        <span class="counter qty">{{ count($wishlistIds) }}</span>
+                                    @endif
+                                </div>
+                                <div class="small fw-light text-white">รายการโปรด</div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 300px;">
+                                <h6 class="fw-bold">รายการโปรดของคุณ</h6>
+                                <hr class="mt-1 mb-2">
+                                @php
+                                    $wishlistIds = session()->get('wishlist', []);
+                                    $allProducts = \App\Models\Product::whereIn('id', $wishlistIds)->get()->keyBy('id');
+                                    $wishlistItems = collect($wishlistIds)->map(fn($id) => $allProducts->get($id))->filter();
+                                @endphp
 
-                    <!-- Column 3: Policies -->
-                    <div class="col-12 col-md-4">
-                        <ul class="list-unstyled footer-menu">
-                            <li><a href="#" class="text-white">เงื่อนไขการให้บริการ</a></li>
-                            <li><a href="#" class="text-white">นโยบายความเป็นส่วนตัว</a></li>
-                            <li><a href="#" class="text-white">นโยบายการคืนสินค้า</a></li>
-                            <li><a href="#" class="text-white">คำถามที่พบบ่อย (FAQ)</a></li>
-                        </ul>
-                    </div>
-                </div>
+                                @if (count($wishlistItems))
+                                    @foreach ($wishlistItems as $item)
+                                        <div class="d-flex mb-2 small">
+                                            <img src="{{ asset($item['image']) }}" alt=""
+                                                style="width:40px; height:40px; object-fit:cover; margin-right: 0.5rem;">
+                                            <div class="flex-grow-1" style="max-width: 250px">
+                                                <div class="text-black fw-semibold">{{ $item['title'] }}</div>
+                                                <div class="text-pink">฿{{ number_format($item['price'], 2) }}</div>
+                                                <form action="{{ route('wishlist.remove') }}" method="POST" class="mt-1">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{ $item['id'] }}">
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                        <i class="bi bi-trash-fill"></i> ลบ
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <hr class="my-2">
+                                    @endforeach
 
-                <!-- Copyright -->
-                <div class="text-center mt-4">
-                    © 2025 PRE-ORDER. All Rights Reserved.
+                                    <div class="text-center">
+                                        <a href="{{ route('wishlist.view') }}" class="btn btn-primary w-100">
+                                            ดูรายการโปรดทั้งหมด
+                                        </a>
+                                    </div>
+                                @else
+                                    <div class=" text-muted small">
+                                        คุณไม่มีสินค้าในรายการโปรด.
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="text-center position-relative">
+                            <a href="{{ url('/cart') }}" class="link-icon text-decoration-none text-white"
+                                data-bs-toggle="dropdown">
+                                <svg class="mb-icon" xmlns="http://www.w3.org/2000/svg" width="28"
+                                    height="28" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10
+                                        0c-1.1 0-1.99.9-1.99 2S15.9 22 17
+                                        22s2-.9 2-2-.9-2-2-2zM7.2 14h9.45c.75 0
+                                        1.41-.41 1.75-1.03l3.58-6.49A1
+                                        1 0 0 0 21 5H5.21L4.27 3H1v2h2l3.6
+                                        7.59-1.35 2.44C4.52 15.37 5.48
+                                        17 7 17h12v-2H7.42c-.14
+                                        0-.25-.11-.25-.25l.03-.12L7.2 14z" />
+                                </svg>
+                                @php $cart = session('cart', []); @endphp
+                                @if (count($cart) > 0)
+                                    <span class="counter qty">{{ count($cart) }}</span>
+                                @endif
+                                <div class="small fw-light text-white">ตะกร้าสินค้า</div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 300px;">
+                                <h6 class="fw-bold">รายการสินค้าของคุณ</h6>
+                                <hr class="mt-1 mb-2">
+
+                                @php
+                                    $cart = session('cart', []);
+                                    $totalAmount = 0;
+                                    foreach ($cart as $productId => $item) {
+                                        $totalAmount += $item['price'] * $item['qty'];
+                                    }
+                                @endphp
+
+                                @if (count($cart))
+                                    @foreach ($cart as $productId => $item)
+                                        @php
+                                            $subtotal = $item['price'] * $item['qty'];
+                                        @endphp
+                                        <div class="d-flex mb-2 small">
+                                            <img src="{{ asset($item['img']) }}" alt=""
+                                                style="width:40px; height:40px; object-fit:cover; margin-right: 0.5rem;">
+                                            <div class="text-black flex-grow-1">
+                                                <div class="fw-semibold">{{ $item['title'] }}</div>
+                                                <div class="fw-small">
+                                                    จำนวน: {{ $item['qty'] }} ×
+                                                    ฿{{ number_format($item['price'], 2) }}
+                                                </div>
+                                            </div>
+
+                                            <div class="text-end">
+                                                <span class="text-pink fw-bold">฿{{ number_format($subtotal, 2) }}</span>
+                                            </div>
+                                        </div>
+                                        <hr class="my-1">
+                                    @endforeach
+
+                                    <div class="d-flex justify-content-between align-items-center mt-2 mb-3">
+                                        <div class="fw-semibold">รวมทั้งหมด:</div>
+                                        <div class="text-danger fw-bold">฿{{ number_format($totalAmount, 2) }}</div>
+                                    </div>
+
+                                    <div class="d-grid">
+                                        <a href="{{ route('cart.view') }}" class="btn btn-primary w-100 mb-2">
+                                            ดูตะกร้าทั้งหมด
+                                        </a>
+                                    </div>
+                                @else
+                                    <div class="text-center text-muted small">
+                                        คุณไม่มีสินค้าในตะกร้า.
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <a class="link-icon text-decoration-none text-white" href="#" role="button"
+                                id="dropdownUserMenuSticky" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                                    viewBox="0 0 16 16" class="mb-icon">
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3z" />
+                                    <path fill-rule="evenodd" d="M8 8a3 3 0 100-6 3 3 0 000 6z" />
+                                </svg>
+                                @auth
+                                    <div class="small fw-light">สวัสดี, {{ Auth::user()->name }}</div>
+                                @else
+                                    <div class="small fw-light">สมาชิก</div>
+                                @endauth
+                            </a>
+                            @auth
+                                <ul class="dropdown-menu dropdown-menu-end text-center p-2" aria-labelledby="dropdownUserMenuSticky">
+                                    <li>
+                                        <a class="dropdown-item fw-small" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            ออกจากระบบ
+                                        </a>
+                                    </li>
+                                </ul>
+                            @endauth
+                        </div>
+                    </div>
                 </div>
             </div>
-        </footer>
+        </nav>
 
-        <button id="backToTop" aria-label="Back to top">↑</button>
 
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        {{-- swiper --}}
-        <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const pre = document.getElementById('preloader');
-            if (!pre) return;
-            pre.classList.add('loaded');
-            setTimeout(() => pre.remove(), 2000);
-        });
-    </script>
 
-</body>
+            @yield('content')
 
-</html>
+
+
+            <footer class="site-footer bg-pink text-white pt-5 pb-3 mt-5 ">
+                <div class="container">
+                    <div class="row ms-5">
+                        <!-- Column 1: Main menu -->
+                        <div class="col-12 col-md-4 mb-4 mb-md-0 ">
+                            <ul class="list-unstyled footer-menu">
+                                <li><a href="#" class="text-white">หน้าหลัก</a></li>
+                                <li><a href="/products" class="text-white">สินค้า</a></li>
+                                <li><a href="{{ request()->routeIs('home') ? '#bookSection' : url('/') . '#bookSection' }}"
+                                        class="text-white">หนังสือ</a></li>
+                                <li><a href="{{ request()->routeIs('home') ? '#sciSection' : url('/') . '#sciSection' }}"
+                                        class="text-white">อุปกรณ์วิทยาศาสตร์</a></li>
+                                <li><a href="{{ request()->routeIs('home') ? '#cheSection' : url('/') . '#cheSection' }}"
+                                        class="text-white">สารเคมี</a></li>
+                                <li><a href="{{ request()->routeIs('home') ? '#droneSection' : url('/') . '#droneSection' }}"
+                                        class="text-white">โดรน</a></li>
+                                <li><a href="#" class="text-white">ประวัติคำสั่งซื้อ</a></li>
+                                <li><a href="#" class="text-white">เพิ่มเติม</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Column 2: Company info -->
+                        <div class="col-12 col-md-4 mb-4 mb-md-0 mt-4">
+                            <p class="mb-1">บริษัท พรีออเดอร์ จำกัด</p>
+                            <p class="mb-1">123/45 ถนน×××××××× แขวง×××××× เขต×××××</p>
+                            <p class="mb-1">กรุงเทพฯ ×××××</p>
+                            <p class="mb-1">โทร: 02-123-4567</p>
+                            <p class="mb-1">อีเมล: contact@lightshop.co.th</p>
+                            <p class="mb-0">เวลาทำการ: จันทร์ – เสาร์ 09:00 – 18:00 น.</p>
+                        </div>
+
+                        <!-- Column 3: Policies -->
+                        <div class="col-12 col-md-4">
+                            <ul class="list-unstyled footer-menu">
+                                <li><a href="#" class="text-white">เงื่อนไขการให้บริการ</a></li>
+                                <li><a href="#" class="text-white">นโยบายความเป็นส่วนตัว</a></li>
+                                <li><a href="#" class="text-white">นโยบายการคืนสินค้า</a></li>
+                                <li><a href="#" class="text-white">คำถามที่พบบ่อย (FAQ)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Copyright -->
+                    <div class="text-center mt-4">
+                        © 2025 PRE-ORDER. All Rights Reserved.
+                    </div>
+                </div>
+            </footer>
+
+            <button id="backToTop" title="Go to top" aria-label="Back to top">
+                &#8593;
+            </button>
+
+            <!-- Bootstrap JS -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            {{-- swiper --}}
+            <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const pre = document.getElementById('preloader');
+                if (!pre) return;
+                pre.classList.add('loaded');
+                setTimeout(() => pre.remove(), 2000);
+            });
+        </script>
+
+
+    </body>
+
+    </html>

@@ -1,4 +1,7 @@
 
+
+
+
 //js books
   document.addEventListener('DOMContentLoaded', function () {
   const buttons = document.querySelectorAll('.bookfilter-btn');
@@ -310,23 +313,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
 document.addEventListener('DOMContentLoaded', function() {
+  // ตรวจสอบว่ามีปุ่ม backToTop อยู่หรือไม่ก่อนที่จะใช้งาน
   const backBtn = document.getElementById('backToTop');
-  const showAfter = 400;  // เลื่อนลงมาเกิน 300px จึงแสดงปุ่ม
+  if (!backBtn) return; // ถ้าหาปุ่มไม่เจอ ให้จบการทำงานของส่วนนี้
+
+  const showAfter = 400;  // เลื่อนลงมาเกิน 400px จึงแสดงปุ่ม
 
   // ตรวจเช็คการเลื่อน
   window.addEventListener('scroll', () => {
     if (window.pageYOffset > showAfter) {
-      backBtn.classList.add('show');
+      backBtn.classList.add('show'); // เพิ่ม class 'show' เพื่อให้แสดง
     } else {
-      backBtn.classList.remove('show');
+      backBtn.classList.remove('show'); // ลบ class 'show' เพื่อให้ซ่อน
     }
   });
 
   // กดปุ่ม → เลื่อนขึ้นบนสุดแบบ smooth
   backBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // นี่คือส่วนที่ทำให้ smooth
   });
+});
 
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // ... (โค้ด JS เดิมของ Swiper, login/register tabs, backToTop) ...
+
+    const stickyNavbar = document.getElementById('stickyNavbar');
+    const scrollThreshold = 500; // กำหนดระยะ scroll ที่ต้องการให้ Navbar แสดง
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > scrollThreshold) {
+            stickyNavbar.classList.add('show');
+        } else {
+            stickyNavbar.classList.remove('show');
+        }
+    });
+
+    // ตรวจสอบสถานะเมื่อโหลดหน้าครั้งแรก (เผื่อโหลดหน้ามาแล้วอยู่กลางหน้าจอ)
+    if (window.pageYOffset > scrollThreshold) {
+        stickyNavbar.classList.add('show');
+    }
 });
 
 

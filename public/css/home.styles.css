@@ -2,13 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap');
 
-
-
-
-
-html {
-  scroll-behavior: smooth ;
-}
 #bookSection {
   scroll-margin-top: 50px; 
 }
@@ -21,27 +14,50 @@ html {
 #droneSection {
   scroll-margin-top: 50px; 
 }
-
-
-#backToTop {
-  position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  display: none;
-  background: #ff40a4;
-  color: #fff;
-  border: none;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  transition: opacity .3s ease;
+.sticky-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ff40a4; /* สีพื้นหลัง */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* เงาด้านล่าง */
+    z-index: 1000; /* ให้ Navbar อยู่ด้านบนสุด */
+    transform: translateY(-100%); /* ซ่อนไว้ด้านบนเริ่มต้น */
+    transition: transform 0.3s ease-out; /* เพิ่ม transition ให้ smooth */
+    padding-top: 0.5rem !important; /* ปรับ padding ให้เข้ากับ py-1 */
+    padding-bottom: 0.5rem !important; /* ปรับ padding ให้เข้ากับ py-1 */
 }
-#backToTop.show {
-  display: block;
-  opacity: 1;
+
+.sticky-navbar.show {
+    transform: translateY(0); /* แสดง Navbar เมื่อมีคลาส 'show' */
+}
+
+/* ปรับสีไอคอนและข้อความใน sticky navbar ให้เป็นสีขาว */
+.sticky-navbar .link-icon,
+.sticky-navbar .small,
+.sticky-navbar .nav-link {
+    color: white !important;
+}
+
+/* ปรับไอคอนใน sticky navbar */
+.sticky-navbar .mb-icon {
+    fill: white; /* เปลี่ยนสีไอคอน SVG ให้เป็นสีขาว */
+}
+
+/* ปรับ dropdown menu ของ sticky navbar */
+.sticky-navbar .dropdown-menu {
+    background-color: white; /* พื้นหลังเมนู dropdown */
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.sticky-navbar .dropdown-item {
+    color: #333; /* สีข้อความใน dropdown */
+}
+
+.sticky-navbar .dropdown-item:hover {
+    background-color: #f8f9fa; /* สีพื้นหลังเมื่อ hover */
+    color: #ff40a4; /* สีข้อความเมื่อ hover */
 }
 
 .home-cat{
@@ -60,8 +76,6 @@ html {
     background-color: #fcf3e5;
      padding-left: 0;
 }
-
-
 .sale-product{
     width: 100%;
     max-width: 1380px;
@@ -70,7 +84,6 @@ html {
     background-color: #fbd7f3;
     padding-left: 0;
 }
-
 .modal.fade .modal-dialog {
   transform: translateY(-50px);
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
@@ -79,7 +92,6 @@ html {
   transform: translateY(0);
   opacity: 1;
 }
-
 .modal-content .modal-body {
   background-color: #fff;       
   border: 2px solid #fff;         
@@ -89,8 +101,6 @@ html {
     0 2px 4px rgba(255, 255, 255, 0.4);  
   padding: 1.5rem;                  
 }
-
-/* Transition authTabs */
 #authTabs.fade {
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -98,8 +108,6 @@ html {
 #authTabs.fade.show {
   opacity: 1;
 }
-
-/* Transition  tab-pane  */
 .tab-pane.fade {
   opacity: 0;
   transform: translateX(20px);
@@ -109,24 +117,17 @@ html {
   opacity: 1;
   transform: translateX(0);
 }
-
-
-/* Container for three dots (ไม่ต้องเปลี่ยน) */
 .preloader-dots {
   display: flex;
   gap: 15px;
 }
-
-/* Style each dot */
 .preloader-dots span {
   width: 25px;
   height: 25px;
-  background-color: #e91e63; /* สีชมพู */
+  background-color: #e91e63; 
   border-radius: 50%;
   animation: dots-scale 1s infinite ease-in-out both;
 }
-
-/* ดีเลย์ ให้แต่ละจุดไม่ขยับพร้อมกัน */
 .preloader-dots span:nth-child(1) { animation-delay: 0s; }
 .preloader-dots span:nth-child(2) { animation-delay: 0.2s; }
 .preloader-dots span:nth-child(3) { animation-delay: 0.4s; }
@@ -136,8 +137,6 @@ html {
   0%, 100%   { transform: scale(0.5); opacity: 0.5; }
   50%        { transform: scale(1.2); opacity: 1; }
 }
-
-/* ส่วน preloader overlay ไม่ต้องเปลี่ยน */
 #preloader {
   position: fixed;
   top: 0; left: 0;
@@ -158,8 +157,6 @@ html {
   /* visibility จะซ่อนทันที แต่ถ้าอยาก delay ให้เอาออกได้ */
   /* visibility: hidden; */
 }
-
-
 .navbar .nav-link:hover {
     
     color: #d3dae0 !important; /* สีตัวอักษรขาว */
@@ -203,7 +200,6 @@ body {
   width: 50%;
 }
 
-/* ทำให้ body เต็มจอ และดัน footer ไปล่างสุด */
 html, body {
     height: 100%;
     margin: 0;
@@ -211,7 +207,6 @@ html, body {
     flex-direction: column;
 }
 
-/* ดัน footer ไปล่างสุดเมื่อเนื้อหาน้อย */
 main {
     flex: 1;
 }
@@ -227,6 +222,7 @@ main {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.25s ease-in-out;
+   
 }
 .dropdown-menu.show {
     opacity: 1;
@@ -235,11 +231,6 @@ main {
 .carousel-item {
   transition: transform 0.8s ease-in-out; 
 }
-
-
-
-
-/* สีชมพูหัวข้อหมวด (ตัวอย่าง) */
 .text-pink {
   color: #e6007e !important;      
 }
@@ -247,23 +238,17 @@ main {
 .card {
   border-radius: 5px;
 }
-html {
-  scroll-behavior: smooth ;
-}
-/* Base reset and typography */
+
 html, body {
   font-family: 'Kanit', sans-serif;
   margin: 0;
   padding: 0;
- 
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Kanit', sans-serif;
   font-weight: 600;
   margin: 0;
 }
-
-/* CTA Bar */
 .cta-bar h5 {
   margin: 0;
   color: #fff;
@@ -272,8 +257,6 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.25rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
-
-/* Gradient text (PRE-ORDER) */
 .gradient-text {
   background: linear-gradient(90deg, #ff40a4, #ff9966);
   -webkit-background-clip: text;
@@ -282,8 +265,6 @@ h1, h2, h3, h4, h5, h6 {
   color: transparent;
   padding: 1rem;
 }
-
-/* Link icon and text hover */
 .link-icon .small {
   color: #6c757d;
   transition: color 0.3s ease;
@@ -298,10 +279,6 @@ h1, h2, h3, h4, h5, h6 {
   color: rgb(47, 47, 47);
   
 }
-
-
-
-
 .text-link {
   color: #fff;
   text-decoration: none;
@@ -310,11 +287,6 @@ h1, h2, h3, h4, h5, h6 {
 .text-link:hover {
   color: #6c757d;
 }
-
-
-
-
-
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     opacity: 0;
@@ -325,28 +297,15 @@ h1, h2, h3, h4, h5, h6 {
     height: 38px;
     border-radius: 5px;
 }
-
-
-
-
-/* เมื่อ hover บน carousel หรือปุ่ม active */
 .carousel:hover .carousel-control-prev-icon {
     opacity: 1;
-    transform: translateX(20px); /* เข้าจากซ้าย */
+    transform: translateX(20px); 
 }
 
 .carousel:hover .carousel-control-next-icon {
     opacity: 1;
-    transform: translateX(-20px); /* เข้าจากขวา */
+    transform: translateX(-20px); 
 }
-
-
-
-
-
-
-
-
 .counter.qty {
   position: absolute;
   top: -4px;
@@ -362,9 +321,6 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   z-index: 10;
 }
-
-
-/* เปลี่ยนวงกลม background ของลูกศรเป็นสีดำ */
 #bookCarousel .carousel-control-prev-icon,
 #bookCarousel .carousel-control-next-icon,
 #sciCarousel  .carousel-control-prev-icon,
@@ -373,12 +329,11 @@ h1, h2, h3, h4, h5, h6 {
 #cheCarousel  .carousel-control-next-icon,
 #droCarousel  .carousel-control-prev-icon,
 #droCarousel  .carousel-control-next-icon  {
-  background-color: #ff4384;       /* พื้นหลังดำ */
-  border-radius: 50%;           /* ให้เป็นวงกลม */
-  padding: 0.5rem;              /* ระยะขอบ ปรับตามต้องการ */
-  background-size: 1.5rem 1.5rem; /* ปรับขนาดลูกศร ให้พอดี */
+  background-color: #ff4384;      
+  border-radius: 50%;           
+  padding: 0.5rem;              
+  background-size: 1.5rem 1.5rem; 
 }
-/* เพิ่ม transition */
 #bookCarousel .carousel-control-prev-icon,
 #bookCarousel .carousel-control-next-icon,
 #sciCarousel  .carousel-control-prev-icon,
@@ -390,8 +345,6 @@ h1, h2, h3, h4, h5, h6 {
   transition: background-color 0.3s ease, transform 0.3s ease;
   transition: all 0.9s ease;
 }
-
-/* เมื่อ hover ที่ปุ่ม ให้เปลี่ยนสีและขยายเล็กน้อย */
 #bookCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
 #bookCarousel .carousel-control-next:hover .carousel-control-next-icon,
 #sciCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
@@ -400,13 +353,9 @@ h1, h2, h3, h4, h5, h6 {
 #cheCarousel .carousel-control-next:hover .carousel-control-next-icon,
 #droCarousel .carousel-control-prev:hover .carousel-control-prev-icon,
 #droCarousel .carousel-control-next:hover .carousel-control-next-icon   {
-  background-color: #ff4384;    /* พื้นหลังเข้มขึ้นเล็กน้อย */
-  transform: scale(1.2);     /* ขยาย 20% */
+  background-color: #ff4384;    
+  transform: scale(1.2);    
 }
-
-
-
-/* Carousel indicators and controls */
 .carousel-indicators [data-bs-target] {
   background-color: #333;
   width: 10px;  
@@ -439,18 +388,10 @@ h1, h2, h3, h4, h5, h6 {
 opacity: 1;
     transform: translateX(-20px); /* เข้าจากขวา */
 }
-
-
-
-
-
-
-
 .product-slide-row {
   gap: 1rem;  
   justify-content: center;
 }
-/* Product slide row */
 .product-slide-row .card {
   flex: 0 0 auto;      
   width: 350px;        
@@ -465,9 +406,6 @@ opacity: 1;
   height: auto;
   object-fit: cover;   
 }
-
-
-/* Product categories section */
 .product-categories {
   background-color: #ffe5e5;
   padding: 2rem 0;
@@ -477,8 +415,6 @@ opacity: 1;
   font-weight: 700;
   margin-bottom: 1.5rem;
 }
-
-/* Category section grid */
 .category-section {
   width: 81rem;
   height: 40rem;
@@ -502,8 +438,6 @@ opacity: 1;
 .card-link-wrapper {
   text-decoration: none;
 }
-
-/* Category cards */
 .category-card {
   background: #fff;
   border: none;
@@ -539,8 +473,6 @@ opacity: 1;
   color: #333;
   font-weight: 500;
 }
-
-/* Filter buttons */
 .btn-pink {
   background-color: #ff40a4;
   color: #fff;
@@ -564,7 +496,6 @@ opacity: 1;
   margin-right: 0.5rem;
   transition: background 0.2s, color 0.2s;
 }
-
 .bookfilter-btn.active {
   
   background-color: #ff40a4;
@@ -589,7 +520,6 @@ opacity: 1;
   color: #fff;
   border-color: #ff40a4;
 }
-
 .text-truncate-2 {
     overflow: hidden;
     display: -webkit-box;
@@ -598,21 +528,17 @@ opacity: 1;
     line-height: 1.4;
     max-height: 2.8em;
 }   
-
-
 .filter-btn:not(.active) {
   
   background-color: transparent;
   color: #333;
 }
-
 .badge-new-svg {
     position: absolute;
     top: 10px;
     right: 5px;
     z-index: 10;
 }
-/* การ์ดสินค้า */
 .product-card-new {
     background-color: #fff;
     border-radius: 12px;
@@ -621,43 +547,34 @@ opacity: 1;
     position: relative;
     transition: transform 0.2s;
 }
-
 .product-card-new:hover {
     transform: translateY(-5px);
 }
-
-/* รูปภาพสินค้า */
 .product-card-new img {
     height: auto;
     width:70%;
     margin: 0 auto;
     display:block;
 }
-
-/* ข้อมูลสินค้า */
 .product-card-new .info {
     padding: 12px;
     text-align: center;
 }
-
 .product-card-new .title {
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 6px;
     color: #333;
 }
-
 .product-card-new .price {
     font-size: 14px;
     color: #666;
 }
-
 .product-card-new .price .sale {
     color: #ff3366;
     font-weight: bold;
     margin-left: 5px;
 }
-
 .product-card-new .add-btn {
     margin-top: 10px;
     background-color: #ff40a4;
@@ -669,19 +586,15 @@ opacity: 1;
     cursor: pointer;
     transition: background-color 0.2s;
 }
-
 .product-card-new .add-btn:hover {
     background-color: #cc2c55;
 }
-
-/* ไอคอน NEW แบบ SVG */
 .badge-new-svg {
     position: absolute;
     top: 10px;
     right: 10px;
     z-index: 10;
 }
-
 .product-card {
   width: 280px;
   border: none;
@@ -691,12 +604,10 @@ opacity: 1;
   transition: transform .3s, box-shadow .3s;
   
 }
-
 .product-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
-
 .product-card .card-img-top {
   max-width: 250px;
   max-height: 250px;
@@ -710,8 +621,6 @@ opacity: 1;
   justify-content: center; 
   align-items: center;     
 }
-
-
 .product-card .card-body {
   
   padding: 1rem;
@@ -720,8 +629,6 @@ opacity: 1;
   justify-content: center;
   text-align: center;
 }
-
-
 .product-title {
   font-size: 0.95rem;
   font-weight: 500;
@@ -729,8 +636,6 @@ opacity: 1;
   word-break: keep-all;    
   overflow-wrap: break-word;
 }
-
-/* ส่วน footer */
 .product-card .card-footer {
   background: #fff;
   border-top: 1px solid #ececec;
@@ -745,15 +650,44 @@ opacity: 1;
   transition: color .3s ease, transform .3s ease;
   cursor: pointer;
 }
-
-/* Hover effect */
 .btn-heart:hover {
   color: #e83e8c;               
   transform: scale(1.2);
 }
+html {
+  scroll-behavior: smooth; 
+}
+#backToTop { /* เปลี่ยนจาก #backToTopBtn เป็น #backToTop */
+    display: block; /* ให้ปุ่มแสดงอยู่เสมอตอนแรก แล้วใช้ opacity จัดการ */
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 99;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    background-color: #e83e8c;
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    text-align: center;
+    line-height: 50px;
+    opacity: 0; /* ซ่อนเริ่มต้นด้วย opacity */
+    visibility: hidden; /* ซ่อนจริงๆ ไม่ให้คลิกได้ถ้า opacity เป็น 0 */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* เพิ่ม transition */
+}
 
+#backToTop.show { /* เพิ่มกฎนี้ */
+    opacity: 1;
+    visibility: visible;
+}
 
-/* Custom nav arrows */
+#backToTop:hover { /* เปลี่ยนจาก #backToTopBtn:hover เป็น #backToTop:hover */
+    background-color: #d63384;
+}
 .custom-nav {
   position: absolute;
   top: 50%;
@@ -781,7 +715,6 @@ opacity: 1;
 /* Footer styling */
 .bg-pink {
   background-color: #ff40a4 !important;
-  
 }
 .footer-menu {
   margin: 0;
@@ -819,33 +752,23 @@ opacity: 1;
 .site-footer{
   border-radius: 7px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.65);
-
 }
-
-
-/* ให้ overflow ซ่อน และ disable scrollbars */
 .swiper {
   overflow: hidden;
 }
-
-/* จัด .swiper-wrapper ให้เป็น flex และใส่ transition */
 .swiper-wrapper {
   display: flex;
   transition: transform 0.3s ease;
   padding: 10px 0 0 10px;
 }
-
-
 .swiper-slide {
     width: 220px; 
     padding: 10px;
     box-sizing: border-box;
 }
-
 .swiper-slide:last-child {
   margin-right: 0;
 }
-
 .swiper-buttons-new {
   display: flex;
   gap: 0.5rem;
@@ -858,24 +781,15 @@ opacity: 1;
    display: flex;
   gap: 0.5rem;
 }
-
-
 .category-item img{
-
   max-width: 100px;
   max-height: 100px;
-
 }
 .category-item {
-
   max-width: 250px;
   max-height: 250px;
 
 }
-
-
-
- /* Swiper carousel  */
 .swiper-prev,
 .swiper-next {
   width: 38px;
@@ -909,11 +823,9 @@ opacity: 1;
   color: #787878;
   transition: color 0.3s ease; /* เพิ่มความนุ่มเวลาเปลี่ยนสี */
 }
-
 .btn-link:hover {
   color: #ff4da6; /* สีชมพู */
 }
-/* category carousel */
 .category-carousel .category-item {
   background: #FFFFFF;
   border: 1px solid #FBFBFB;
@@ -937,18 +849,7 @@ opacity: 1;
   color: #222222;
   margin-top: 20px;
 }
-
-
-
-
-
-
-
-
-/* Responsive: ปรับ filter-bar  */
-
 @media (max-width: 992px) {
-  
   .filter-bar {
     flex-wrap: wrap;             
     justify-content: space-between;
@@ -963,10 +864,6 @@ opacity: 1;
     width: 100% !important;    
   }
 }
-
-
-/* Responsive: จอแท็บเล็ต–มือถือ     */
-
 @media (max-width: 768px) {
   .filter-bar {
     flex-direction: column;     
@@ -980,10 +877,6 @@ opacity: 1;
     width: 100%;                
   }
 }
-
-
-/* Responsive: ปรับการ์ดสินค้า   */
-
 @media (max-width: 576px) {
   .product-card {
     width: 100% !important;     
@@ -995,8 +888,6 @@ opacity: 1;
     max-height: 250px;           
   }
 }
-
-/* Responsive for product images */
 @media (max-width: 768px) {
   .product-slide-row .card img {
     height: 150px;
@@ -1012,9 +903,3 @@ opacity: 1;
     max-width: 80%;
   }
 }
-
-
-
-
-
-
