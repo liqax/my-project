@@ -9,6 +9,8 @@ use App\Http\Controllers\ShippingAddressController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ExamBookingController;
+use App\Http\Controllers\CheckoutController;
+
 
 
 
@@ -31,6 +33,10 @@ Route::post('/cart/add', [ShopController::class, 'addToCart'])->name('cart.add')
 Route::post('/cart/update', [ShopController::class, 'updateCart'])->name('cart.update');
 Route::post('/cart/remove', [ShopController::class, 'removeFromCart'])->name('cart.remove');
 
+
+
+
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/account', [AccountController::class, 'showAccountPage'])->name('account.page');
     Route::get('/account/address/edit', [AccountController::class, 'editAddress'])->name('address.edit');
@@ -51,28 +57,49 @@ Route::post('/forgot-password', function (Request $request) {
 })->middleware('guest')->name('password.email');
 Route::post('/logout', function () {Auth::logout(); return redirect('/'); })->name('logout');
 
-
-Route::get('/shipping', [ShippingAddressController::class, 'create'])->name('shipping.create');
-Route::post('/shipping/save', [ShippingAddressController::class, 'store'])->name('shipping.save');
+// Route::get('/shipping', [ShippingAddressController::class, 'create'])->name('shipping.create');
+// Route::post('/shipping/save', [ShippingAddressController::class, 'store'])->name('shipping.save');
 Route::get('/customer/address', [CustomerController::class, 'address'])->name('customer.address');
 Route::post('/customer/address/save', [CustomerController::class, 'saveAddress'])->name('customer.address.save');
 
 
+Route::middleware(['auth'])->group(function () {
+    // Checkout Page (หน้าชำระเงิน)
+    Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
+    Route::post('/order/place', [OrderController::class, 'place'])->name('order.place'); // ยืนยันคำสั่งซื้อ
 
+    // Shipping Address (ที่อยู่จัดส่ง)
+    // ใช้ show สำหรับแสดงฟอร์มเพิ่ม/แก้ไข และ save สำหรับบันทึก
+    Route::get('/shipping/create', [ShippingAddressController::class, 'create'])->name('shipping.create'); // แสดงฟอร์มเพิ่ม/แก้ไข
+    Route::post('/shipping/save', [ShippingAddressController::class, 'storeOrUpdate'])->name('shipping.save'); // บันทึก/อัปเดตที่อยู่
+
+    // Order Confirmation Page (หน้ายืนยันคำสั่งซื้อ)
+    Route::get('/order/confirmation/{order}', [OrderController::class, 'confirmation'])->name('order.confirmation');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show'); // ดูรายละเอียดคำสั่งซื้อ (อาจจะมีหน้า history ด้วย)
+});
 
 
 Route::get('/admin/export-bookings', [ExamBookingController::class, 'exportBookings'])->name('admin.bookings.export');
-// Route to display the form
 Route::get('/book-exam', [ExamBookingController::class, 'showBookingForm'])->name('exam.booking.form');
-
-// Route to handle form submission
 Route::post('/book-exam', [ExamBookingController::class, 'submitBookingForm'])->name('exam.booking.submit');
-
-// Optional: Routes for Terms and Privacy pages (if they exist)
 Route::get('/terms', function () {
-    return view('terms'); // Create a resources/views/terms.blade.php file
+    return view('terms'); 
 })->name('terms');
-
 Route::get('/privacy', function () {
-    return view('privacy'); // Create a resources/views/privacy.blade.php file
+    return view('privacy'); 
 })->name('privacy');
+
+
+
+
+Route::middleware(['auth'])->group(function () {
+    // Cart Routes
+    // Checkout Routes
+    Route::get('checkout', [CheckoutController::class, 'showCheckoutPage'])->name('checkout.show');
+    Route::post('order/place', [OrderController::class, 'placeOrder'])->name('order.place');
+
+    // Order Status Routes
+    Route::get('orders', [OrderController::class, 'showOrderStatus'])->name('order.status');
+  
+
+});

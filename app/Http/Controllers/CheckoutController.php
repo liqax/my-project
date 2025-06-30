@@ -3,36 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Order;
-use App\Models\OrderItem;
-use App\Models\Cart;
-use App\Models\ShippingAddress;
+use Illuminate\Support\Facades\Auth;
+use App\Models\ShippingAddress; // สมมติว่าคุณมี Model สำหรับที่อยู่จัดส่ง
 
 class CheckoutController extends Controller
 {
-    // แสดงหน้า checkout
-    public function show()
+    public function showCheckoutPage()
     {
-        // ดึงข้อมูลจากตะกร้า (ตาม user ที่ล็อกอิน)
-        $cartItems = Cart::with('product')->where('user_id', auth()->id())->get();
+        // ดึงที่อยู่จัดส่งของ user ที่ login อยู่
+        $address = Auth::user()->shippingAddress; // สมมติว่า user มี one-to-one relationship กับ shippingAddress
 
-        return view('checkout', compact('cartItems'));
+        // คุณอาจจะต้องดึงข้อมูลตะกร้าสินค้าจาก session หรือ database อีกครั้ง
+        // เพื่อให้หน้า checkout มีข้อมูลล่าสุด ในกรณีที่ผู้ใช้เปิดหน้า checkout โดยตรง
+        // แต่ในตัวอย่างนี้ เราจะใช้ข้อมูลที่ส่งมาจาก localStorage ใน JavaScript
+
+        return view('checkout', compact('address'));
     }
-
-    // ประมวลผลการชำระเงิน
-    public function process(Request $request)
-    {
-        // Validate ข้อมูล, คำนวณยอดรวม, สร้าง order, ล้าง cart
-        // ตรงนี้สามารถเขียนต่อหรือ mock ก่อนก็ได้
-        return redirect()->route('home')->with('success', 'ชำระเงินสำเร็จ');
-    }
-
-   public function checkout()
-{
-    $address = ShippingAddress::where('user_id', auth()->id())->latest()->first();
-
-    $cart = session('cart', []); // ถ้ามีตะกร้า
-
-    return view('checkout', compact('address', 'cart'));
-}
 }

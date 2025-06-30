@@ -313,24 +313,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
 document.addEventListener('DOMContentLoaded', function() {
-  // ตรวจสอบว่ามีปุ่ม backToTop อยู่หรือไม่ก่อนที่จะใช้งาน
+ 
   const backBtn = document.getElementById('backToTop');
-  if (!backBtn) return; // ถ้าหาปุ่มไม่เจอ ให้จบการทำงานของส่วนนี้
+  if (!backBtn) return; 
 
-  const showAfter = 400;  // เลื่อนลงมาเกิน 400px จึงแสดงปุ่ม
+  const showAfter = 400;  
 
-  // ตรวจเช็คการเลื่อน
   window.addEventListener('scroll', () => {
     if (window.pageYOffset > showAfter) {
-      backBtn.classList.add('show'); // เพิ่ม class 'show' เพื่อให้แสดง
+      backBtn.classList.add('show'); 
     } else {
-      backBtn.classList.remove('show'); // ลบ class 'show' เพื่อให้ซ่อน
+      backBtn.classList.remove('show'); 
     }
   });
 
-  // กดปุ่ม → เลื่อนขึ้นบนสุดแบบ smooth
   backBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // นี่คือส่วนที่ทำให้ smooth
+    window.scrollTo({ top: 0, behavior: 'smooth' }); 
   });
 });
 
@@ -338,10 +336,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    // ... (โค้ด JS เดิมของ Swiper, login/register tabs, backToTop) ...
-
     const stickyNavbar = document.getElementById('stickyNavbar');
-    const scrollThreshold = 500; // กำหนดระยะ scroll ที่ต้องการให้ Navbar แสดง
+    const scrollThreshold = 500; 
 
     window.addEventListener('scroll', () => {
         if (window.pageYOffset > scrollThreshold) {
@@ -351,10 +347,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ตรวจสอบสถานะเมื่อโหลดหน้าครั้งแรก (เผื่อโหลดหน้ามาแล้วอยู่กลางหน้าจอ)
     if (window.pageYOffset > scrollThreshold) {
         stickyNavbar.classList.add('show');
     }
 });
 
 
+
+   
+
+document.addEventListener('DOMContentLoaded', function() {
+    // --- สคริปต์สำหรับการบันทึกและกู้คืนตำแหน่งการ Scroll ---
+
+    document.querySelectorAll('form[action*="/cart/add"], form[action*="/wishlist/add"]').forEach(form => {
+        form.addEventListener('submit', function() {
+            localStorage.setItem('scrollPos', window.scrollY);
+        });
+    });
+
+    // นอกจาก form submit, ถ้าคุณมีปุ่มที่เรียก AJAX (ซึ่งตอนนี้ไม่ใช้แล้ว) หรือ redirect โดยตรง
+    document.querySelectorAll('.add-to-cart-btn, .add-to-wishlist-btn').forEach(button => {
+        button.addEventListener('click', function() {
+         
+        });
+    });
+    const savedScrollPos = localStorage.getItem('scrollPos');
+    if (savedScrollPos) {
+        window.scrollTo(0, parseInt(savedScrollPos));
+        localStorage.removeItem('scrollPos'); 
+    }
+});

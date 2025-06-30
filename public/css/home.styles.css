@@ -2,6 +2,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap');
 
+
+/* Custom CSS for hover effects */
+
+/* Target the anchor tags within the specific flex container */
+.d-flex.align-items-end.gap-4 .link-icon {
+    /* ใช้ transition เพื่อให้การเปลี่ยนสีดูนุ่มนวลขึ้น */
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+
+/* Hover effect for SVG icons */
+.d-flex.align-items-end.gap-4 .link-icon:hover svg.mb-icon {
+    fill: var(--bs-primary); /* เปลี่ยนสี fill ของ SVG เป็นสีหลักของ Bootstrap */
+}
+
+/* Optional: Make counter badge more prominent on hover */
+.d-flex.align-items-end.gap-4 .link-icon:hover .counter {
+    color: white; /* เปลี่ยนสีตัวอักษรของ counter */
+}
+
+/* If you want a different hover color, define it */
+/* For example, if you want a pink hover */
+.d-flex.align-items-end.gap-4 .link-icon:hover {
+    color: #fd79a8; /* ตัวอย่างสีชมพู */
+    
+}
+
+.d-flex.align-items-end.gap-4 .link-icon:hover svg.mb-icon {
+    fill: #fd79a8; /* ตัวอย่างสีชมพู */
+}
+
+
+
+
+
+
+
+
+
+
+
 #bookSection {
   scroll-margin-top: 50px; 
 }
@@ -14,6 +55,9 @@
 #droneSection {
   scroll-margin-top: 50px; 
 }
+/* Custom CSS */
+
+/* Styles for sticky-navbar on larger screens (default) */
 .sticky-navbar {
     position: fixed;
     top: 0;
@@ -60,6 +104,19 @@
     color: #ff40a4; /* สีข้อความเมื่อ hover */
 }
 
+/* --- Media Query for screens 976px and below --- */
+@media (max-width: 976px) {
+    .sticky-navbar {
+        position: static !important; /* ปิดการทำงาน sticky */
+        transform: translateY(0) !important; /* ยกเลิกการ transform */
+        display: none !important; /* ซ่อน Navbar ไปเลย */
+    }
+    .sticky-navbar.show {
+        transform: translateY(0) !important; /* ให้แน่ใจว่าไม่มีการเคลื่อนไหวใดๆ */
+        display: none !important; /* ยังคงซ่อนอยู่ */
+    }
+}
+
 .home-cat{
   width: 100%;
     max-width: 1380px;
@@ -76,6 +133,7 @@
     background-color: #fcf3e5;
      padding-left: 0;
 }
+
 .sale-product{
     width: 100%;
     max-width: 1380px;
