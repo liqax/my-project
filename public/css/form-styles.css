@@ -152,3 +152,328 @@ h3 {
         font-size: 1em;
     }
 }
+
+
+ .exam-cards-container {
+            display: flex;
+            justify-content: center; /* จัดการ์ดให้อยู่ตรงกลางแนวนอน */
+            margin-top: 50px; /* ระยะห่างจากการ์ดถึงขอบบน */
+            margin-bottom: 40px; /* ระยะห่างจากการ์ดถึงฟอร์ม */
+        }
+
+        .exam-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 12px; /* ขอบโค้งมนมากขึ้น */
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); /* เงาที่ดูมีมิติมากขึ้น */
+            padding: 30px; /* เพิ่ม padding ภายในการ์ด */
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+            width: 400px; /* ปรับความกว้างของการ์ดให้ใหญ่และเด่นขึ้น */
+            background-color: #fff;
+            position: relative; /* สำหรับ badge HOT! */
+            overflow: hidden; /* เพื่อซ่อนส่วนเกินของ badge */
+        }
+
+        .exam-card:hover {
+            transform: translateY(-8px); /* ยกการ์ดสูงขึ้นเมื่อ hover */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* เงาที่เข้มขึ้นเมื่อ hover */
+        }
+
+        .exam-card img {
+            max-width: 150px; /* ขนาดโลโก้ที่ใหญ่ขึ้น */
+            height: auto;
+            margin-bottom: 20px;
+            object-fit: contain;
+        }
+
+        .exam-card h3 {
+            font-size: 2.2em; /* ขนาดตัวอักษรใหญ่มาก */
+            font-weight: 700; /* ตัวหนามาก */
+            color: #2c3e50; /* สีข้อความที่เข้มขึ้น */
+            margin-bottom: 10px;
+        }
+
+        .exam-card p {
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .exam-card .detail-text {
+            font-size: 0.95em;
+            color: #888;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .exam-card .price {
+            font-size: 1.5em; /* ขนาดราคาที่ใหญ่และเด่น */
+            font-weight: bold;
+            color: #e74c3c; /* สีแดงสดใส */
+            margin-top: 20px;
+        }
+
+        /* Badge HOT! (ปรับปรุงจากที่คุณมี) */
+        .exam-card .card-badge {
+            position: absolute;
+            top: 0; /* เริ่มที่ขอบบน */
+            right: 0; /* เริ่มที่ขอบขวา */
+            background-color: #e74c3c; /* สีแดง */
+            color: white;
+            padding: 8px 30px; /* เพิ่ม padding ให้ใหญ่และยาวขึ้น */
+            font-size: 0.8em;
+            font-weight: bold;
+            transform: translate(25%, -25%) rotate(45deg); /* เลื่อนและหมุนให้เป็นมุมธง */
+            transform-origin: 100% 0%; /* หมุนจากมุมบนขวาของการ์ด */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+        }
+        /* ถ้าต้องการให้กระพริบ uncomment ส่วนนี้ */
+        /*
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .exam-card .card-badge {
+            animation: fadeInOut 2s infinite;
+        }
+        */
+
+        /* ------------------------------------ */
+        /* CSS สำหรับฟอร์ม (ตามที่คุณต้องการให้คงเดิมและสวยงาม) */
+        /* ------------------------------------ */
+        .form-container {
+            /* **สำคัญ: ซ่อนฟอร์มในตอนแรก** */
+            display: none; /* เริ่มต้นซ่อนฟอร์ม */
+
+            /* สไตล์พื้นฐานของ form-container (เพื่อให้สวยงามเหมือนรูปที่ให้มา) */
+            background-color: #ffffff; /* พื้นหลังสีขาวของการ์ดฟอร์ม */
+            border-radius: 8px; /* ขอบโค้งมน */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* เงาเบาๆ */
+            padding: 30px; /* ระยะห่างภายในฟอร์ม */
+            max-width: 800px; /* จำกัดความกว้างสูงสุด */
+            margin: 40px auto; /* จัดฟอร์มให้อยู่ตรงกลางและมีระยะห่างจากด้านบน/ล่าง */
+            border: 1px solid #e0e0e0; /* เส้นขอบบางๆ */
+        }
+
+        .form-container h2 {
+            font-size: 2em; /* ขนาดหัวข้อหลัก */
+            font-weight: 600; /* ตัวหนาปานกลาง */
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .form-container .form-description {
+            font-size: 1em; /* ขนาดคำอธิบายฟอร์ม */
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* หัวข้อในแต่ละส่วนของฟอร์ม (ข้อมูลการสอบ, ข้อมูลผู้สมัคร) */
+        .form-container h3 {
+            font-size: 1.5em; /* ขนาดหัวข้อในแต่ละส่วน */
+            font-weight: 600;
+            color: #555;
+            border-bottom: 1px solid #eee; /* เส้นแบ่งใต้หัวข้อ */
+            padding-bottom: 10px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px; /* ระยะห่างระหว่างแต่ละกลุ่มฟอร์ม */
+        }
+
+        .form-group label {
+            display: block; /* ทำให้ label ขึ้นบรรทัดใหม่ */
+            font-weight: 500; /* ตัวหนาเล็กน้อย */
+            color: #444;
+            margin-bottom: 8px; /* ระยะห่างระหว่าง label กับ input */
+            font-size: 0.95em;
+        }
+
+        .form-group .required {
+            color: #d9534f; /* สีแดงสำหรับ * ที่หมายถึง required */
+            margin-left: 4px;
+        }
+
+        .form-group .form-text-hint {
+            font-size: 0.85em; /* ขนาดข้อความช่วยเหลือ */
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Input Fields, Textarea, Select */
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group input[type="date"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%; /* ให้ input กินพื้นที่เต็มความกว้าง */
+            padding: 12px 15px; /* ระยะห่างภายใน input */
+            border: 1px solid #ccc; /* เส้นขอบ input */
+            border-radius: 4px; /* ขอบโค้งมน */
+            font-size: 1em; /* ขนาดตัวอักษรใน input */
+            color: #333;
+            box-sizing: border-box; /* ทำให้ padding/border ไม่ผลักความกว้างออกไป */
+            transition: border-color 0.2s, box-shadow 0.2s; /* เพิ่ม transition */
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group input[type="tel"]:focus,
+        .form-group input[type="date"]:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #007bff; /* สีขอบเมื่อ focus */
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* เพิ่มเงาเมื่อ focus คล้าย Bootstrap */
+            outline: none; /* ลบ outline เริ่มต้นของเบราว์เซอร์ */
+        }
+
+        /* Alert Messages (for errors/success) */
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+
+        /* Checkbox Group */
+        .checkbox-group {
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 8px;
+            transform: scale(1.1);
+        }
+
+        .checkbox-group label {
+            display: inline;
+            font-weight: normal;
+            color: #555;
+        }
+
+        .checkbox-group a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 20px;
+                margin: 20px auto;
+            }
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 10px 12px;
+            }
+            .submit-btn {
+                padding: 12px 15px;
+                font-size: 1em;
+            }
+            .exam-card {
+                width: 90%; /* การ์ดเต็มความกว้างมากขึ้นบนมือถือ */
+                margin: 0 auto;
+            }
+            .hsk-fee-table {
+                width: 100%; /* ให้รูปตารางราคากินเต็มความกว้างบนมือถือ */
+                height: auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .form-container {
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+
+        /* เพิ่ม CSS สำหรับส่วนการชำระเงินให้สวยงาม (ที่คุณมีอยู่แล้ว) */
+        .payment-section {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            margin-top: 30px;
+        }
+
+        .total-amount {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #d9534f;
+            margin-bottom: 15px;
+        }
+
+        .payment-methods label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .payment-methods input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .payment-details {
+            border: 1px dashed #ccc;
+            padding: 15px;
+            margin-top: 15px;
+            background-color: #f9f9f9;
+        }
+
+        .payment-details p {
+            margin-bottom: 5px;
+        }

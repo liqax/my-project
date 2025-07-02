@@ -312,25 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         });
 
-document.addEventListener('DOMContentLoaded', function() {
- 
-  const backBtn = document.getElementById('backToTop');
-  if (!backBtn) return; 
-
-  const showAfter = 400;  
-
-  window.addEventListener('scroll', () => {
-    if (window.pageYOffset > showAfter) {
-      backBtn.classList.add('show'); 
-    } else {
-      backBtn.classList.remove('show'); 
-    }
-  });
-
-  backBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' }); 
-  });
-});
+     
 
 
 
@@ -357,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
    
 
 document.addEventListener('DOMContentLoaded', function() {
-    // --- สคริปต์สำหรับการบันทึกและกู้คืนตำแหน่งการ Scroll ---
+    
 
     document.querySelectorAll('form[action*="/cart/add"], form[action*="/wishlist/add"]').forEach(form => {
         form.addEventListener('submit', function() {
@@ -365,7 +347,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // นอกจาก form submit, ถ้าคุณมีปุ่มที่เรียก AJAX (ซึ่งตอนนี้ไม่ใช้แล้ว) หรือ redirect โดยตรง
     document.querySelectorAll('.add-to-cart-btn, .add-to-wishlist-btn').forEach(button => {
         button.addEventListener('click', function() {
          
@@ -377,3 +358,44 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.removeItem('scrollPos'); 
     }
 });
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const stickyDropdownElement = document.getElementById('moreDropdownSticky').closest('.nav-item.dropdown');
+        const stickyDropdownToggle = stickyDropdownElement.querySelector('.dropdown-toggle');
+        const stickyDropdownMenu = stickyDropdownElement.querySelector('.dropdown-menu');
+
+        let stickyShowTimeout;
+        let stickyHideTimeout;
+
+        
+        function showStickyDropdown() {
+            clearTimeout(stickyHideTimeout); 
+            stickyShowTimeout = setTimeout(() => {
+               
+                if (typeof bootstrap !== 'undefined' && bootstrap.Dropdown) {
+                    const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(stickyDropdownToggle);
+                    bsDropdown.show();
+                }
+            }, 100); 
+        }
+
+       
+        function hideStickyDropdown() {
+            clearTimeout(stickyShowTimeout); 
+            stickyHideTimeout = setTimeout(() => {
+                if (typeof bootstrap !== 'undefined' && bootstrap.Dropdown) {
+                    const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(stickyDropdownToggle);
+                    bsDropdown.hide();
+                }
+            }, 200); 
+        }
+
+        
+        stickyDropdownElement.addEventListener('mouseenter', showStickyDropdown);
+        stickyDropdownElement.addEventListener('mouseleave', hideStickyDropdown);
+
+        
+        stickyDropdownMenu.addEventListener('mouseenter', showStickyDropdown);
+        stickyDropdownMenu.addEventListener('mouseleave', hideStickyDropdown);
+    });

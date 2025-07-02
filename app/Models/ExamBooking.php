@@ -34,6 +34,8 @@ class ExamBooking extends Model
         'province',
         'postal_code',
         'agree_terms',
+         'total_amount',   
+        'payment_method',
     ];
 
     // If you want to cast the boolean field

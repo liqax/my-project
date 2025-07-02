@@ -195,21 +195,17 @@
                 </div>
 
                 <div class="text-center">
-                    {{-- โค้ดนี้จะรวมทั้งสถานะ Guest และ Authenticated User ไว้ใน A Tag เดียวกัน --}}
                     <a class="link-icon text-decoration-none text-white" href="#" role="button"
-                        id="dropdownUserMenu" {{-- ถ้าเป็น Guest ให้เปิด Modal --}}
-                        @guest
-data-bs-toggle="modal" data-bs-target="#authModal" @endguest {{-- ถ้าเป็น Authenticated User ให้เปิด Dropdown --}}
+                        id="dropdownUserMenu" @guest
+data-bs-toggle="modal" data-bs-target="#authModal" @endguest
                         @auth
 data-bs-toggle="dropdown" aria-expanded="false" @endauth>
-                        {{-- ไอคอนผู้ใช้ --}}
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
                             viewBox="0 0 16 16" class="mb-icon">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3z" />
                             <path fill-rule="evenodd" d="M8 8a3 3 0 100-6 3 3 0 000 6z" />
                         </svg>
 
-                        {{-- ข้อความ สวัสดี, [ชื่อ] หรือ สมาชิก --}}
                         @auth
                             <div class="small fw-light">สวัสดี, {{ Auth::user()->name }}</div>
                         @else
@@ -217,12 +213,10 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                         @endauth
                     </a>
 
-                    {{-- Dropdown Menu สำหรับผู้ใช้ที่ล็อกอินแล้วเท่านั้น --}}
-                    {{-- จะแสดงก็ต่อเมื่อผู้ใช้ล็อกอินอยู่ และถูกควบคุมโดย data-bs-toggle="dropdown" ข้างบน --}}
                     @auth
                         <ul class="dropdown-menu dropdown-menu-end text-center p-2" aria-labelledby="dropdownUserMenu">
-                            <li><a class="dropdown-item fw-small" href="#">บัญชีของฉัน</a></li>
-                            <li><a class="dropdown-item fw-small" href="#">ประวัติคำสั่งซื้อ</a></li>
+                            <li><a class="dropdown-item fw-small" href="/customer/account">บัญชีของฉัน</a></li>
+                            <li><a class="dropdown-item fw-small" href="/orders/history">ประวัติคำสั่งซื้อ</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -238,8 +232,6 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                         </form>
                     @endauth
 
-                    {{-- ส่วน Modal สำหรับผู้เยี่ยมชม (Guest) --}}
-                    {{-- โค้ด Modal นี้จะยังคงอยู่ในตำแหน่งเดิมที่คุณวางไว้ --}}
                     @guest
                         <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel"
                             aria-hidden="true">
@@ -380,7 +372,6 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                 <div class="collapse navbar-collapse show">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
 
-                        {{-- ปุ่ม Hamburger --}}
 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false"
@@ -418,24 +409,24 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ url('/book-exam') }}"
-                                    class="nav-link  text-white fw-normal px-2">จองสอบภาษาจีน</a>
+                                    class="nav-link text-white fw-normal px-2 position-relative">
+                                    จองสอบภาษาจีน
+                                    <span class="badge-hot">HOT</span>
+                                </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link  dropdown-toggle text-white fw-normal px-2" href="#"
-                                    id="moreDropdown" role="button" data-bs-toggle="dropdown"
+                                <a class="nav-link dropdown-toggle text-white fw-normal px-2" href="#"
+                                    id="moreDropdownSticky" role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     เพิ่มเติม
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdown">
-                                    <li><a class="dropdown-item" href="{{ url('/about') }}">เกี่ยวกับเรา</a>
-                                    </li>
-
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdownSticky">
+                                    <li><a class="dropdown-item" href="{{ url('/about') }}">เกี่ยวกับเรา</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li><a class="dropdown-item"
-                                            href="{{ url('/customer/gdpr') }}">นโยบายความเป็นส่วนตัว</a>
-                                    </li>
+                                            href="{{ url('/customer/gdpr') }}">นโยบายความเป็นส่วนตัว</a></li>
                                 </ul>
                             </li>
                         </div>
@@ -476,7 +467,10 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/book-exam') }}"
-                                class="nav-link text-white fw-normal px-2">จองสอบภาษาจีน</a>
+                                class="nav-link text-white fw-normal px-2 position-relative">
+                                จองสอบภาษาจีน
+                                <span class="badge-hot">HOT</span>
+                            </a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white fw-normal px-2" href="#"
@@ -554,7 +548,7 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                                         </a>
                                     </div>
                                 @else
-                                    <div class=" text-muted small">
+                                    <div class="fw-small">
                                         คุณไม่มีสินค้าในรายการโปรด.
                                     </div>
                                 @endif
@@ -628,7 +622,7 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                                         </a>
                                     </div>
                                 @else
-                                    <div class="text-center text-muted small">
+                                    <div class="fw-small">
                                         คุณไม่มีสินค้าในตะกร้า.
                                     </div>
                                 @endif
@@ -657,8 +651,9 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                             @auth
                                 <ul class="dropdown-menu dropdown-menu-end text-center p-2"
                                     aria-labelledby="dropdownUserMenu">
-                                    <li><a class="dropdown-item fw-small" href="#">บัญชีของฉัน</a></li>
-                                    <li><a class="dropdown-item fw-small" href="#">ประวัติคำสั่งซื้อ</a></li>
+                                    <li><a class="dropdown-item fw-small" href="/customer/account">บัญชีของฉัน</a></li>
+                                    <li><a class="dropdown-item fw-small" href="/orders/history">ประวัติคำสั่งซื้อ</a>
+                                    </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -696,20 +691,16 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                                                         <form method="POST" action="{{ route('login') }}">
                                                             @csrf
 
-                                                            {{-- START: ส่วนที่เพิ่มเข้ามาสำหรับแสดงข้อผิดพลาด (ปรับปรุง) --}}
-                                                            {{-- แสดงข้อความรวมเมื่อมี error เกี่ยวกับการ login --}}
                                                             @if ($errors->has('email') || $errors->has('password'))
                                                                 <div class="alert alert-danger mb-3" role="alert">
                                                                     อีเมลหรือรหัสผ่านไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง
                                                                 </div>
                                                             @elseif (session('status'))
-                                                                {{-- หากมี session status (อาจเป็น success หรือ error อื่นๆ) --}}
                                                                 <div class="alert alert-{{ Str::contains(session('status'), ['error', 'failed']) ? 'danger' : 'success' }} mb-3"
                                                                     role="alert">
                                                                     {{ session('status') }}
                                                                 </div>
                                                             @endif
-                                                            {{-- END: ส่วนที่เพิ่มเข้ามาสำหรับแสดงข้อผิดพลาด --}}
 
                                                             <div class="mb-3">
                                                                 <input type="email" name="email"
@@ -841,7 +832,7 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                                     document.addEventListener('DOMContentLoaded', function() {
                                         // ตรวจสอบว่ามี error จากการ Login หรือไม่
                                         const hasLoginError = @json($errors->has('email') || $errors->has('password'));
-                                        const sessionStatus = @json(session('status')); // ดึง session status มาด้วย
+                                        const sessionStatus = @json(session('status'));
 
                                         // ถ้ามี error จาก login หรือ session status ที่เป็น error
                                         if (hasLoginError || (sessionStatus && (sessionStatus.includes('error') || sessionStatus.includes(
@@ -849,9 +840,8 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                                             const authModalElement = document.getElementById('authModal');
                                             if (authModalElement) {
                                                 const authModal = new bootstrap.Modal(authModalElement);
-                                                authModal.show(); // เปิด Modal
+                                                authModal.show();
 
-                                                // ตรวจสอบให้แน่ใจว่าแท็บ Login ถูกเปิดใช้งาน
                                                 const loginTabTrigger = document.querySelector('#authTabs a[href="#loginTab"]');
                                                 if (loginTabTrigger) {
                                                     const tab = new bootstrap.Tab(loginTabTrigger);
@@ -891,7 +881,7 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                                     class="text-white">สารเคมี</a></li>
                             <li><a href="{{ request()->routeIs('home') ? '#droneSection' : url('/') . '#droneSection' }}"
                                     class="text-white">โดรน</a></li>
-                            <li><a href="#" class="text-white">ประวัติคำสั่งซื้อ</a></li>
+                            <li><a href="/orders/history" class="text-white">ประวัติคำสั่งซื้อ</a></li>
                             <li><a href="#" class="text-white">เพิ่มเติม</a></li>
                         </ul>
                     </div>
@@ -932,15 +922,52 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         {{-- swiper --}}
         <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const pre = document.getElementById('preloader');
+                if (!pre) return;
+                pre.classList.add('loaded');
+                //  (1000ms)
+                setTimeout(() => pre.remove(), 1000);
+            });
+        </script>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const backBtn = document.getElementById('backToTop');
+                if (!backBtn) {
+                    console.log('Error: backToTop button not found!'); // ควรเห็น Log นี้ถ้าหาปุ่มไม่เจอ
+                    return;
+                }
+                console.log('BackToTop button found:', backBtn); // ควรเห็น Log นี้และ Element ของปุ่ม
+
+                const showAfter = 400;
+
+                window.addEventListener('scroll', () => {
+                    // console.log('Current scrollY:', window.pageYOffset); // ตรวจสอบค่า scroll
+                    if (window.pageYOffset > showAfter) {
+                        // console.log('Adding show class');
+                        backBtn.classList.add('show');
+                    } else {
+                        // console.log('Removing show class');
+                        backBtn.classList.remove('show');
+                    }
+                });
+
+                backBtn.addEventListener('click', () => {
+                    console.log('Back to Top button clicked. Initiating smooth scroll.'); // ตรวจสอบเมื่อคลิก
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        </script>
+
+        <script src="{{ asset('js/home.filter.js') }}"></script>
+
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const pre = document.getElementById('preloader');
-            if (!pre) return;
-            pre.classList.add('loaded');
-            setTimeout(() => pre.remove(), 2000);
-        });
-    </script>
 
 
 </body>

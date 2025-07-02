@@ -37,7 +37,8 @@ return new class extends Migration
             $table->string('province');
             $table->string('postal_code', 5);
             $table->boolean('agree_terms'); // To record if terms were accepted
-
+            $table->decimal('total_amount', 8, 2)->default(0.00)->after('agree_terms');
+              $table->string('payment_method')->nullable()->after('total_amount');
             $table->timestamps(); // created_at and updated_at
         });
     }

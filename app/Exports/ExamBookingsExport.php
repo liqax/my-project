@@ -6,11 +6,11 @@ use App\Models\ExamBooking;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
-use Maatwebsite\Excel\Concerns\ShouldAutoSize; // เพิ่มอันนี้
-use Maatwebsite\Excel\Concerns\WithStyles;     // เพิ่มอันนี้
-use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet; // เพิ่มอันนี้
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ExamBookingsExport implements FromCollection, WithHeadings, WithMapping, ShouldAutoSize, WithStyles // เพิ่มชื่อ Traits ที่นี่
+class ExamBookingsExport implements FromCollection, WithHeadings, WithMapping, ShouldAutoSize, WithStyles
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -52,6 +52,8 @@ class ExamBookingsExport implements FromCollection, WithHeadings, WithMapping, S
             'จังหวัด',
             'รหัสไปรษณีย์',
             'ยอมรับข้อกำหนด',
+            'ยอดรวมที่ต้องชำระ (THB)', // เพิ่ม: ยอดรวมที่ต้องชำระ
+            'วิธีการชำระเงิน',          // เพิ่ม: วิธีการชำระเงิน
             'วันที่สร้าง',
             'วันที่อัปเดต',
         ];
@@ -63,6 +65,12 @@ class ExamBookingsExport implements FromCollection, WithHeadings, WithMapping, S
      */
     public function map($examBooking): array
     {
+        // แปลงรูปแบบของ total_amount ให้เป็นตัวเลขที่มีทศนิยม 2 ตำแหน่ง
+        $totalAmount = number_format($examBooking->total_amount, 2);
+
+        // แปลง payment_method code ให้เป็นชื่อที่เข้าใจง่าย
+        $paymentMethodDisplayName = $this->getPaymentMethodDisplayName($examBooking->payment_method);
+
         // แมปแอตทริบิวต์ของโมเดลตามลำดับหัวข้อของคุณ
         return [
             $examBooking->id,
@@ -90,6 +98,8 @@ class ExamBookingsExport implements FromCollection, WithHeadings, WithMapping, S
             $examBooking->province,
             $examBooking->postal_code,
             $examBooking->agree_terms ? 'Yes' : 'No',
+            $totalAmount, // เพิ่ม: ยอดรวมที่ต้องชำระ
+            $paymentMethodDisplayName, // เพิ่ม: วิธีการชำระเงิน
             $examBooking->created_at->format('Y-m-d H:i:s'),
             $examBooking->updated_at->format('Y-m-d H:i:s'),
         ];
@@ -103,7 +113,7 @@ class ExamBookingsExport implements FromCollection, WithHeadings, WithMapping, S
     {
         // ปรับขนาดตัวอักษรของหัวข้อ (แถวแรก) ให้ใหญ่ขึ้น
         return [
-            1    => ['font' => ['bold' => true, 'size' => 14]], // แถวที่ 1 (หัวข้อ)
+            1 => ['font' => ['bold' => true, 'size' => 14]], // แถวที่ 1 (หัวข้อ)
         ];
     }
 
@@ -115,6 +125,16 @@ class ExamBookingsExport implements FromCollection, WithHeadings, WithMapping, S
             case 'CENTER_CHIANGMAI': return 'เชียงใหม่';
             case 'CENTER_HATYAI': return 'หาดใหญ่';
             case 'CENTER_KHONKAEN': return 'ขอนแก่น';
+            default: return $code;
+        }
+    }
+
+    // เมธอดตัวช่วยสำหรับแปลงรหัส payment_method เป็นชื่อที่แสดง
+    private function getPaymentMethodDisplayName($code)
+    {
+        switch ($code) {
+            case 'bank_transfer': return 'โอนเงิน';
+            case 'credit_card': return 'บัตรเครดิต/เดบิต';
             default: return $code;
         }
     }

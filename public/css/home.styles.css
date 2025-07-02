@@ -3,43 +3,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap');
 
 
-/* Custom CSS for hover effects */
 
-/* Target the anchor tags within the specific flex container */
 .d-flex.align-items-end.gap-4 .link-icon {
-    /* ใช้ transition เพื่อให้การเปลี่ยนสีดูนุ่มนวลขึ้น */
     transition: color 0.3s ease, transform 0.2s ease;
 }
-
-
-/* Hover effect for SVG icons */
 .d-flex.align-items-end.gap-4 .link-icon:hover svg.mb-icon {
-    fill: var(--bs-primary); /* เปลี่ยนสี fill ของ SVG เป็นสีหลักของ Bootstrap */
+    fill: var(--bs-primary); 
 }
-
-/* Optional: Make counter badge more prominent on hover */
 .d-flex.align-items-end.gap-4 .link-icon:hover .counter {
-    color: white; /* เปลี่ยนสีตัวอักษรของ counter */
+    color: white; 
 }
-
-/* If you want a different hover color, define it */
-/* For example, if you want a pink hover */
 .d-flex.align-items-end.gap-4 .link-icon:hover {
-    color: #fd79a8; /* ตัวอย่างสีชมพู */
-    
+    color: #fd79a8;
 }
-
 .d-flex.align-items-end.gap-4 .link-icon:hover svg.mb-icon {
-    fill: #fd79a8; /* ตัวอย่างสีชมพู */
+    fill: #fd79a8; 
 }
 
 
-
-
-
-
-
-
+.nav-link.position-relative {
+    position: relative;
+  
+}
+.badge-hot {
+    background-color: #e74c3c; 
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.7em; 
+    font-weight: bold;
+    position: absolute; 
+    top: -8px; 
+    right: -10px; 
+    transform: rotate(10deg); 
+    animation: blink 1s infinite; 
+}
+@keyframes blink {
+    0%, 100% {
+        opacity: 1; 
+    }
+    50% {
+        opacity: 0; 
+    }
+}
 
 
 
@@ -55,9 +61,9 @@
 #droneSection {
   scroll-margin-top: 50px; 
 }
-/* Custom CSS */
 
-/* Styles for sticky-navbar on larger screens (default) */
+
+
 .sticky-navbar {
     position: fixed;
     top: 0;
@@ -67,53 +73,45 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* เงาด้านล่าง */
     z-index: 1000; /* ให้ Navbar อยู่ด้านบนสุด */
     transform: translateY(-100%); /* ซ่อนไว้ด้านบนเริ่มต้น */
-    transition: transform 0.3s ease-out; /* เพิ่ม transition ให้ smooth */
+    transition: transform 0.5s ease-out; /* เพิ่ม transition ให้ smooth */
     padding-top: 0.5rem !important; /* ปรับ padding ให้เข้ากับ py-1 */
     padding-bottom: 0.5rem !important; /* ปรับ padding ให้เข้ากับ py-1 */
 }
-
 .sticky-navbar.show {
-    transform: translateY(0); /* แสดง Navbar เมื่อมีคลาส 'show' */
+    transform: translateY(0); 
 }
-
-/* ปรับสีไอคอนและข้อความใน sticky navbar ให้เป็นสีขาว */
 .sticky-navbar .link-icon,
 .sticky-navbar .small,
 .sticky-navbar .nav-link {
     color: white !important;
 }
-
-/* ปรับไอคอนใน sticky navbar */
 .sticky-navbar .mb-icon {
-    fill: white; /* เปลี่ยนสีไอคอน SVG ให้เป็นสีขาว */
+    fill: white; 
 }
-
-/* ปรับ dropdown menu ของ sticky navbar */
 .sticky-navbar .dropdown-menu {
-    background-color: white; /* พื้นหลังเมนู dropdown */
+    background-color: white; 
     border-radius: 0.5rem;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
-
 .sticky-navbar .dropdown-item {
     color: #333; /* สีข้อความใน dropdown */
 }
 
 .sticky-navbar .dropdown-item:hover {
-    background-color: #f8f9fa; /* สีพื้นหลังเมื่อ hover */
-    color: #ff40a4; /* สีข้อความเมื่อ hover */
+    background-color: #f8f9fa; 
+    color: #ff40a4; 
 }
 
 /* --- Media Query for screens 976px and below --- */
 @media (max-width: 976px) {
     .sticky-navbar {
-        position: static !important; /* ปิดการทำงาน sticky */
-        transform: translateY(0) !important; /* ยกเลิกการ transform */
-        display: none !important; /* ซ่อน Navbar ไปเลย */
+        position: static !important; 
+        transform: translateY(0) !important; 
+        display: none !important; 
     }
     .sticky-navbar.show {
-        transform: translateY(0) !important; /* ให้แน่ใจว่าไม่มีการเคลื่อนไหวใดๆ */
-        display: none !important; /* ยังคงซ่อนอยู่ */
+        transform: translateY(0) !important; 
+        display: none !important; 
     }
 }
 
@@ -190,7 +188,6 @@
 .preloader-dots span:nth-child(2) { animation-delay: 0.2s; }
 .preloader-dots span:nth-child(3) { animation-delay: 0.4s; }
 
-/* Keyframes สำหรับขยาย–หด */
 @keyframes dots-scale {
   0%, 100%   { transform: scale(0.5); opacity: 0.5; }
   50%        { transform: scale(1.2); opacity: 1; }
@@ -207,12 +204,11 @@
   transition: opacity 0.3s ease;
 }
 #preloader {
-  /* fade-out delay 30s, duration 0.3s */
   transition: opacity 0.3s ease 1s;
 }
 #preloader.loaded {
   opacity: 0;
-  /* visibility จะซ่อนทันที แต่ถ้าอยาก delay ให้เอาออกได้ */
+ 
   /* visibility: hidden; */
 }
 .navbar .nav-link:hover {
@@ -297,6 +293,9 @@ main {
   border-radius: 5px;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 html, body {
   font-family: 'Kanit', sans-serif;
   margin: 0;
@@ -440,11 +439,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 .carousel-hover-show:hover .carousel-control-prev{
  opacity: 1;
-    transform: translateX(20px); /* เข้าจากซ้าย */
+    transform: translateX(20px); 
 }
 .carousel-hover-show:hover .carousel-control-next{
 opacity: 1;
-    transform: translateX(-20px); /* เข้าจากขวา */
+    transform: translateX(-20px); 
 }
 .product-slide-row {
   gap: 1rem;  
@@ -712,11 +711,9 @@ opacity: 1;
   color: #e83e8c;               
   transform: scale(1.2);
 }
-html {
-  scroll-behavior: smooth; 
-}
-#backToTop { /* เปลี่ยนจาก #backToTopBtn เป็น #backToTop */
-    display: block; /* ให้ปุ่มแสดงอยู่เสมอตอนแรก แล้วใช้ opacity จัดการ */
+
+#backToTop { 
+    display: block; 
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -733,17 +730,17 @@ html {
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     text-align: center;
     line-height: 50px;
-    opacity: 0; /* ซ่อนเริ่มต้นด้วย opacity */
-    visibility: hidden; /* ซ่อนจริงๆ ไม่ให้คลิกได้ถ้า opacity เป็น 0 */
-    transition: opacity 0.3s ease, visibility 0.3s ease; /* เพิ่ม transition */
+    opacity: 0; 
+    visibility: hidden; 
+    transition: opacity 0.3s ease, visibility 0.3s ease; 
 }
 
-#backToTop.show { /* เพิ่มกฎนี้ */
+#backToTop.show { 
     opacity: 1;
     visibility: visible;
 }
 
-#backToTop:hover { /* เปลี่ยนจาก #backToTopBtn:hover เป็น #backToTop:hover */
+#backToTop:hover { 
     background-color: #d63384;
 }
 .custom-nav {
@@ -796,7 +793,8 @@ html {
   text-decoration: none;
 }
 .footer-menu a:hover {
-  text-decoration: underline;
+    color: #f8d7da !important;
+    text-decoration: none;
 }
 .site-footer p,
 .site-footer li a {

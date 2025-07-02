@@ -5,7 +5,6 @@
 <div class="container py-4">
     <h2 class="mb-4">ชำระสินค้า</h2>
 
-    {{-- แสดงข้อความแจ้งเตือนต่างๆ (เช่น success หรือ error) --}}
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -22,13 +21,10 @@
 
     <div class="row">
         <div class="col-lg-8">
-            {{-- ส่วนที่อยู่จัดส่ง --}}
-            {{-- เราจะตรวจสอบว่าตัวแปร $address มีค่าและไม่เป็น null --}}
             @if ($address)
                 <div class="card shadow-sm rounded-3 p-4 mb-4">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h5 class="fw-bold mb-0">ที่อยู่จัดส่ง</h5>
-                        {{-- ลิงก์สำหรับแก้ไขที่อยู่ อาจจะไปหน้าฟอร์มแก้ไข หรือเปิดฟอร์มแก้ไขในหน้านี้เลย --}}
                         <a href="{{ route('shipping.create') }}" class="btn btn-outline-primary btn-sm">แก้ไขที่อยู่</a>
                     </div>
                     <p class="mb-1 text-muted">
@@ -203,11 +199,10 @@
         let totalItems = 0;
         let subtotal = 0;
 
-        // ดึงข้อมูลสินค้าที่เลือกจาก localStorage (ต้องบันทึกไว้จากหน้าตะกร้าสินค้า)
         const storedSelectedItems = JSON.parse(localStorage.getItem('selectedCartItems')) || [];
 
-        checkoutSummaryList.innerHTML = ''; // Clear previous summary
-        selectedItemsInputs.innerHTML = ''; // Clear previous hidden inputs
+        checkoutSummaryList.innerHTML = ''; 
+        selectedItemsInputs.innerHTML = '';
 
         if (storedSelectedItems.length > 0) {
             storedSelectedItems.forEach(item => {
@@ -223,7 +218,6 @@
                 `;
                 checkoutSummaryList.insertAdjacentHTML('beforeend', itemHtml);
 
-                // เพิ่ม hidden input สำหรับส่งข้อมูลสินค้าไปที่ Controller
                 const inputId = document.createElement('input');
                 inputId.type = 'hidden';
                 inputId.name = `items[${item.id}][id]`;
@@ -251,7 +245,6 @@
             checkoutSummaryList.innerHTML = '<p class="text-muted">ไม่มีสินค้าที่เลือกสำหรับการชำระเงิน</p>';
         }
 
-        // คำนวณค่าจัดส่ง: ถ้ามีสินค้าในตะกร้ามากกว่า 0 ชิ้น ให้มีค่าส่ง 50 บาท
         const shipping = subtotal > 0 ? 50 : 0;
         const vatPercent = 7;
         const vatAmount = parseFloat(((subtotal * vatPercent) / 100).toFixed(2));
@@ -266,10 +259,8 @@
 
     document.addEventListener('DOMContentLoaded', updateCheckoutSummary);
 
-    // Bootstrap collapse behavior: หากมีการ validation error ให้เปิดฟอร์มที่อยู่ไว้
     document.addEventListener('DOMContentLoaded', function () {
         const addressFormCollapse = document.getElementById('addressForm');
-        // ตรวจสอบว่ามี error ในฟอร์มที่อยู่หรือไม่
         const hasError = document.querySelector('.is-invalid');
         if (hasError && addressFormCollapse) {
             new bootstrap.Collapse(addressFormCollapse, {

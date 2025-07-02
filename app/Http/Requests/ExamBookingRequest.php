@@ -57,9 +57,11 @@ class ExamBookingRequest extends FormRequest
                 'required',
                 'string',
                 'digits:13',
-                // เพิ่ม rule unique เพื่อตรวจสอบว่าเลขบัตรประชาชนไม่ซ้ำกันในตาราง exam_bookings
+            
                 Rule::unique('exam_bookings', 'national_id'),
             ],
+            'total_amount' => ['required', 'numeric', 'min:0'], // ตรวจสอบว่าเป็นตัวเลขและไม่ติดลบ
+            'payment_method' => ['required', 'string', 'in:bank_transfer,credit_card'], // ตรวจสอบว่าเป็น string และอยู่ในค่าที่กำหนด
             'school_name' => 'nullable|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|digits:10',
@@ -81,7 +83,6 @@ class ExamBookingRequest extends FormRequest
     {
         return [
             'national_id.unique' => 'เลขบัตรประชาชนนี้มีการจองสอบอยู่แล้ว โปรดตรวจสอบข้อมูลหรือติดต่อผู้ดูแลระบบ',
-            // คุณสามารถเพิ่มข้อความสำหรับ rules อื่นๆ ได้ที่นี่
         ];
     }
 }
