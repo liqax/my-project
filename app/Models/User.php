@@ -1,27 +1,65 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
-    // กำหนดฟิลด์ที่สามารถเพิ่มข้อมูลลงได้ (Mass Assignment)
-  protected $fillable = [
-    'name', 'email', 'password', 'phone', 'gender', 'occupation','is_admin',
-];
-  public function addresses()
-{
-    return $this->hasMany(Address::class);
-}
-public function user()
-{
-    return $this->belongsTo(User::class);
-}
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'phone',
+        'gender',
+        'occupation',
+        'is_admin',
+    ];
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed', // ใช้ 'hashed' เพื่อให้ Laravel จัดการรหัสผ่านอัตโนมัติ
+    ];
+
+    /**
+     * Get all of the shipping addresses for the User.
+     */
+    public function shippingAddresses(): HasMany
+    {
+        return $this->hasMany(ShippingAddress::class);
+    }
+
+    /**
+     * Get all of the orders for the User.
+     */
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
 }

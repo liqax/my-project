@@ -59,7 +59,7 @@
                                 <span class="counter qty">{{ count($wishlistIds) }}</span>
                             @endif
                         </div>
-                        <div class="small fw-light">รายการโปรด </div>
+                        <div class=" text-center small fw-light">รายการโปรด </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 300px;">
                         <h6 class="fw-bold">รายการโปรดของคุณ</h6>
@@ -99,7 +99,7 @@
                                 </a>
                             </div>
                         @else
-                            <div class=" text-muted small">
+                            <div class=" text-center text-muted small">
                                 คุณไม่มีสินค้าในรายการโปรด.
                             </div>
                         @endif
@@ -128,7 +128,7 @@
 
                     {{-- เมนู dropdown --}}
                     <div class="dropdown-menu dropdown-menu-end p-3" style="min-width: 300px;">
-                        <h6 class="fw-bold">รายการสินค้าของคุณ</h6>
+                        <h6 class="text-center fw-bold">รายการสินค้าของคุณ</h6>
                         <hr class="mt-1 mb-2">
 
                         @php
@@ -371,14 +371,11 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
             <div class="container">
                 <div class="collapse navbar-collapse show">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-2">
-
-
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false"
                             aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-
                         <div class="collapse navbar-collapse" id="navbarMenu">
                             <li class="nav-item">
                                 <a href="{{ url('/') }}" class="nav-link  text-white fw-normal px-3">แนะนำ</a>
@@ -404,8 +401,15 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                                     class="nav-link  text-white fw-normal px-2">โดรน</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('/orders/history') }}"
-                                    class="nav-link  text-white fw-normal px-2">ประวัติคำสั่งซื้อ</a>
+                                @auth
+                                    {{-- ถ้าล็อกอินแล้ว: ให้ลิงก์ไปที่หน้าประวัติจริง --}}
+                                    <a href="{{ url('/orders/history') }}"
+                                        class="nav-link  text-white fw-normal px-2">ประวัติคำสั่งซื้อ</a>
+                                @else
+                                    {{-- ถ้ายังไม่ล็อกอิน: ให้เปิด Pop-up ล็อกอินแทน --}}
+                                    <a href="#" class="nav-link  text-white fw-normal px-2" data-bs-toggle="modal"
+                                        data-bs-target="#authModal">ประวัติคำสั่งซื้อ</a>
+                                @endauth
                             </li>
                             <li class="nav-item">
                                 <a href="{{ url('/book-exam') }}"
@@ -421,6 +425,9 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                                     เพิ่มเติม
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdownSticky">
+                                    <li><a class="dropdown-item" href="#">เงื่อนไขการให้บริการ</a></li>
+                                    <li><a class="dropdown-item" href="#">นโยบายการคืนสินค้า</a></li>
+                                    <li><a class="dropdown-item" href="#">คำถามที่พบบ่อย (FAQ)</a></li>
                                     <li><a class="dropdown-item" href="{{ url('/about') }}">เกี่ยวกับเรา</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
@@ -462,8 +469,15 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                                 class="nav-link text-white fw-normal px-2">โดรน</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('/orders/history') }}"
-                                class="nav-link text-white fw-normal px-2">ประวัติคำสั่งซื้อ</a>
+                            @auth
+                                {{-- ถ้าล็อกอินแล้ว: ให้ลิงก์ไปที่หน้าประวัติจริง --}}
+                                <a href="{{ url('/orders/history') }}"
+                                    class="nav-link  text-white fw-normal px-2">ประวัติคำสั่งซื้อ</a>
+                            @else
+                                {{-- ถ้ายังไม่ล็อกอิน: ให้เปิด Pop-up ล็อกอินแทน --}}
+                                <a href="#" class="nav-link  text-white fw-normal px-2" data-bs-toggle="modal"
+                                    data-bs-target="#authModal">ประวัติคำสั่งซื้อ</a>
+                            @endauth
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('/book-exam') }}"
@@ -479,6 +493,9 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                                 เพิ่มเติม
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdownSticky">
+                                <li><a class="dropdown-item" href="#">เงื่อนไขการให้บริการ</a></li>
+                                <li><a class="dropdown-item" href="#">นโยบายการคืนสินค้า</a></li>
+                                <li><a class="dropdown-item" href="#">คำถามที่พบบ่อย (FAQ)</a></li>
                                 <li><a class="dropdown-item" href="{{ url('/about') }}">เกี่ยวกับเรา</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -519,7 +536,6 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                                         ->map(fn($id) => $allProducts->get($id))
                                         ->filter();
                                 @endphp
-
                                 @if (count($wishlistItems))
                                     @foreach ($wishlistItems as $item)
                                         <div class="d-flex mb-2 small">
@@ -893,14 +909,15 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                         <p class="mb-1">กรุงเทพฯ ×××××</p>
                         <p class="mb-1">โทร: 02-123-4567</p>
                         <p class="mb-1">อีเมล: contact@lightshop.co.th</p>
-                        <p class="mb-0">เวลาทำการ: จันทร์ – เสาร์ 09:00 – 18:00 น.</p>
+                        <p class="mb-0">เวลาทำการ: จันทร์ – เสาร์ 08:00 – 16:00 น.</p>
                     </div>
 
                     <!-- Column 3: Policies -->
                     <div class="col-12 col-md-4">
                         <ul class="list-unstyled footer-menu">
                             <li><a href="#" class="text-white">เงื่อนไขการให้บริการ</a></li>
-                            <li><a href="#" class="text-white">นโยบายความเป็นส่วนตัว</a></li>
+                            <li><a href="{{ url('/customer/gdpr') }}" class="text-white">นโยบายความเป็นส่วนตัว</a>
+                            </li>
                             <li><a href="#" class="text-white">นโยบายการคืนสินค้า</a></li>
                             <li><a href="#" class="text-white">คำถามที่พบบ่อย (FAQ)</a></li>
                         </ul>

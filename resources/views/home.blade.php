@@ -79,7 +79,7 @@
                         <h2 class="section-title">เลือกซื้อตามหมวดหมู่สินค้า</h2>
 
                         <div class="d-flex align-items-center">
-                            <a href="/products" class="btn-link text-decoration-none">ดูสินค้าทั้งหมดในหมวดหมู่ →</a>
+                            <a href="/products" class="btn-link text-decoration-none">ดูสินค้าทั้งหมด →</a>
                             <div class="swiper-buttons">
                                 <button class="swiper-prev category-carousel-prev btn btn-pink">❮</button>
                                 <button class="swiper-next category-carousel-next btn btn-pink">❯</button>
@@ -105,6 +105,7 @@
 
                         </div>
                     </div>
+                    
 
                 </div>
             </div>
@@ -137,7 +138,7 @@
 
                     <div class="brand-carousel swiper">
                         <div class="swiper-wrapper">
-                            
+
                             @foreach ($products as $product)
                                 <div class="swiper-slide">
                                     <div class="card mb-3 p-3 rounded-4 shadow border-0">
@@ -153,10 +154,8 @@
                                                         ฿{{ number_format($product->sale_price ?? $product->price, 2) }}
                                                     </h5>
                                                     @if ($product->sale_price)
-                                                        
-                                                            <span class="text-decoration-line-through     text-muted">฿{{ number_format($product->price, 2) }}</span>
-
-                                                             
+                                                        <span
+                                                            class="text-decoration-line-through     text-muted">฿{{ number_format($product->price, 2) }}</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -164,7 +163,6 @@
                                     </div>
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
                 </div>
@@ -182,14 +180,13 @@
                         <h2 class="section-title">สินค้าใหม่!</h2>
 
                         <div class="d-flex align-items-center">
-                            <a href="/products" class="btn-link text-decoration-none">ดูสินค้าทั้งหมด →</a>
+                            <a href="/products" class="btn-link text-decoration-none">ดูทั้งหมด →</a>
                             <div class="swiper-buttons-new">
                                 <button class="swiper-prev new-carousel-prev btn btn-pink">❮</button>
                                 <button class="swiper-next new-carousel-next btn btn-pink">❯</button>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div class="row">
@@ -220,7 +217,6 @@
                             @endforeach
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -415,6 +411,9 @@
             </div>
         </div>
     </section>
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/home.filter.js') }}"></script>
+
+
+
 @endsection

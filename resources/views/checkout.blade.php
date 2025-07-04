@@ -2,272 +2,384 @@
 @section('title', 'ชำระสินค้า')
 
 @section('content')
-<div class="container py-4">
-    <h2 class="mb-4">ชำระสินค้า</h2>
 
-    @if (session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
 
-    @if (session('error'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
+    <div class="container py-5">
+        <div class="row">
+            {{-- คอลัมน์ซ้าย: ฟอร์มกรอกที่อยู่และวิธีชำระ --}}
+            <div class="col-md-8">
+                {{-- แถบสรุปสถานะ (รายการสินค้า / ชำระสินค้า / สถานะคำสั่งซื้อ) --}}
+                <ul class="nav nav-tabs mb-3" id="cartTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a href="#" class="nav-link  {{ request()->routeIs('cart.page') ? 'active' : '' }} px-3"
+                            role="tab">
+                            รายการสินค้า
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a href="#"
+                            class="nav-link active {{ request()->routeIs('cart.checkout') ? 'active' : '' }} px-3"
+                            role="tab">
+                            ชำระสินค้า
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a href="#" class="nav-link {{ request()->routeIs('cart.status') ? 'active' : '' }} px-3"
+                            role="tab">
+                            สถานะคำสั่งซื้อ
+                        </a>
+                    </li>
+                </ul>
 
-    <div class="row">
-        <div class="col-lg-8">
-            @if ($address)
-                <div class="card shadow-sm rounded-3 p-4 mb-4">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h5 class="fw-bold mb-0">ที่อยู่จัดส่ง</h5>
-                        <a href="{{ route('shipping.create') }}" class="btn btn-outline-primary btn-sm">แก้ไขที่อยู่</a>
-                    </div>
-                    <p class="mb-1 text-muted">
-                        {{ $address->first_name }} {{ $address->last_name }}<br>
-                        {{ $address->address }}, {{ $address->sub_district }}, {{ $address->district }}<br>
-                        {{ $address->province }} {{ $address->zipcode }}<br>
-                        โทร: {{ $address->phone }}
-                    </p>
-                    @if ($address->company)
-                        <p class="mb-1 text-muted">บริษัท: {{ $address->company }}</p>
-                    @endif
-                    <p class="mb-0 text-muted">ประเทศ: {{ $address->country }}</p>
-                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        {{-- ฟอร์มข้อมูลที่อยู่ผู้จัดส่ง --}}
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="mb-4 fw-bold text-center">ข้อมูลที่อยู่จัดส่งสินค้า</h5>
+                                <form>
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <label>ชื่อจริง</label>
+                                            <input type="text" class="form-control" placeholder="">
+                                        </div>
+                                        <div class="col">
+                                            <label>นามสกุล</label>
+                                            <input type="text" class="form-control" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>บริษัท (ถ้ามี)</label>
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <label>เบอร์โทรศัพท์</label>
+                                            <input type="text" class="form-control" placeholder="">
+                                        </div>
+                                        <div class="col">
+                                            <label>รหัสไปรษณีย์</label>
+                                            <input type="text" class="form-control" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label>ที่อยู่</label>
+                                        <textarea class="form-control" rows="3"></textarea>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <label>แขวง / ตำบล</label>
+                                            <input type="text" class="form-control" placeholder="">
+                                        </div>
+                                        <div class="col">
+                                            <label>เขต / อำเภอ</label>
+                                            <input type="text" class="form-control" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <label>จังหวัด</label>
+                                            <input type="text" class="form-control" placeholder="">
+                                        </div>
+                                        <div class="col">
+                                            <label>ประเทศ</label>
+                                            <select class="form-select">
+                                                <option selected>-- เลือกประเทศ --</option>
+                                                <option value="TH">ประเทศไทย</option>
+                                                <option value="US">สหรัฐอเมริกา</option>
+                                                <option value="CN">จีน</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100">บันทึกที่อยู่จัดส่ง</button>
+                                </form>
+                            </div>
 
-                {{-- สรุปรายการสินค้าที่เลือก --}}
-                <div class="card shadow-sm rounded-3 p-4 mb-4">
-                    <h5 class="fw-bold mb-3">สรุปรายการสินค้าที่เลือก</h5>
-                    <div id="checkout-summary-list">
-                        {{-- รายการสินค้าที่เลือกจะถูกสร้างด้วย JavaScript --}}
-                    </div>
-                </div>
-
-                {{-- ฟอร์มยืนยันคำสั่งซื้อ --}}
-                <form action="{{ route('order.place') }}" method="POST" id="order-form">
-                    @csrf
-                    <div id="selected-items-inputs">
-                        {{-- Hidden inputs สำหรับสินค้าที่เลือกจะถูกเพิ่มด้วย JavaScript --}}
-                    </div>
-                    <input type="hidden" name="shipping_address_id" value="{{ $address->id }}"> {{-- ส่ง ID ที่อยู่ไปด้วย --}}
-
-                    <div class="card shadow-sm rounded-3 p-4">
-                        <h5 class="fw-bold mb-3">ช่องทางการชำระเงิน</h5>
-                        <div class="form-check mb-2">
-                            <input class="form-check-input" type="radio" name="payment_method"
-                                id="payment_transfer" value="bank_transfer" checked>
-                            <label class="form-check-label" for="payment_transfer">
-                                โอนเงินผ่านธนาคาร
-                            </label>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="payment_method"
-                                id="payment_cod" value="cod">
-                            <label class="form-check-label" for="payment_cod">
-                                เก็บเงินปลายทาง (Cash on Delivery)
-                            </label>
-                        </div>
-                        <hr>
-                        <p class="text-muted small">
-                            การคลิก "ยืนยันคำสั่งซื้อ" แสดงว่าคุณยอมรับ <a href="#">ข้อตกลงและเงื่อนไข</a> ของเรา
-                        </p>
+                        {{-- วิธีการชำระเงิน --}}
+                        <div class="card mb-4 shadow-sm border-0">
+                            <div class="card-body">
+                                <h5 class="mb-4 fw-bold text-center">
+                                    <i class="bi bi-wallet2 me-2"></i> เลือกวิธีการชำระเงิน
+                                </h5>
 
-                        <button type="submit" id="place-order-btn" class="btn btn-success btn-lg w-100">
-                            ยืนยันคำสั่งซื้อ
-                        </button>
-                    </div>
-                </form>
-            @else
-                {{-- กรณีที่ยังไม่มีที่อยู่จัดส่ง --}}
-                <div class="alert alert-warning">
-                    คุณยังไม่มีที่อยู่จัดส่ง กรุณาเพิ่มที่อยู่เพื่อดำเนินการต่อ
-                    <button class="btn btn-sm btn-primary ms-2" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#addressForm">
-                        เพิ่มที่อยู่
-                    </button>
-                </div>
-                <div id="addressForm" class="collapse mt-3 @error('first_name') show @enderror"> {{-- เพิ่ม show เพื่อให้ฟอร์มเปิดถ้ามี error --}}
-                    <div class="card shadow-sm rounded-4 p-4 mx-auto" style="max-width: 720px;">
-                        <h4 class="text-center fw-bold mb-4">ข้อมูลที่อยู่จัดส่งสินค้า</h4>
+                                {{-- เก็บเงินปลายทาง --}}
+                                <div class="form-check payment-option border rounded p-3 mb-3">
+                                    <input class="form-check-input me-2" type="radio" name="payment_method" id="cod"
+                                        value="cod">
+                                    <label class="form-check-label w-100" for="cod">
+                                        <i class="bi bi-truck me-2 text-primary"></i>
+                                        เก็บเงินปลายทาง (COD)
+                                        <div class="small text-muted ms-4">ชำระเงินกับพนักงานจัดส่งเมื่อได้รับสินค้า</div>
+                                    </label>
+                                </div>
 
-                        <form action="{{ route('shipping.save') }}" method="POST">
-                            @csrf
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label">ชื่อจริง <span class="text-danger">*</span></label>
-                                    <input type="text" name="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name') }}" required>
-                                    @error('first_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                {{-- โอนผ่านบัญชีธนาคาร --}}
+                                <div class="form-check payment-option border rounded p-3 mb-3">
+                                    <input class="form-check-input me-2" type="radio" name="payment_method" id="bank"
+                                        value="bank">
+                                    <label class="form-check-label w-100" for="bank">
+                                        <i class="bi bi-bank me-2 text-success"></i>
+                                        โอนผ่านบัญชีธนาคาร
+                                        <div class="small text-muted ms-4">โอนเข้าบัญชีธนาคารของร้าน แล้วแนบสลิป</div>
+                                    </label>
+
+                                    {{-- ตัวอย่างช่องแสดงเมื่อเลือก bank --}}
+                                    <div class="bank-details mt-3 ms-4 d-none" id="bank-details">
+                                        <p class="mb-1"><strong>ชื่อบัญชี:</strong> LIGHT SHOP</p>
+                                        <p class="mb-1"><strong>ธนาคาร:</strong> กสิกรไทย</p>
+                                        <p class="mb-1"><strong>เลขบัญชี:</strong> 123-4-56789-0</p>
+                                        <label class="form-label mt-2">แนบสลิปการโอนเงิน:</label>
+                                        <input type="file" class="form-control form-control-sm">
+                                    </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">นามสกุล <span class="text-danger">*</span></label>
-                                    <input type="text" name="last_name" class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name') }}" required>
-                                    @error('last_name') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label">บริษัท (ถ้ามี)</label>
-                                    <input type="text" name="company" class="form-control @error('company') is-invalid @enderror" value="{{ old('company') }}">
-                                    @error('company') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">เบอร์โทรศัพท์ <span class="text-danger">*</span></label>
-                                    <input type="tel" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}" required>
-                                    @error('phone') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">รหัสไปรษณีย์ <span class="text-danger">*</span></label>
-                                    <input type="text" name="zipcode" class="form-control @error('zipcode') is-invalid @enderror" value="{{ old('zipcode') }}" required>
-                                    @error('zipcode') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label">ที่อยู่ (บ้านเลขที่, ถนน, ซอย) <span class="text-danger">*</span></label>
-                                    <textarea name="address" class="form-control @error('address') is-invalid @enderror" rows="3" required>{{ old('address') }}</textarea>
-                                    @error('address') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">แขวง / ตำบล <span class="text-danger">*</span></label>
-                                    <input type="text" name="sub_district" class="form-control @error('sub_district') is-invalid @enderror" value="{{ old('sub_district') }}" required>
-                                    @error('sub_district') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">เขต / อำเภอ <span class="text-danger">*</span></label>
-                                    <input type="text" name="district" class="form-control @error('district') is-invalid @enderror" value="{{ old('district') }}" required>
-                                    @error('district') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">จังหวัด <span class="text-danger">*</span></label>
-                                    <input type="text" name="province" class="form-control @error('province') is-invalid @enderror" value="{{ old('province') }}" required>
-                                    @error('province') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">ประเทศ <span class="text-danger">*</span></label>
-                                    <select name="country" class="form-select @error('country') is-invalid @enderror" required>
-                                        <option value="" disabled selected>-- เลือกประเทศ --</option>
-                                        <option value="TH" {{ old('country') == 'TH' ? 'selected' : '' }}>ประเทศไทย</option>
-                                        <option value="US" {{ old('country') == 'US' ? 'selected' : '' }}>United States</option>
-                                        <option value="JP" {{ old('country') == 'JP' ? 'selected' : '' }}>Japan</option>
-                                        {{-- เพิ่มประเทศอื่นๆ ตามต้องการ --}}
-                                    </select>
-                                    @error('country') <div class="invalid-feedback">{{ $message }}</div> @enderror
+
+                                {{-- บัตรเครดิต/เดบิต --}}
+                                <div class="form-check payment-option border rounded p-3 mb-2">
+                                    <input class="form-check-input me-2" type="radio" name="payment_method"
+                                        id="credit" value="credit">
+                                    <label class="form-check-label w-100" for="credit">
+                                        <i class="bi bi-credit-card-2-front me-2 text-danger"></i>
+                                        ชำระผ่านบัตรเครดิต / เดบิต
+                                        <div class="small text-muted ms-4">รองรับ Visa / Mastercard / QR</div>
+                                    </label>
                                 </div>
                             </div>
-                            <div class="d-grid mt-4">
-                                <button type="submit" class="btn btn-primary btn-lg">บันทึกที่อยู่จัดส่ง</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            @endif
-        </div>
+                        </div>
 
-        {{-- คอลัมน์ขวา: สรุปยอด (Summary) --}}
-        <div class="col-lg-4">
-            <div class="card shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title mb-3">สรุปยอดชำระสินค้า</h5>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>รวมเงินสินค้า (<span id="summaryTotalItems">0</span> ชิ้น)</span>
-                        <span>฿<span id="summarySubtotal">0.00</span></span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>ค่าจัดส่ง</span>
-                        <span>฿<span id="summaryShipping">0.00</span></span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>VAT (7%)</span>
-                        <span>฿<span id="summaryVatAmount">0.00</span></span>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between fw-bold mb-3">
-                        <span>ยอดชำระสุทธิ</span>
-                        <span>฿<span id="summaryGrandTotal">0.00</span></span>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+            {{-- คอลัมน์ขวา: สรุปยอด (Summary) --}}
+            <div class="col-lg-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">สรุปยอดชำระสินค้า</h5>
 
-<script>
-    // JavaScript สำหรับ Checkout Page
-    function updateCheckoutSummary() {
-        const checkoutSummaryList = document.getElementById('checkout-summary-list');
-        const selectedItemsInputs = document.getElementById('selected-items-inputs');
-        let totalItems = 0;
-        let subtotal = 0;
-
-        const storedSelectedItems = JSON.parse(localStorage.getItem('selectedCartItems')) || [];
-
-        checkoutSummaryList.innerHTML = ''; 
-        selectedItemsInputs.innerHTML = '';
-
-        if (storedSelectedItems.length > 0) {
-            storedSelectedItems.forEach(item => {
-                const itemHtml = `
-                    <div class="d-flex justify-content-between mb-2 border-bottom pb-2">
-                        <div>
-                            <p class="mb-0 fw-bold">${item.title}</p>
-                            <small class="text-muted">${item.qty} x ฿${parseFloat(item.price).toFixed(2)}</small>
-                            ${item.size ? `<small class="text-muted"> (ขนาด: ${item.size})</small>` : ''}
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>รวมเงินสินค้า (<span id="summaryTotalItems">0</span> ชิ้น)</span>
+                            <span>฿<span id="summarySubtotal">0.00</span></span>
                         </div>
-                        <span>฿${(item.qty * item.price).toFixed(2)}</span>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>ค่าจัดส่ง</span>
+                            <span>฿<span id="summaryShipping">0.00</span></span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>VAT (7%)</span>
+                            <span>฿<span id="summaryVatAmount">0.00</span></span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between fw-bold mb-3">
+                            <span>ยอดชำระสุทธิ</span>
+                            <span>฿<span id="summaryGrandTotal">0.00</span></span>
+                        </div>
+
+                        {{-- ปุ่มชำระสินค้า --}}
+                        @guest
+                            <button class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#authModal"
+                                id="guestCheckoutButton" disabled>
+                                กรุณาเข้าสู่ระบบก่อนชำระสินค้า
+                            </button>
+                        @else
+                            {{-- เปลี่ยนปุ่มให้ redirect ไปหน้า checkout แทนการเปลี่ยน tab --}}
+                            <button class="btn btn-primary w-100" id="loggedInCheckoutButton" disabled>
+                                ชำระสินค้า
+                            </button>
+                        @endguest
                     </div>
-                `;
-                checkoutSummaryList.insertAdjacentHTML('beforeend', itemHtml);
 
-                const inputId = document.createElement('input');
-                inputId.type = 'hidden';
-                inputId.name = `items[${item.id}][id]`;
-                inputId.value = item.id;
-                selectedItemsInputs.appendChild(inputId);
+                </div>
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const bankRadio = document.getElementById('bank');
+                    const codRadio = document.getElementById('cod');
+                    const creditRadio = document.getElementById('credit');
+                    const bankDetails = document.getElementById('bank-details');
 
-                const inputQty = document.createElement('input');
-                inputQty.type = 'hidden';
-                inputQty.name = `items[${item.id}][qty]`;
-                inputQty.value = item.qty;
-                selectedItemsInputs.appendChild(inputQty);
+                    const hideAll = () => {
+                        bankDetails.classList.add('d-none');
+                    };
 
-                if (item.size) {
-                    const inputSize = document.createElement('input');
-                    inputSize.type = 'hidden';
-                    inputSize.name = `items[${item.id}][size]`;
-                    inputSize.value = item.size;
-                    selectedItemsInputs.appendChild(inputSize);
+                    document.querySelectorAll('input[name="payment_method"]').forEach(radio => {
+                        radio.addEventListener('change', function() {
+                            hideAll();
+                            if (bankRadio.checked) {
+                                bankDetails.classList.remove('d-none');
+                            }
+                        });
+                    });
+                });
+            </script>
+            <style>
+                .payment-option:hover {
+                    background-color: #f8f9fa;
+                    border-color: #0d6efd;
+                    transition: 0.2s ease-in-out;
                 }
 
-                totalItems += item.qty;
-                subtotal += item.qty * item.price;
-            });
-        } else {
-            checkoutSummaryList.innerHTML = '<p class="text-muted">ไม่มีสินค้าที่เลือกสำหรับการชำระเงิน</p>';
-        }
+                .form-check-input:checked+.form-check-label {
+                    font-weight: 600;
+                    color: #0d6efd;
+                }
+            </style>
 
-        const shipping = subtotal > 0 ? 50 : 0;
-        const vatPercent = 7;
-        const vatAmount = parseFloat(((subtotal * vatPercent) / 100).toFixed(2));
-        const grandTotal = parseFloat((subtotal + shipping + vatAmount).toFixed(2));
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <p class="text-muted">
+                        สินค้าทั้งหมดในตะกร้า: รายการ
+                        &nbsp;|&nbsp;
+                        ยอดชำระสินค้าที่เลือก: <span class="fw-bold text-primary">฿<span
+                                id="footerGrandTotal">0.00</span></span>
+                    </p>
+                </div>
+            </div>
 
-        document.getElementById('summaryTotalItems').innerText = totalItems;
-        document.getElementById('summarySubtotal').innerText = subtotal.toFixed(2);
-        document.getElementById('summaryShipping').innerText = shipping.toFixed(2);
-        document.getElementById('summaryVatAmount').innerText = vatAmount.toFixed(2);
-        document.getElementById('summaryGrandTotal').innerText = grandTotal.toFixed(2);
-    }
+            <script>
+                // ฟังก์ชันอัปเดตราคา
+                function updateSummaryPrices() {
+                    let selectedSubtotal = 0;
+                    let selectedTotalItems = 0;
+                    let selectedItemsForCheckout = []; // เก็บข้อมูลสินค้าที่เลือกสำหรับส่งไปหน้า checkout
 
-    document.addEventListener('DOMContentLoaded', updateCheckoutSummary);
+                    document.querySelectorAll('.item-checkbox:checked').forEach(checkbox => {
+                        const id = checkbox.value;
+                        const price = parseFloat(checkbox.dataset.price);
+                        const qty = parseInt(checkbox.dataset.qty);
+                        const title = checkbox.dataset.title;
+                        const size = checkbox.dataset.size || null;
+                        const img = checkbox.dataset.img || null; // เพิ่มข้อมูลรูปภาพ
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const addressFormCollapse = document.getElementById('addressForm');
-        const hasError = document.querySelector('.is-invalid');
-        if (hasError && addressFormCollapse) {
-            new bootstrap.Collapse(addressFormCollapse, {
-                toggle: true
-            });
-        }
-    });
+                        if (!isNaN(price) && !isNaN(qty)) {
+                            selectedSubtotal += price * qty;
+                            selectedTotalItems += qty;
+                            selectedItemsForCheckout.push({
+                                id: id,
+                                title: title,
+                                price: price,
+                                qty: qty,
+                                size: size,
+                                img: img // เพิ่มรูปภาพ
+                            });
+                        }
+                    });
 
-</script>
-@endsection
+                    // บันทึกสินค้าที่เลือกใน localStorage เพื่อนำไปใช้ในหน้า checkout
+                    localStorage.setItem('selectedCartItems', JSON.stringify(selectedItemsForCheckout));
+
+                    const shipping = selectedSubtotal > 0 ? 50 : 0;
+                    const vatPercent = 7;
+                    const vatAmount = parseFloat(((selectedSubtotal * vatPercent) / 100).toFixed(2));
+                    const grandTotal = parseFloat((selectedSubtotal + shipping + vatAmount).toFixed(2));
+
+                    document.getElementById('summaryTotalItems').innerText = selectedTotalItems;
+                    document.getElementById('summarySubtotal').innerText = selectedSubtotal.toFixed(2);
+                    document.getElementById('summaryShipping').innerText = shipping.toFixed(2);
+                    document.getElementById('summaryVatAmount').innerText = vatAmount.toFixed(2);
+                    document.getElementById('summaryGrandTotal').innerText = grandTotal.toFixed(2);
+                    document.getElementById('footerGrandTotal').innerText = grandTotal.toFixed(2);
+
+                    checkCheckoutButtonStatus();
+                }
+
+                // ฟังก์ชันสำหรับตรวจสอบสถานะปุ่มชำระเงิน
+                function checkCheckoutButtonStatus() {
+                    const selectedItemsCount = document.querySelectorAll('.item-checkbox:checked').length;
+                    const guestCheckoutButton = document.getElementById('guestCheckoutButton');
+                    const loggedInCheckoutButton = document.getElementById('loggedInCheckoutButton');
+
+                    if (guestCheckoutButton) {
+                        if (selectedItemsCount > 0) {
+                            guestCheckoutButton.removeAttribute('disabled');
+                        } else {
+                            guestCheckoutButton.setAttribute('disabled', 'true');
+                        }
+                    }
+
+                    if (loggedInCheckoutButton) {
+                        if (selectedItemsCount > 0) {
+                            loggedInCheckoutButton.removeAttribute('disabled');
+                        } else {
+                            loggedInCheckoutButton.setAttribute('disabled', 'true');
+                        }
+                    }
+                }
+
+                // Event listener สำหรับปุ่ม "ชำระสินค้า"
+                document.getElementById('loggedInCheckoutButton')?.addEventListener('click', function() {
+                    // ตรวจสอบอีกครั้งว่ามีสินค้าที่เลือกหรือไม่ก่อน Redirect
+                    const selectedItemsCount = document.querySelectorAll('.item-checkbox:checked').length;
+                    if (selectedItemsCount > 0) {
+                        window.location.href = "{{ route('checkout.show') }}"; // เปลี่ยนเส้นทางไปยังหน้า checkout
+                    } else {
+                        alert('กรุณาเลือกสินค้าที่ต้องการชำระเงิน');
+                    }
+                });
+
+                document.getElementById('selectAll')?.addEventListener('change', function() {
+                    const checkboxes = document.querySelectorAll('.item-checkbox');
+                    checkboxes.forEach(cb => {
+                        cb.checked = this.checked;
+                    });
+                    updateSummaryPrices();
+                });
+
+                document.querySelectorAll('.item-checkbox').forEach(checkbox => {
+                    checkbox.addEventListener('change', function() {
+                        updateSummaryPrices();
+
+                        const totalCheckboxes = document.querySelectorAll('.item-checkbox').length;
+                        const checkedCheckboxes = document.querySelectorAll('.item-checkbox:checked').length;
+                        document.getElementById('selectAll').checked = totalCheckboxes === checkedCheckboxes;
+                    });
+                });
+
+                function increaseQty(id) {
+                    const input = document.getElementById('qty-' + id);
+                    let qty = parseInt(input.value) || 1;
+                    qty++;
+                    input.value = qty;
+                    const checkbox = document.querySelector(`.item-checkbox[value="${id}"]`);
+                    if (checkbox) {
+                        checkbox.dataset.qty = qty; // อัปเดต data-qty
+                    }
+                    document.getElementById('update-form-' + id).submit();
+                }
+
+                function decreaseQty(id) {
+                    const input = document.getElementById('qty-' + id);
+                    let qty = parseInt(input.value) || 1;
+                    if (qty > 1) {
+                        qty--;
+                        input.value = qty;
+                        const checkbox = document.querySelector(`.item-checkbox[value="${id}"]`);
+                        if (checkbox) {
+                            checkbox.dataset.qty = qty; // อัปเดต data-qty
+                        }
+                        document.getElementById('update-form-' + id).submit();
+                    }
+                }
+
+                function updateCart(id) {
+                    const sizeSelect = document.getElementById('size-' + id);
+                    const hiddenSizeInput = document.getElementById('hidden-size-' + id);
+                    const checkbox = document.querySelector(`.item-checkbox[value="${id}"]`); // Get the checkbox
+                    if (sizeSelect && hiddenSizeInput) {
+                        hiddenSizeInput.value = sizeSelect.value;
+                        if (checkbox) {
+                            checkbox.dataset.size = sizeSelect.value; // Update data-size for checkout
+                        }
+                    }
+                    document.getElementById('update-form-' + id).submit();
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    updateSummaryPrices();
+                });
+            </script>
+
+        </div>
+
+
+
+    @endsection

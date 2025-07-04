@@ -13,7 +13,6 @@ use App\Http\Controllers\CheckoutController;
 
 
 
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/products',  [ShopController::class,'index'])->name('shop.index');
 Route::get('/products/{id}', [ShopController::class,'show']) ->name('shop.show');
@@ -35,11 +34,9 @@ Route::post('/cart/remove', [ShopController::class, 'removeFromCart'])->name('ca
 
 
 
-
-
 Route::middleware(['auth'])->group(function () {
-    Route::get('/account', [AccountController::class, 'showAccountPage'])->name('account.page');
-    Route::get('/account/address/edit', [AccountController::class, 'editAddress'])->name('address.edit');
+Route::get('/account', [AccountController::class, 'showAccountPage'])->name('account.page');
+Route::get('/account/address/edit', [AccountController::class, 'editAddress'])->name('address.edit');
 });
 
 
@@ -63,19 +60,17 @@ Route::get('/customer/address', [CustomerController::class, 'address'])->name('c
 Route::post('/customer/address/save', [CustomerController::class, 'saveAddress'])->name('customer.address.save');
 
 
-Route::middleware(['auth'])->group(function () {
-    // Checkout Page (หน้าชำระเงิน)
+Route::middleware('auth')->group(function () {
+
+    // Checkout Routes
     Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
-    Route::post('/order/place', [OrderController::class, 'place'])->name('order.place'); // ยืนยันคำสั่งซื้อ
+    Route::post('/order/place', [OrderController::class, 'placeOrder'])->name('order.place');
+    
+    // Shipping Address Route
+    Route::post('/shipping-address/save', [ShippingAddressController::class, 'save'])->name('shipping.save');
 
-    // Shipping Address (ที่อยู่จัดส่ง)
-    // ใช้ show สำหรับแสดงฟอร์มเพิ่ม/แก้ไข และ save สำหรับบันทึก
-    Route::get('/shipping/create', [ShippingAddressController::class, 'create'])->name('shipping.create'); // แสดงฟอร์มเพิ่ม/แก้ไข
-    Route::post('/shipping/save', [ShippingAddressController::class, 'storeOrUpdate'])->name('shipping.save'); // บันทึก/อัปเดตที่อยู่
-
-    // Order Confirmation Page (หน้ายืนยันคำสั่งซื้อ)
-    Route::get('/order/confirmation/{order}', [OrderController::class, 'confirmation'])->name('order.confirmation');
-    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show'); // ดูรายละเอียดคำสั่งซื้อ (อาจจะมีหน้า history ด้วย)
+    // Order History Route (Update it to use a controller)
+    Route::get('/orders/history', [OrderController::class, 'history'])->name('orders.history');
 });
 
 
@@ -91,15 +86,8 @@ Route::get('/privacy', function () {
 
 
 
-
 Route::middleware(['auth'])->group(function () {
-    // Cart Routes
-    // Checkout Routes
-    Route::get('checkout', [CheckoutController::class, 'showCheckoutPage'])->name('checkout.show');
+    Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
     Route::post('order/place', [OrderController::class, 'placeOrder'])->name('order.place');
-
-    // Order Status Routes
     Route::get('orders', [OrderController::class, 'showOrderStatus'])->name('order.status');
-  
-
 });

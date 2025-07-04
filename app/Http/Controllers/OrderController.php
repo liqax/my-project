@@ -150,30 +150,6 @@ class OrderController extends Controller
         return view('order.show', compact('order')); // คุณอาจจะสร้าง view 'order.show' เพื่อแสดงรายละเอียด
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     /**
      * แสดงประวัติคำสั่งซื้อ
      * รองรับการกรองด้วย 'status' และ 'month' (เป็นเลขเดือน 1–12)

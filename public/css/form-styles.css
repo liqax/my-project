@@ -15,7 +15,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 600px;
+    max-width: 100px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -156,41 +156,41 @@ h3 {
 
  .exam-cards-container {
             display: flex;
-            justify-content: center; /* จัดการ์ดให้อยู่ตรงกลางแนวนอน */
-            margin-top: 50px; /* ระยะห่างจากการ์ดถึงขอบบน */
-            margin-bottom: 40px; /* ระยะห่างจากการ์ดถึงฟอร์ม */
+            justify-content: center; 
+            margin-top: 50px; 
+            margin-bottom: 40px; 
         }
 
         .exam-card {
             border: 1px solid #e0e0e0;
-            border-radius: 12px; /* ขอบโค้งมนมากขึ้น */
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); /* เงาที่ดูมีมิติมากขึ้น */
-            padding: 30px; /* เพิ่ม padding ภายในการ์ด */
+            border-radius: 12px; 
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); 
+            padding: 30px; 
             text-align: center;
             cursor: pointer;
             transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-            width: 400px; /* ปรับความกว้างของการ์ดให้ใหญ่และเด่นขึ้น */
+            width: 400px; 
             background-color: #fff;
-            position: relative; /* สำหรับ badge HOT! */
-            overflow: hidden; /* เพื่อซ่อนส่วนเกินของ badge */
+            position: relative; 
+            overflow: hidden; 
         }
 
         .exam-card:hover {
-            transform: translateY(-8px); /* ยกการ์ดสูงขึ้นเมื่อ hover */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* เงาที่เข้มขึ้นเมื่อ hover */
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); 
         }
 
         .exam-card img {
-            max-width: 150px; /* ขนาดโลโก้ที่ใหญ่ขึ้น */
+            max-width: 150px; 
             height: auto;
             margin-bottom: 20px;
             object-fit: contain;
         }
 
         .exam-card h3 {
-            font-size: 2.2em; /* ขนาดตัวอักษรใหญ่มาก */
-            font-weight: 700; /* ตัวหนามาก */
-            color: #2c3e50; /* สีข้อความที่เข้มขึ้น */
+            font-size: 2.2em; 
+            font-weight: 700; 
+            color: #2c3e50;
             margin-bottom: 10px;
         }
 
@@ -241,33 +241,27 @@ h3 {
         }
         */
 
-        /* ------------------------------------ */
-        /* CSS สำหรับฟอร์ม (ตามที่คุณต้องการให้คงเดิมและสวยงาม) */
-        /* ------------------------------------ */
         .form-container {
-            /* **สำคัญ: ซ่อนฟอร์มในตอนแรก** */
-            display: none; /* เริ่มต้นซ่อนฟอร์ม */
-
-            /* สไตล์พื้นฐานของ form-container (เพื่อให้สวยงามเหมือนรูปที่ให้มา) */
-            background-color: #ffffff; /* พื้นหลังสีขาวของการ์ดฟอร์ม */
-            border-radius: 8px; /* ขอบโค้งมน */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* เงาเบาๆ */
-            padding: 30px; /* ระยะห่างภายในฟอร์ม */
-            max-width: 800px; /* จำกัดความกว้างสูงสุด */
-            margin: 40px auto; /* จัดฟอร์มให้อยู่ตรงกลางและมีระยะห่างจากด้านบน/ล่าง */
-            border: 1px solid #e0e0e0; /* เส้นขอบบางๆ */
+            display: none; 
+            background-color: #ffffff; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+            padding: 30px; 
+            max-width: 600px; 
+            margin: 40px auto; 
+            border: 1px solid #e0e0e0; 
         }
 
         .form-container h2 {
-            font-size: 2em; /* ขนาดหัวข้อหลัก */
-            font-weight: 600; /* ตัวหนาปานกลาง */
+            font-size: 2em; 
+            font-weight: 600; 
             color: #333;
             margin-bottom: 10px;
             text-align: center;
         }
 
         .form-container .form-description {
-            font-size: 1em; /* ขนาดคำอธิบายฟอร์ม */
+            font-size: 1em; 
             color: #666;
             text-align: center;
             margin-bottom: 30px;
@@ -275,34 +269,34 @@ h3 {
 
         /* หัวข้อในแต่ละส่วนของฟอร์ม (ข้อมูลการสอบ, ข้อมูลผู้สมัคร) */
         .form-container h3 {
-            font-size: 1.5em; /* ขนาดหัวข้อในแต่ละส่วน */
+            font-size: 1.5em; 
             font-weight: 600;
             color: #555;
-            border-bottom: 1px solid #eee; /* เส้นแบ่งใต้หัวข้อ */
+            border-bottom: 1px solid #eee; 
             padding-bottom: 10px;
             margin-top: 30px;
             margin-bottom: 20px;
         }
 
         .form-group {
-            margin-bottom: 20px; /* ระยะห่างระหว่างแต่ละกลุ่มฟอร์ม */
+            margin-bottom: 20px; 
         }
 
         .form-group label {
-            display: block; /* ทำให้ label ขึ้นบรรทัดใหม่ */
-            font-weight: 500; /* ตัวหนาเล็กน้อย */
+            display: block; 
+            font-weight: 500; 
             color: #444;
-            margin-bottom: 8px; /* ระยะห่างระหว่าง label กับ input */
+            margin-bottom: 8px; 
             font-size: 0.95em;
         }
 
         .form-group .required {
-            color: #d9534f; /* สีแดงสำหรับ * ที่หมายถึง required */
+            color: #d9534f; 
             margin-left: 4px;
         }
 
         .form-group .form-text-hint {
-            font-size: 0.85em; /* ขนาดข้อความช่วยเหลือ */
+            font-size: 0.85em; 
             color: #888;
             margin-top: 5px;
         }
@@ -314,14 +308,14 @@ h3 {
         .form-group input[type="date"],
         .form-group textarea,
         .form-group select {
-            width: 100%; /* ให้ input กินพื้นที่เต็มความกว้าง */
-            padding: 12px 15px; /* ระยะห่างภายใน input */
-            border: 1px solid #ccc; /* เส้นขอบ input */
-            border-radius: 4px; /* ขอบโค้งมน */
-            font-size: 1em; /* ขนาดตัวอักษรใน input */
+            width: 100%;
+            padding: 12px 15px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            font-size: 1em; 
             color: #333;
-            box-sizing: border-box; /* ทำให้ padding/border ไม่ผลักความกว้างออกไป */
-            transition: border-color 0.2s, box-shadow 0.2s; /* เพิ่ม transition */
+            box-sizing: border-box; 
+            transition: border-color 0.2s, box-shadow 0.2s; 
         }
 
         .form-group input[type="text"]:focus,
@@ -330,9 +324,9 @@ h3 {
         .form-group input[type="date"]:focus,
         .form-group textarea:focus,
         .form-group select:focus {
-            border-color: #007bff; /* สีขอบเมื่อ focus */
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* เพิ่มเงาเมื่อ focus คล้าย Bootstrap */
-            outline: none; /* ลบ outline เริ่มต้นของเบราว์เซอร์ */
+            border-color: #007bff; 
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); 
+            outline: none; 
         }
 
         /* Alert Messages (for errors/success) */
@@ -428,11 +422,11 @@ h3 {
                 font-size: 1em;
             }
             .exam-card {
-                width: 90%; /* การ์ดเต็มความกว้างมากขึ้นบนมือถือ */
+                width: 90%;
                 margin: 0 auto;
             }
             .hsk-fee-table {
-                width: 100%; /* ให้รูปตารางราคากินเต็มความกว้างบนมือถือ */
+                width: 100%; 
                 height: auto;
             }
         }
@@ -444,7 +438,6 @@ h3 {
             }
         }
 
-        /* เพิ่ม CSS สำหรับส่วนการชำระเงินให้สวยงาม (ที่คุณมีอยู่แล้ว) */
         .payment-section {
             border-top: 1px solid #ddd;
             padding-top: 20px;
@@ -460,6 +453,7 @@ h3 {
 
         .payment-methods label {
             display: block;
+            margin-top:10px; 
             margin-bottom: 10px;
         }
 

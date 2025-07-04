@@ -14,16 +14,25 @@
 
         <div class="row">
             <div class="col-lg-8">
-                {{-- แท็บสรุปสถานะ (รายการสินค้า / ชำระสินค้า / สถานะคำสั่งซื้อ) --}}
-                <ul class="nav nav-tabs mb-3" id="cartTabs" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active px-3" id="items-tab" data-bs-toggle="tab" data-bs-target="#items"
-                            type="button" role="tab">
-                            รายการสินค้า ({{ count($cart) }})
-                        </button>
-                    </li>
-                    {{-- ลบแท็บ checkout และ status ออกจากตรงนี้ เพราะเราจะใช้หน้าแยกแทน --}}
-                </ul>
+                {{-- แถบสรุปสถานะ (รายการสินค้า / ชำระสินค้า / สถานะคำสั่งซื้อ) --}}
+<ul class="nav nav-tabs mb-3" id="cartTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+        <a href="#" class="nav-link active {{ request()->routeIs('cart.page') ? 'active' : '' }} px-3" role="tab">
+            รายการสินค้า ({{ count($cart) }})
+        </a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a href="#" class="nav-link {{ request()->routeIs('cart.checkout') ? 'active' : '' }} px-3" role="tab">
+            ชำระสินค้า
+        </a>
+    </li>
+    <li class="nav-item" role="presentation">
+        <a href="#" class="nav-link {{ request()->routeIs('cart.status') ? 'active' : '' }} px-3" role="tab">
+            สถานะคำสั่งซื้อ
+        </a>
+    </li>
+</ul>
+
                 <div class="tab-content mb-4" id="cartTabsContent">
                     {{-- แท็บ 1: รายการสินค้า --}}
                     <div class="tab-pane fade show active" id="items" role="tabpanel">

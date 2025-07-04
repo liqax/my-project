@@ -255,18 +255,17 @@
                     <div class="form-group total-amount">
                         <label>ยอดรวมที่ต้องชำระ: <span id="displayAmount">0</span> THB</label>
                         <input type="hidden" id="totalAmount" name="total_amount" value="0">
-                        {{-- เพิ่ม hidden input เพื่อส่งข้อมูลการเลือกราคาไปยัง backend --}}
                         <input type="hidden" id="selectedPriceDetail" name="selected_price_detail" value="">
                     </div>
 
                     <div class="form-group payment-methods">
                         <label>วิธีการชำระเงิน <span class="required">*</span></label>
-                        <div>
+                        <div style="display:flex; align-items:center;">
                             <input type="radio" id="paymentBankTransfer" name="payment_method" value="bank_transfer"
                                 required {{ old('payment_method') == 'bank_transfer' ? 'checked' : '' }}>
                             <label for="paymentBankTransfer">โอนเงิน</label>
                         </div>
-                        <div>
+                        <div style="display:flex; align-items:center;">
                             <input type="radio" id="paymentCreditCard" name="payment_method" value="credit_card"
                                 {{ old('payment_method') == 'credit_card' ? 'checked' : '' }}>
                             <label for="paymentCreditCard">บัตรเครดิต/เดบิต</label>
@@ -274,7 +273,9 @@
                     </div>
 
                     <div id="paymentDetails" class="payment-details" style="display: none;">
-                        {{-- Payment details will be loaded here by JavaScript --}}
+
+
+
                     </div>
                 </div>
 

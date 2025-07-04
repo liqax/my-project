@@ -27,19 +27,19 @@ return new class extends Migration
             $table->string('first_name_cn');
             $table->string('last_name_cn');
             $table->string('pinyin_name');
-            $table->string('national_id', 13)->unique(); // Assuming national ID is unique
+            $table->string('national_id', 13)->unique();
             $table->string('school_name')->nullable();
-            $table->string('email');
+            $table->string('email')->unique(); // Added for data integrity
             $table->string('phone', 10);
             $table->string('gender');
             $table->date('date_of_birth');
             $table->text('address');
             $table->string('province');
             $table->string('postal_code', 5);
-            $table->boolean('agree_terms'); // To record if terms were accepted
-            $table->decimal('total_amount', 8, 2)->default(0.00)->after('agree_terms');
-              $table->string('payment_method')->nullable()->after('total_amount');
-            $table->timestamps(); // created_at and updated_at
+            $table->boolean('agree_terms');
+            $table->decimal('total_amount', 8, 2)->default(0.00);
+            $table->string('payment_method')->nullable();
+            $table->timestamps();
         });
     }
 
