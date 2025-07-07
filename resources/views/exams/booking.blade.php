@@ -7,24 +7,32 @@
     <title>แบบฟอร์มจองสอบภาษาจีน</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/form-styles.css') }}">
-   
+
 </head>
 
 <body>
 
-    <div class="container mt-5"> <h2 class="text-center mb-4">อัตราค่าธรรมเนียมการสอบวัดระดับความสามารถภาษาจีน HSK</h2>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">อัตราค่าธรรมเนียมการสอบวัดระดับความสามารถภาษาจีน HSK</h1>
 
         <div class="text-center mb-4">
-            <img src="{{ asset('img/3.2.jpg') }}" alt="HSK Examination Service Fee Standard" class="img-fluid hsk-fee-table" style="max-width: 800px;">
+            {{-- เพิ่ม div นี้เพื่อสร้างกรอบและใส่เอฟเฟกต์ --}}
+            <div class="image-effect-container">
+                <a href="{{ asset('img/3.2.jpg') }}" data-lightbox="hsk-fee" data-title="HSK Examination Fee">
+                    <img src="{{ asset('img/3.2.jpg') }}" alt="HSK Examination Service Fee Standard" class="img-fluid">
+                </a>
+            </div>
         </div>
-<br>
+        <br>
         <h2 class="text-center mb-4">เลือกประเภทการสอบ</h2>
 
         <div class="exam-cards-container" id="examCardsContainer">
             <div class="exam-card" data-exam-type="HSK">
-                <div class="card-badge">HOT!</div> <img src="{{ asset('img/blog-12.jpg') }}" alt="Chinese Exam Logo"> <h3>สอบภาษาจีน</h3>
+                <div class="card-badge">HOT!</div> <img src="{{ asset('img/blog-12.jpg') }}" alt="Chinese Exam Logo">
+                <h3>สอบภาษาจีน</h3>
                 <p>HSK | HSKK | YCT</p>
-                <p class="detail-text">การทดสอบมาตรฐานภาษาจีนระดับสากล เพื่อวัดความสามารถในการใช้ภาษาจีนในการสื่อสารอย่างมีประสิทธิภาพ</p>
+                <p class="detail-text">การทดสอบมาตรฐานภาษาจีนระดับสากล
+                    เพื่อวัดความสามารถในการใช้ภาษาจีนในการสื่อสารอย่างมีประสิทธิภาพ</p>
                 <div class="price">ราคาเริ่มต้น: 550 THB</div>
             </div>
 
@@ -70,15 +78,18 @@
                     <label for="hskLevel">ระดับ HSK <span class="required">*</span></label>
                     <select id="hskLevel" name="hsk_level">
                         <option value="" data-price="0">-- เลือกระดับ --</option>
-                        <option value="HSK1" data-price="550" {{ old('hsk_level') == 'HSK1' ? 'selected' : '' }}>HSK 1
+                        <option value="HSK1" data-price="550" {{ old('hsk_level') == 'HSK1' ? 'selected' : '' }}>HSK
+                            1
                         </option>
-                        <option value="HSK2" data-price="750" {{ old('hsk_level') == 'HSK2' ? 'selected' : '' }}>HSK 2
+                        <option value="HSK2" data-price="750" {{ old('hsk_level') == 'HSK2' ? 'selected' : '' }}>HSK
+                            2
                         </option>
                         <option value="HSK3_SpeakingElementary" data-price="1500"
                             {{ old('hsk_level') == 'HSK3_SpeakingElementary' ? 'selected' : '' }}>HSK 3 + HSK Speaking
                             Elementary</option>
                         <option value="HSK4_SpeakingIntermediate" data-price="2000"
-                            {{ old('hsk_level') == 'HSK4_SpeakingIntermediate' ? 'selected' : '' }}>HSK 4 + HSK Speaking
+                            {{ old('hsk_level') == 'HSK4_SpeakingIntermediate' ? 'selected' : '' }}>HSK 4 + HSK
+                            Speaking
                             Intermediate</option>
                         <option value="HSK5_SpeakingAdvanced" data-price="2500"
                             {{ old('hsk_level') == 'HSK5_SpeakingAdvanced' ? 'selected' : '' }}>HSK 5 + HSK Speaking
@@ -86,7 +97,8 @@
                         <option value="HSK6_SpeakingAdvanced" data-price="3000"
                             {{ old('hsk_level') == 'HSK6_SpeakingAdvanced' ? 'selected' : '' }}>HSK 6 + HSK Speaking
                             Advanced</option>
-                        <option value="HSK7-9" data-price="3900" {{ old('hsk_level') == 'HSK7-9' ? 'selected' : '' }}>HSK
+                        <option value="HSK7-9" data-price="3900" {{ old('hsk_level') == 'HSK7-9' ? 'selected' : '' }}>
+                            HSK
                             Level 7-9</option>
                     </select>
                 </div>
@@ -115,7 +127,8 @@
                         </option>
                         <option value="YCT3" data-price="0" {{ old('yct_level') == 'YCT3' ? 'selected' : '' }}>YCT 3
                         </option>
-                        <option value="YCT4" data-price="0" {{ old('yct_level') == 'YCT4' ? 'selected' : '' }}>YCT 4
+                        <option value="YCT4" data-price="0" {{ old('yct_level') == 'YCT4' ? 'selected' : '' }}>YCT
+                            4
                         </option>
                         <option value="YCT_SPEAKING_PRIMARY" data-price="0"
                             {{ old('yct_level') == 'YCT_SPEAKING_PRIMARY' ? 'selected' : '' }}>YCT Speaking (ระดับต้น)
@@ -138,11 +151,14 @@
                         <option value="">-- เลือกศูนย์สอบ --</option>
                         <option value="CENTER_BKK" {{ old('exam_center') == 'CENTER_BKK' ? 'selected' : '' }}>กรุงเทพฯ
                         </option>
-                        <option value="CENTER_CHIANGMAI" {{ old('exam_center') == 'CENTER_CHIANGMAI' ? 'selected' : '' }}>
+                        <option value="CENTER_CHIANGMAI"
+                            {{ old('exam_center') == 'CENTER_CHIANGMAI' ? 'selected' : '' }}>
                             เชียงใหม่</option>
-                        <option value="CENTER_HATYAI" {{ old('exam_center') == 'CENTER_HATYAI' ? 'selected' : '' }}>หาดใหญ่
+                        <option value="CENTER_HATYAI" {{ old('exam_center') == 'CENTER_HATYAI' ? 'selected' : '' }}>
+                            หาดใหญ่
                         </option>
-                        <option value="CENTER_KHONKAEN" {{ old('exam_center') == 'CENTER_KHONKAEN' ? 'selected' : '' }}>
+                        <option value="CENTER_KHONKAEN"
+                            {{ old('exam_center') == 'CENTER_KHONKAEN' ? 'selected' : '' }}>
                             ขอนแก่น</option>
                     </select>
                 </div>
@@ -197,8 +213,8 @@
 
                 <div class="form-group">
                     <label for="schoolName">โรงเรียน / สถาบัน / มหาวิทยาลัย (ปัจจุบัน)</label>
-                    <input type="text" id="schoolName" name="school_name" placeholder="ชื่อเต็มของโรงเรียน/สถาบัน"
-                        value="{{ old('school_name') }}">
+                    <input type="text" id="schoolName" name="school_name"
+                        placeholder="ชื่อเต็มของโรงเรียน/สถาบัน" value="{{ old('school_name') }}">
                     <small class="form-text-hint">ใช้สำหรับข้อมูลสถิติหรือการออกใบรับรอง</small>
                 </div>
 
@@ -261,8 +277,9 @@
                     <div class="form-group payment-methods">
                         <label>วิธีการชำระเงิน <span class="required">*</span></label>
                         <div style="display:flex; align-items:center;">
-                            <input type="radio" id="paymentBankTransfer" name="payment_method" value="bank_transfer"
-                                required {{ old('payment_method') == 'bank_transfer' ? 'checked' : '' }}>
+                            <input type="radio" id="paymentBankTransfer" name="payment_method"
+                                value="bank_transfer" required
+                                {{ old('payment_method') == 'bank_transfer' ? 'checked' : '' }}>
                             <label for="paymentBankTransfer">โอนเงิน</label>
                         </div>
                         <div style="display:flex; align-items:center;">
@@ -292,8 +309,8 @@
             </form>
         </div>
     </div>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-      <script src="{{ asset('js/form-scripts.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/form-scripts.js') }}"></script>
 </body>
 
 </html>

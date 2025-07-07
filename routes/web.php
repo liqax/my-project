@@ -10,7 +10,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ExamBookingController;
 use App\Http\Controllers\CheckoutController;
-
+use App\Http\Controllers\PageController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -91,3 +91,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('order/place', [OrderController::class, 'placeOrder'])->name('order.place');
     Route::get('orders', [OrderController::class, 'showOrderStatus'])->name('order.status');
 });
+
+
+Route::get('/terms-of-service', [PageController::class, 'terms'])->name('pages.terms');
+Route::get('/return-policy', [PageController::class, 'policy'])->name('pages.policy');
+Route::get('/faq', [PageController::class, 'faq'])->name('pages.faq');

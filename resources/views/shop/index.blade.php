@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'PRE-ORDER')
+@section('PRE-ORDER')
 @section('content')
 
     <div class="filter-bar mt-3">
@@ -33,6 +33,7 @@
         </div>
     </div>
 
+
     <div class="container py-5">
         <div id="productRow" class="row gx-4 gy-4 justify-content-start">
             @foreach ($products as $product)
@@ -46,4 +47,5 @@
         </div>
     </div>
     <script src="{{ asset('js/product.filter.js') }}"></script>
+   
 @endsection

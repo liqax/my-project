@@ -91,7 +91,6 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-
                     <div class="category-carousel swiper">
                         <div class="swiper-wrapper">
                             @foreach ($categories as $cat)
@@ -101,12 +100,8 @@
                                     <h3 class="category-title">{{ $cat->name }}</h3>
                                 </a>
                             @endforeach
-
-
                         </div>
                     </div>
-                    
-
                 </div>
             </div>
         </div>

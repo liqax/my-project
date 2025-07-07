@@ -12,11 +12,18 @@ class CategorySeeder extends Seeder
         $cats = [
             ['name'=>'หนังสือ',          'slug'=>'books',     'image'=>'img/magazine.png'],
             ['name'=>'อุปกรณ์วิทยาศาสตร์','slug'=>'science',   'image'=>'img/flask.png'],
+             ['name'=>'หนังสือ',          'slug'=>'books',     'image'=>'img/magazine.png'],
+            ['name'=>'อุปกรณ์วิทยาศาสตร์','slug'=>'science',   'image'=>'img/flask.png'],
             ['name'=>'สารเคมี',         'slug'=>'chemicals', 'image'=>'img/cell.png'],
             ['name'=>'โดรน',            'slug'=>'drones',    'image'=>'img/drone.png'],
             ['name'=>'สินค้าอื่นๆ',      'slug'=>'others',    'image'=>'img/refresh.png'],
             ['name'=>'สินค้าอื่นๆ',      'slug'=>'otherss',    'image'=>'img/refresh.png'],
-            ['name'=>'สินค้าอื่นๆ',      'slug'=>'othersss',    'image'=>'img/refresh.png'],
+            ['name'=>'สินค้าอื่นๆ',      'slug'=>'othersssq',    'image'=>'img/refresh.png'],
+            ['name'=>'สินค้าอื่นๆ',      'slug'=>'otherssse',    'image'=>'img/refresh.png'],
+            ['name'=>'สินค้าอื่นๆ',      'slug'=>'othersssd',    'image'=>'img/refresh.png'],
+            ['name'=>'สินค้าอื่นๆ',      'slug'=>'otherssss',    'image'=>'img/refresh.png'],
+            ['name'=>'สินค้าอื่นๆ',      'slug'=>'othersssc',    'image'=>'img/refresh.png'],
+            ['name'=>'สินค้าอื่นๆ',      'slug'=>'othersssx',    'image'=>'img/refresh.png'],
         ];
         
 

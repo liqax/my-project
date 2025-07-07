@@ -265,54 +265,65 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-  document.addEventListener('DOMContentLoaded', function() {
-            // 3.1 Category Carousel
-            new Swiper('.category-carousel', {
-                slidesPerView: 4, // แสดงกี่ slide ตามความกว้างของเนื้อหา
-                spaceBetween: 20, // ช่องว่างระหว่าง slide (px)
-                navigation: {
-                    prevEl: '.category-carousel-prev',
-                    nextEl: '.category-carousel-next',
-                },
-                // ถ้าต้องการให้ loop
-                loop: false,
-            });
+document.addEventListener('DOMContentLoaded', function() {
+    new Swiper('.category-carousel', {
+        slidesPerView: 5, 
+        spaceBetween: 20,
+        grid: {
+            rows: 2,
+            fill: 'row',
+        },
+        navigation: {
+            prevEl: '.category-carousel-prev',
+            nextEl: '.category-carousel-next',
+        },
+        breakpoints: {
+            0: {
+                slidesPerView: 2,
+                spaceBetween: 15
+            },
+            576: {
+                slidesPerView: 3,
+                spaceBetween: 20
+            },
+            992: {
+                slidesPerView: 5, 
+                spaceBetween: 20
+            },
+           
+            1200: {
+                slidesPerView: 5, 
+                spaceBetween: 20
+            }
+        },
+        loop: false,
+    });
 
-            // 3.2 Brand Carousel
-            new Swiper('.brand-carousel', {
-                slidesPerView: 4, // Desktop แสดง 3 แถว
-                spaceBetween: 30,
-                navigation: {
-                    prevEl: '.brand-carousel-prev',
-                    nextEl: '.brand-carousel-next',
-                },
-                breakpoints: {
-                    0: {
-                        slidesPerView: 1
-                    }, // Mobile
-                    576: {
-                        slidesPerView: 2
-                    }, // Tablet
-                    992: {
-                        slidesPerView: 3
-                    } // Desktop
-                },
-                loop: false,
-            });
-            new Swiper('.new-carousel', {
-                slidesPerView: 4, 
-                spaceBetween: 20,
-                navigation: {
-                    prevEl: '.new-carousel-prev',
-                    nextEl: '.new-carousel-next',
-                },
-              
-                loop: false,
-            });
+    new Swiper('.brand-carousel', {
+        slidesPerView: 4, 
+        spaceBetween: 30,
+        navigation: {
+            prevEl: '.brand-carousel-prev',
+            nextEl: '.brand-carousel-next',
+        },
+        breakpoints: {
+            0: { slidesPerView: 1 }, 
+            576: { slidesPerView: 2 },
+            992: { slidesPerView: 3 }
+        },
+        loop: false,
+    });
 
-        });
-
-     
+    new Swiper('.new-carousel', {
+        slidesPerView: 4,
+        spaceBetween: 20,
+        navigation: {
+            prevEl: '.new-carousel-prev',
+            nextEl: '.new-carousel-next',
+        },
+        loop: false,
+    });
+});
 
 
 

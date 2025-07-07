@@ -425,9 +425,12 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                                     เพิ่มเติม
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdownSticky">
-                                    <li><a class="dropdown-item" href="#">เงื่อนไขการให้บริการ</a></li>
-                                    <li><a class="dropdown-item" href="#">นโยบายการคืนสินค้า</a></li>
-                                    <li><a class="dropdown-item" href="#">คำถามที่พบบ่อย (FAQ)</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url('/terms-of-service') }}">เงื่อนไขการให้บริการ</a></li>
+                                    <li><a class="dropdown-item"
+                                            href="{{ url('/return-policy') }}">นโยบายการคืนสินค้า</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('/faq') }}">คำถามที่พบบ่อย (FAQ)</a>
+                                    </li>
                                     <li><a class="dropdown-item" href="{{ url('/about') }}">เกี่ยวกับเรา</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
@@ -493,9 +496,11 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
                                 เพิ่มเติม
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="moreDropdownSticky">
-                                <li><a class="dropdown-item" href="#">เงื่อนไขการให้บริการ</a></li>
-                                <li><a class="dropdown-item" href="#">นโยบายการคืนสินค้า</a></li>
-                                <li><a class="dropdown-item" href="#">คำถามที่พบบ่อย (FAQ)</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/terms-of-service') }}">เงื่อนไขการให้บริการ</a></li>
+                                <li><a class="dropdown-item"
+                                        href="{{ url('/return-policy') }}">นโยบายการคืนสินค้า</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/faq') }}">คำถามที่พบบ่อย (FAQ)</a></li>
                                 <li><a class="dropdown-item" href="{{ url('/about') }}">เกี่ยวกับเรา</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
@@ -621,7 +626,7 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
 
                                             <div class="text-end">
                                                 <span
-                                                    class="text-pink fw-bold">฿{{ number_format($subtotal, 2) }}</span>
+                                                    class="text-black fw-bold">฿{{ number_format($subtotal, 2) }}</span>
                                             </div>
                                         </div>
                                         <hr class="my-1">
@@ -875,6 +880,9 @@ data-bs-toggle="dropdown" aria-expanded="false" @endauth>
             </div>
         </nav>
 
+
+
+        @include('partials.breadcrumbs')
 
 
         @yield('content')

@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -34,17 +35,21 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials, $request->remember)) {
-            return redirect()->back();
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/');
         }
 
-        return back()->withErrors(['email' => 'อีเมลหรือรหัสผ่านไม่ถูกต้อง']);
+        throw ValidationException::withMessages([
+            'email' => [trans('auth.failed')],
+        ]);
     }
 
-    public function logout()
-    {
-        Auth::logout();
-        return redirect('/');
-    }
 }

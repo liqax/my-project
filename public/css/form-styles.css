@@ -471,3 +471,39 @@ h3 {
         .payment-details p {
             margin-bottom: 5px;
         }
+
+
+
+
+        /*
+ * Container สำหรับใส่เอฟเฟกต์ให้รูปภาพ
+ */
+.image-effect-container {
+  display: inline-block; /* ทำให้กรอบมีขนาดพอดีกับรูป */
+  border-radius: 16px; /* ทำให้ขอบมน */
+  overflow: hidden; /* ซ่อนส่วนที่เกินขอบเขตของกรอบ */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเริ่มต้น */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* ทำให้เอฟเฟกต์สมูท */
+  max-width: 1000px;
+  width: 100%;
+}
+
+/*
+ * เอฟเฟกต์เมื่อนำเมาส์ไปวาง (Hover)
+ */
+.image-effect-container:hover {
+  transform: translateY(-5px) scale(1.02); /* ขยับขึ้นและขยายเล็กน้อย */
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); /* ทำให้เงาชัดขึ้น */
+}
+
+/*
+ * ทำให้รูปภาพที่อยู่ข้างในขยายตามไปด้วย
+ */
+.image-effect-container img {
+  transition: transform 0.3s ease;
+}
+
+.image-effect-container:hover img {
+    /* อาจจะซูมเข้าเล็กน้อยเพื่อความสวยงาม */
+    /* transform: scale(1.05);  */
+}

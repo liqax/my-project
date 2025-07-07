@@ -887,22 +887,26 @@ opacity: 1;
   box-shadow: 0px 5px 22px rgba(0, 0, 0, 0.04);
   border-radius: 16px;
   text-align: center;
-  padding: 60px 20px;
-  margin: 20px 0;
+  /* ลด Padding ลงเพื่อลดขนาดโดยรวม */
+  padding: 25px 15px;
+  /* ลด Margin บน-ล่าง เพื่อให้แถวชิดกันมากขึ้น */
+  margin: 10px 0;
   transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
 }
+
 .category-carousel .category-item:hover {
   transform: translate3d(0,-10px,0);
   box-shadow: 0px 21px 44px rgba(0, 0, 0, 0.08);
 }
+
 .category-carousel .category-item .category-title {
   font-weight: 600;
-  font-size: 20px;
-  line-height: 27px;
+  font-size: 16px;
+  line-height: 1.4;
   letter-spacing: 0.02em;
   text-transform: capitalize;
   color: #222222;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 @media (max-width: 992px) {
   .filter-bar {
@@ -958,3 +962,6 @@ opacity: 1;
     max-width: 80%;
   }
 }
+
+
+

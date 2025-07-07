@@ -6,8 +6,9 @@
     <div class="container py-5">
         {{-- แถวที่ 1: หัวข้อ --}}
         <div class="row mb-4">
-            <div class="col-12">
-                <h2 class="fw-bold">เกี่ยวกับเรา</h2>
+            <div class="col-12 text-center mb-4">
+                <h1 class="display-5 fw-bold">เกี่ยวกับเรา</h1>
+                <p class="text-muted">ศึกษาภัณฑ์พาณิชย์</p>
             </div>
         </div>
 
